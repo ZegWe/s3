@@ -1,0 +1,4 @@
+*.smap
+*.smap.config
+.vscode/
+davinci-api-wrap
