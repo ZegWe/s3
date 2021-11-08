@@ -14,6 +14,7 @@ function UIObject:initialize(_name, _ref, _parent, _size, _offset)
     self.obj.Texture = ResourceManager.GetTexture(_ref)
     self.obj.Size = _size
     self.obj.Offset = _offset
+    self.obj:SetActive(false)
 end
 
 --- 设置是否可见
