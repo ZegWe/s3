@@ -9,6 +9,7 @@ local UIObject = class('UIObject')
 --- @param _size Vector2 
 --- @param _offset Vector2 相对于父节点的偏移
 function UIObject:initialize(_name, _ref, _parent, _size, _offset)
+    self.name = _name
     --- @type UiImageObject
     self.obj = world:CreateObject('UiImageObject', _name, _parent)
     self.obj.Texture = ResourceManager.GetTexture(_ref)

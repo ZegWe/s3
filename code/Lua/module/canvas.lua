@@ -18,6 +18,7 @@ end
 function Canvas:initialize()
     --- @type UiFigureObject
     self.obj = world:CreateObject("UiFigureObject", "Canvas", BaseGui)
+    self.obj.Color = Color(0, 0, 0, 255)
     self:BindCamera(world.CurrentCamera)
     print("Canvas Initialized!")
 end
