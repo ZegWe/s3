@@ -45,6 +45,9 @@ function App:Run()
     self:ChangeScene("s1")
     self.scenes["s1"].obj.Offset = Vector2(-500, 0)
     self.player:EnterScene(self.scenes["s1"])
+    wait(2)
+    self:ChangeScene("s2")
+    self.player:EnterScene(self.scenes["s2"])
 end
 
 return App
