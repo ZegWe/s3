@@ -1,23 +1,12 @@
 local UIObject = require("Lua/module/uiObject")
 local PlayerImage = require("Lua/resource").PlayerImage
+local Animation = require("Lua/module/animation")
 
 local playerWidth = 200
 local playerHeight = 400
 local KeyMoveLeft = Enum.KeyCode.A
 local KeyMoveRight = Enum.KeyCode.D
 local dt = 0.2
-
-local tableNum = {}
---- return next element of given table
---- @param _t table
-local function tableNext(_t)
-    if tableNum[_t] == nil or tableNum[_t] == table.nums(_t) then
-        tableNum[_t] = 1
-    else
-        tableNum[_t] = tableNum[_t] + 1
-    end
-    return tableNum[_t]
-end
 
 --- @class Player:UIObject
 local Player = class("Player", UIObject)
@@ -27,18 +16,58 @@ function Player:initialize(_parent)
     UIObject.initialize(
         self,
         "Player",
-        tableNext(PlayerImage.Idle_Left),
+        PlayerImage.Idle_Left[1],
         _parent.obj,
         Vector2(playerWidth, playerHeight),
         Vector2.Zero
     )
+    self.animation = {}
+    self:AnimationCreate("Idle_Left", PlayerImage.Idle_Left, 0.2)
+    self:AnimationCreate("Idle_Right", PlayerImage.Idle_Right, 0.2)
+    self:AnimationCreate("Walk_Left", PlayerImage.Walk_Left, 0.2)
+    self:AnimationCreate("Walk_Right", PlayerImage.Walk_Right, 0.2)
+    self:AnimationPlay("Idle_Left")
+    self:InitControl()
+end
+
+--- @param _name string
+--- @param _t table
+--- @param _dt number
+function Player:AnimationCreate(_name, _t, _dt)
+    self.animation[_name] = Animation:new(self.obj, _t, _dt)
+end
+
+--- @type string
+local curAnimation = ""
+
+--- @param _ani string
+function Player:AnimationPlay(_ani)
+    self:AnimationStop()
+    curAnimation = _ani
+    self.animation[curAnimation]:Play()
+end
+
+function Player:AnimationStop()
+    if curAnimation == "" then
+        return
+    end
+    self.animation[curAnimation]:Stop()
+    curAnimation = ""
 end
 
 --- @param _scene Scene
-function Player:EnterScene(_scene)
+--- @param _pos Vector2
+function Player:EnterScene(_scene, _pos)
     self.obj.Parent = _scene.obj
-    self.obj.Offset = Vector2.Zero
+    _scene.player = self
+    self.obj.Offset = _pos
     self:SetVisible(true)
+    if self.faceLeft then
+        self:AnimationPlay("Idle_Left")
+    else
+        self:AnimationPlay("Idle_Right")
+    end
+    self:EnableControl(true)
 end
 
 function Player:Move()
@@ -48,37 +77,39 @@ function Player:Move()
     else
         face = "Right"
     end
-    local dir = ""
+    local ani = ""
     if self.controlEnabled == false or self.moveSpeed == 0 then
-        dir = "Idle" .. "_" .. face
+        ani = "Idle" .. "_" .. face
     elseif self.moveSpeed == 1 then
-        dir = "Walk" .. "_" .. face
+        ani = "Walk" .. "_" .. face
     else
-        dir = "Idle" .. "_" .. face
+        ani = "Idle" .. "_" .. face
     end
-    self.obj.Texture = ResourceManager.GetTexture(tableNext(PlayerImage[dir]))
+    self:AnimationPlay(ani)
+    local speed = self.moveSpeed * 10
+    if self.faceLeft then
+        speed = speed * -1
+    end
+    self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
 end
 
 function Player:InitControl()
+    print("InitControl")
     self.controlEnabled = false
     self.faceLeft = false
     self.moveSpeed = 0
-    invoke(
-        function()
-            while wait(dt) do
-                Player.Move(self)
-            end
-        end
-    )
+    world.OnRenderStepped:Connect(function()
+		self:Move()
+	end)
     Input.OnKeyDown:Connect(
         function()
             if self.controlEnabled == false then
                 return
             end
-            if Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.Press then
+            if Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStatePress then
                 self.faceLeft = true
                 self.moveSpeed = 1
-            elseif Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.Press then
+            elseif Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.KeyStatePress then
                 self.faceLeft = false
                 self.moveSpeed = 1
             end
@@ -87,12 +118,12 @@ function Player:InitControl()
     Input.OnKeyUp:Connect(
         function()
             if
-                Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.Release and self.faceLeft == true and
+                Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStateRelease and self.faceLeft == true and
                     self.moveSpeed == 1
              then
                 self.moveSpeed = 0
             elseif
-                Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.Release and self.faceLeft == false and
+                Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.KeyStateRelease and self.faceLeft == false and
                     self.moveSpeed == 1
              then
                 self.moveSpeed = 0

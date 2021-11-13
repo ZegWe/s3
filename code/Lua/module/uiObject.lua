@@ -16,12 +16,28 @@ function UIObject:initialize(_name, _ref, _parent, _size, _offset)
     self.obj.Size = _size
     self.obj.Offset = _offset
     self.obj:SetActive(false)
+    self.clickable = false
 end
 
 --- 设置是否可见
 --- @param _visible boolean
 function UIObject:SetVisible(_visible)
     self.obj:SetActive(_visible)
+end
+
+--- @param _func function
+function UIObject:SetClickFunc(_func)
+    self.obj.OnEnter:Connect(function()
+        self.clickable = true
+    end)
+    self.obj.OnLeave:Connect(function()
+        self.clickable = false
+    end)
+    Input.OnKeyDown:Connect(function()
+        if self.clickable == true and Input.GetPressKeyData(Enum.KeyCode.Mouse0) == Enum.KeyState.KeyStatePress then
+            _func()
+        end
+    end)
 end
 
 return UIObject

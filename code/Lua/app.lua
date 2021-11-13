@@ -1,8 +1,9 @@
 local App = {}
 
 local Canvas = require("Lua/module/canvas")
-local Scene = require("Lua/module/scene")
 local Player = require("Lua/module/player")
+local scene1 = require("Lua/scenes/scene1")
+local scene2 = require("Lua/scenes/scene2")
 
 function App:Init()
     --- Init Camera
@@ -19,8 +20,8 @@ function App:Init()
 end
 
 function App:InitScene()
-    local s1 = Scene:new("s1", "Local/scene", self.canvas, Vector2(3000, 1000))
-    local s2 = Scene:new("s2", "Local/scene2", self.canvas, Vector2(3000, 1000))
+    local s1 = scene1:Get("s1", self.canvas)
+    local s2 = scene2:Get("s2", self.canvas)
     self.scenes["s1"] = s1
     self.scenes["s2"] = s2
 end
@@ -43,11 +44,11 @@ function App:Run()
     self:InitPlayer()
     print("start!")
     self:ChangeScene("s1")
-    self.scenes["s1"].obj.Offset = Vector2(-500, 0)
-    self.player:EnterScene(self.scenes["s1"])
-    wait(2)
-    self:ChangeScene("s2")
-    self.player:EnterScene(self.scenes["s2"])
+    self.player:EnterScene(self.scenes["s1"], Vector2(-500, 0))
+    self.player.controlEnabled = true
+    -- wait(2)
+    -- self:ChangeScene("s2")
+    -- self.player:EnterScene(self.scenes["s2"])
 end
 
 return App
