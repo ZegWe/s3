@@ -21,6 +21,8 @@ function Player:initialize(_parent)
         Vector2(playerWidth, playerHeight),
         Vector2.Zero
     )
+    --- @type Scene
+    self.scene = nil
     self.animation = {}
     self:AnimationCreate("Idle_Left", PlayerImage.Idle_Left, 0.2)
     self:AnimationCreate("Idle_Right", PlayerImage.Idle_Right, 0.2)
@@ -58,6 +60,10 @@ end
 --- @param _scene Scene
 --- @param _pos Vector2
 function Player:EnterScene(_scene, _pos)
+    if self.scene ~= nil then
+        self.scene.player = nil
+    end
+    self.scene = _scene
     self.obj.Parent = _scene.obj
     _scene.player = self
     self.obj.Offset = _pos
@@ -91,6 +97,15 @@ function Player:Move()
         speed = speed * -1
     end
     self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
+    if self.scene == nil then
+        return
+    end
+    if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) < 300 then
+        self.obj.Offset = self.obj.Offset - Vector2(speed, 0)
+    end
+    if self.scene.obj.Parent.Size.X / 2 - math.abs(self.obj.Offset.X + self.scene.obj.Offset.X) < 300 then
+        self.scene.obj.Offset = self.scene.obj.Offset - Vector2(speed, 0)
+    end
 end
 
 function Player:InitControl()
@@ -98,9 +113,11 @@ function Player:InitControl()
     self.controlEnabled = false
     self.faceLeft = false
     self.moveSpeed = 0
-    world.OnRenderStepped:Connect(function()
-		self:Move()
-	end)
+    world.OnRenderStepped:Connect(
+        function()
+            self:Move()
+        end
+    )
     Input.OnKeyDown:Connect(
         function()
             if self.controlEnabled == false then

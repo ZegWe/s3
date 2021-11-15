@@ -8,9 +8,20 @@ local module = {}
 function module:Get(_name, _parent)
     --- @type Scene
     local scene = Scene:new(_name, "Local/scene", _parent, Vector2(3000, 1000))
-    table.insert(scene.interactives, Interactive:new("interactive", "Local/scene", "Local/s1", scene, Vector2(40,40), Vector2(200, 100), function()
-        print("interactive")
-    end))
+    table.insert(
+        scene.interactives,
+        Interactive:new(
+            "interactive",
+            "Local/水桶",
+            "Local/水桶",
+            scene,
+            Vector2(150, 120),
+            Vector2(200, 100),
+            function()
+                print("interactive")
+            end
+        )
+    )
     return scene
 end
 
