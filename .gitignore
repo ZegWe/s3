@@ -2,3 +2,4 @@
 *.smap.config
 .vscode/
 davinci-api-wrap
+.DS_Store
