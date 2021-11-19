@@ -4,19 +4,25 @@ local Animation = class("Animation")
 --- @param _obj UiImageObject
 --- @param _t table
 --- @param _dt number
-function Animation:initialize(_obj, _t, _dt)
+--- @param _once boolean
+function Animation:initialize(_obj, _t, _dt, _once)
     self.obj = _obj
     self.t = {}
+    self.once = _once
     for k, v in pairs(_t) do
         table.insert(self.t, ResourceManager.GetTexture(v))
     end
     self.dt = _dt
-    self.tickNow = 1
+    self.tickNow = 0
     self.playing = false
 end
 
 function Animation:tickNext()
     if #(self.t) == self.tickNow then
+        if self.once == true then
+            self:Stop()
+            return
+        end
         self.tickNow = 1
     else
         self.tickNow = self.tickNow + 1
@@ -25,14 +31,15 @@ function Animation:tickNext()
 end
 
 function Animation:Play()
+    if self.playing == true then
+        return
+    end
     self.playing = true
     invoke(
         function()
-            while wait(self.dt) do
-                if self.playing == false then
-                    break
-                end
+            while self.playing == true do
                 self:tickNext()
+                wait(self.dt)
             end
         end
     )

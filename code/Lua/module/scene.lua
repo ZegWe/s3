@@ -19,7 +19,7 @@ function Scene:initialize(_name, _ref, _parent, _size)
                 return
             end
             for k, v in ipairs(self.interactives) do
-                if math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= 200 then
+                if math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= 400 then
                     v:SetActive(true)
                 else
                     v:SetActive(false)
@@ -27,6 +27,11 @@ function Scene:initialize(_name, _ref, _parent, _size)
             end
         end
     )
+end
+
+--- @param _interactive Interactive
+function Scene:AddInteractive(_interactive)
+    table.insert(self.interactives, _interactive)
 end
 
 return Scene

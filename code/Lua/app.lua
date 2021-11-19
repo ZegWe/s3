@@ -2,7 +2,7 @@ local App = {}
 
 local Canvas = require("Lua/module/canvas")
 local Player = require("Lua/module/player")
-local scene1 = require("Lua/scenes/scene1")
+local scene1 = require("Lua/scenes/scene1/scene1")
 local scene2 = require("Lua/scenes/scene2")
 
 function App:Init()
@@ -30,7 +30,7 @@ function App:InitPlayer()
     self.player = Player:new(self.canvas)
 end
 
-function App:ChangeScene(_name)
+function App:ChangeScene(_name) 
     if self.currentScene ~= "" then
         self.scenes[self.currentScene]:SetVisible(false)
     end
@@ -44,7 +44,7 @@ function App:Run()
     self:InitPlayer()
     print("start!")
     self:ChangeScene("s1")
-    self.player:EnterScene(self.scenes["s1"], Vector2(-500, 0))
+    self.player:EnterScene(self.scenes["s1"], Vector2(500, -120))
     self.player.controlEnabled = true
     -- wait(2)
     -- self:ChangeScene("s2")

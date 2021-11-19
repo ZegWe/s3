@@ -4,22 +4,40 @@ local Resource = {}
 --- @type table
 Resource.PlayerImage = {
     --- Player Idle Left
-    Idle_Left = {"Local/Player"},
+    Idle_Left = {
+        "Local/idle/1",
+        "Local/idle/2",
+        "Local/idle/3",
+        "Local/idle/4",
+    },
     --- Player Idle Right
-    Idle_Right = {"Local/Player"},
+    Idle_Right = {
+        "Local/idle/1",
+        "Local/idle/2",
+        "Local/idle/3",
+        "Local/idle/4",
+    },
     --- Player Walk Left
     Walk_Left = {
-        "Local/Walk_Left_01",
-        "Local/Walk_Left_02",
-        "Local/Walk_Left_03",
-        "Local/Walk_Left_04"
+        "Local/walk/1",
+        "Local/walk/2",
+        "Local/walk/3",
+        "Local/walk/4",
+        "Local/walk/5",
+        "Local/walk/6",
+        "Local/walk/7",
+        "Local/walk/8",
     },
     --- Player Walk Right
     Walk_Right = {
-        "Local/Walk_Right_01",
-        "Local/Walk_Right_02",
-        "Local/Walk_Right_03",
-        "Local/Walk_Right_04"
+        "Local/walk/1",
+        "Local/walk/2",
+        "Local/walk/3",
+        "Local/walk/4",
+        "Local/walk/5",
+        "Local/walk/6",
+        "Local/walk/7",
+        "Local/walk/8",
     },
 }
 
