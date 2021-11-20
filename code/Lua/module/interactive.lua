@@ -16,7 +16,7 @@ function Interactive:initialize(_name, _ref, _ref_active, _parent, _size, _offse
     self.ref = _ref
     self.ref_active = _ref_active
     self:SetFunc(_func)
-    self.interactive = false
+    self.interactive = true
     self.pos = _offset
     self:SetVisible(true)
     self:SetActive(false)
@@ -34,16 +34,34 @@ end
 
 --- @param _active boolean
 function Interactive:SetActive(_active)
+    if self.interactive == _active then
+        return
+    end
     if _active == true then
+        self:SetVisible(true)
         self.obj.Texture = ResourceManager.GetTexture(self.ref_active)
+        if self.ani ~= nil then
+            self.ani:Play()
+        end
     else
+        if self.ref == "" then
+            self:SetVisible(false)
+        end
         self.obj.Texture = ResourceManager.GetTexture(self.ref)
+        if self.ani ~= nil then
+            self.ani:Stop()
+        end
     end
     self.interactive = _active
 end
 
 function Interactive:CallFunc()
     self.func()
+end
+
+--- @param _ani Animation
+function Interactive:SetAnimation(_ani)
+    self.ani = _ani
 end
 
 return Interactive

@@ -7,11 +7,8 @@ local Animation = class("Animation")
 --- @param _once boolean
 function Animation:initialize(_obj, _t, _dt, _once)
     self.obj = _obj
-    self.t = {}
+    self.t = _t
     self.once = _once
-    for k, v in pairs(_t) do
-        table.insert(self.t, ResourceManager.GetTexture(v))
-    end
     self.dt = _dt
     self.tickNow = 0
     self.playing = false
@@ -27,7 +24,7 @@ function Animation:tickNext()
     else
         self.tickNow = self.tickNow + 1
     end
-    self.obj.Texture = self.t[self.tickNow]
+    self.obj.Texture = ResourceManager.GetTexture(self.t[self.tickNow])
 end
 
 function Animation:Play()
@@ -35,6 +32,7 @@ function Animation:Play()
         return
     end
     self.playing = true
+    self.tickNow = 0
     invoke(
         function()
             while self.playing == true do

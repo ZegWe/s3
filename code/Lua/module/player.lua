@@ -1,5 +1,5 @@
 local UIObject = require("Lua/module/uiObject")
-local PlayerImage = require("Lua/resource").PlayerImage
+local PlayerImage = require("Lua/resource").Player
 local Animation = require("Lua/module/animation")
 
 local playerWidth = 610
