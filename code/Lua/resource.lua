@@ -39,20 +39,37 @@ Resource.Player = {
     }
 }
 
+Resource.Scene1 = {
+    All = "Local/客厅场景/整体1",
+    NoBucket = "Local/客厅场景/去掉水桶",
+    NoCanvas = "Local/客厅场景/去掉画板",
+    Empty = "Local/客厅场景/去掉画板和水桶",
+}
+
 Resource.MainDoor = {
-    Door = "Local/大门",
+    Door = "Local/打不开的大门/大门1",
     DoorShake = {
         "Local/打不开的大门/大门1",
         "Local/打不开的大门/大门2",
+        "Local/打不开的大门/大门1",
         "Local/打不开的大门/大门3",
-        "Local/打不开的大门/大门4",
         "Local/打不开的大门/大门1",
         "Local/打不开的大门/大门2",
+        "Local/打不开的大门/大门1",
+        "Local/打不开的大门/大门1",
+        "Local/打不开的大门/大门1",
+        "Local/打不开的大门/大门1",
+        "Local/打不开的大门/大门2",
+        "Local/打不开的大门/大门1",
         "Local/打不开的大门/大门3",
-        "Local/打不开的大门/大门4"
+        "Local/打不开的大门/大门1",
+        "Local/打不开的大门/大门2",
+        "Local/打不开的大门/大门1",
     },
     Maoyan = "Local/猫眼/猫眼界面1",
     MaoyanAni = {
+        "Local/猫眼/猫眼界面1",
+        "Local/猫眼/猫眼界面1",
         "Local/猫眼/猫眼界面1",
         "Local/猫眼/猫眼界面2",
         "Local/猫眼/猫眼界面3",
@@ -62,11 +79,11 @@ Resource.MainDoor = {
 }
 
 Resource.Mirror = {
-    Mirror = "Local/镜子1",
+    Mirror = "Local/镜子/镜子1",
     MirrorAni = {
-        "Local/镜子1",
-        "Local/镜子2",
-        "Local/镜子3"
+        "Local/镜子/镜子1",
+        "Local/镜子/镜子2",
+        "Local/镜子/镜子3"
     },
     MirrorPlayerAniLeft = {
         "Local/镜子/镜子映射a",
@@ -77,7 +94,28 @@ Resource.Mirror = {
         "Local/镜子/镜子映射1",
         "Local/镜子/镜子映射2",
         "Local/镜子/镜子映射3"
-    },
+    }
+}
+
+Resource.Bucket = {
+    Bucket = "Local/其他动效/水桶4",
+    BucketAni = {
+        "Local/其他动效/水桶1",
+        "Local/其他动效/水桶2",
+        "Local/其他动效/水桶3",
+        "Local/其他动效/水桶4",
+        "Local/其他动效/水桶4",
+        "Local/其他动效/水桶4",
+    }
+}
+
+Resource.Canvas = {
+    Canvas = "Local/其他动效/画布1",
+    CanvasAni = {
+        "Local/其他动效/画布1",
+        "Local/其他动效/画布2",
+        "Local/其他动效/画布3",
+    }
 }
 
 return Resource

@@ -23,7 +23,6 @@ function Interactive:initialize(_name, _ref, _ref_active, _parent, _size, _offse
 end
 
 function Interactive:SetFunc(_func)
-    print("set interactive func ")
     local func = function()
         if self.interactive == true then
             _func()
@@ -39,7 +38,7 @@ function Interactive:SetActive(_active)
     end
     if _active == true then
         self:SetVisible(true)
-        self.obj.Texture = ResourceManager.GetTexture(self.ref_active)
+        self:UpdateTexture(self.ref_active)
         if self.ani ~= nil then
             self.ani:Play()
         end
@@ -47,7 +46,7 @@ function Interactive:SetActive(_active)
         if self.ref == "" then
             self:SetVisible(false)
         end
-        self.obj.Texture = ResourceManager.GetTexture(self.ref)
+        self:UpdateTexture(self.ref)
         if self.ani ~= nil then
             self.ani:Stop()
         end

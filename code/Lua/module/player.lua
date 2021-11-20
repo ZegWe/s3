@@ -65,10 +65,8 @@ function Player:EnterScene(_scene, _pos)
         self.scene.player = nil
     end
     self.scene = _scene
-    print(self.scene.name)
     self.obj.Parent = _scene.obj
     self.scene.player = self
-    print(self.scene.player)
     self.obj.Offset = _pos
     self:SetVisible(true)
     if self.faceLeft then
@@ -106,7 +104,7 @@ function Player:Move()
     if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) < 200 then
         self.obj.Offset = self.obj.Offset - Vector2(speed, 0)
     end
-    if self.scene.obj.Parent.Size.X / 2 - math.abs(self.obj.Offset.X + self.scene.obj.Offset.X) < 300 then
+    if self.scene.obj.Parent.Size.X / 2 - math.abs(self.obj.Offset.X + self.scene.obj.Offset.X) < 400 then
         self.scene.obj.Offset = self.scene.obj.Offset - Vector2(speed, 0)
     end
 end

@@ -3,6 +3,8 @@ local Interactive = require("Lua/module/interactive")
 local UIObject = require("Lua/module/uiObject")
 local MainDoor = require("Lua/scenes/scene1/mainDoor")
 local Mirror = require("Lua/scenes/scene1/mirror")
+local Bucket = require("Lua/scenes/scene1/bucket")
+local Canvas = require("Lua/scenes/scene1/canvas")
 
 local module = {}
 
@@ -18,6 +20,8 @@ function module:Get(_name, _parent)
 
     scene:AddInteractive(MainDoor.Get(scene))
     scene:AddInteractive(Mirror.Get(scene))
+    scene:AddInteractive(Bucket.Get(scene))
+    scene:AddInteractive(Canvas.Get(scene))
     return scene
 end
 

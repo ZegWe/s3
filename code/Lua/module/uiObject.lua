@@ -11,7 +11,7 @@ function UIObject:initialize(_name, _ref, _parent, _size, _offset)
     self.name = _name
     --- @type UiImageObject
     self.obj = world:CreateObject("UiImageObject", _name, _parent)
-    self.obj.Texture = ResourceManager.GetTexture(_ref)
+    self:UpdateTexture(_ref)
     self.obj.Size = _size
     self.obj.Offset = _offset
     self.obj:SetActive(false)
@@ -38,7 +38,6 @@ end
 
 --- @param _func function
 function UIObject:SetClickFunc(_func)
-    print(_func)
     self.func = _func
     if self.obj.OnEnter:HasConnected(self.enterFunc) == false then
         self.obj.OnEnter:Connect(self.enterFunc)
@@ -49,6 +48,10 @@ function UIObject:SetClickFunc(_func)
     if Input.OnKeyDown:HasConnected(self.clickFunc) == false then
         Input.OnKeyDown:Connect(self.clickFunc)
     end
+end
+
+function UIObject:UpdateTexture(_texture)
+    self.obj.Texture = ResourceManager.GetTexture(_texture)
 end
 
 return UIObject

@@ -1,6 +1,7 @@
 local Animation = require("Lua/module/animation")
 local Interactive = require("Lua/module/interactive")
 local MirrorImage = require("Lua/resource").Mirror
+local GameManager = require("Lua/game")
 
 local Mirror = {}
 
@@ -28,6 +29,7 @@ function Mirror.Get(_parent)
     mirror:SetFunc(
         function()
             world.OnRenderStepped:Connect(syncMirror)
+            GameManager.CheckMirror()
         end
     )
 

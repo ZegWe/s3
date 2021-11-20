@@ -11,12 +11,12 @@ local MainDoor = {}
 function MainDoor.Get(_parent)
     --- @type Interactive
     local door =
-        Interactive:new("MainDoor", DoorImage.Door, DoorImage.Door, _parent, Vector2(420, 720), Vector2(1305, -30), nil)
+        Interactive:new("MainDoor", DoorImage.Door, DoorImage.Door, _parent, Vector2(420, 730), Vector2(1305, -25), nil)
     local animation =
         Animation:new(
         door.obj,
         DoorImage.DoorShake,
-        0.5,
+        0.1,
         true
     )
     local Maoyan = UIObject:new("Maoyan", DoorImage.Maoyan, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
@@ -35,8 +35,8 @@ function MainDoor.Get(_parent)
         function()
             if GameManager.MirrorChecked() then
                 _parent:SetVisible(false)
-                Maoyan:SetVisible(true)
                 maoyanAni:Play()
+                Maoyan:SetVisible(true)
             else
                 print("door shake")
                 animation:Play()

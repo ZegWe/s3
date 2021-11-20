@@ -34,4 +34,14 @@ function Scene:AddInteractive(_interactive)
     table.insert(self.interactives, _interactive)
 end
 
+--- @param _interactive Interactive
+function Scene:RemoveInteractive(_interactive)
+    for k, v in ipairs(self.interactives) do
+        if v == _interactive then
+            table.remove(self.interactives, k)
+        end
+    end
+end
+
+
 return Scene
