@@ -7,10 +7,12 @@ local Scene = class("Scene", UIObject)
 --- @param _ref string
 --- @param _parent Canvas
 --- @param _size Vector2
-function Scene:initialize(_name, _ref, _parent, _size)
+--- @param _enterPos Vector2
+function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
     UIObject.initialize(self, _name, _ref, _parent.obj, _size, Vector2.Zero)
     print("new scene: " .. self.name)
     self.interactives = {}
+    self.enterPos = _enterPos
     --- @type Player
     self.player = nil
     world.OnRenderStepped:Connect(
@@ -27,6 +29,16 @@ function Scene:initialize(_name, _ref, _parent, _size)
             end
         end
     )
+end
+
+--- 设置是否可见
+--- @param _visible boolean
+function Scene:SetVisible(_visible)
+    print("-------Scene--------")
+    if self.player ~= nil then
+        self.player:EnableControl(_visible)
+    end
+    self.obj:SetActive(_visible)
 end
 
 --- @param _interactive Interactive

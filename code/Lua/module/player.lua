@@ -60,21 +60,29 @@ end
 
 --- @param _scene Scene
 --- @param _pos Vector2
-function Player:EnterScene(_scene, _pos)
-    if self.scene ~= nil then
-        self.scene.player = nil
-    end
+function Player:EnterScene(_scene)
+    self:LeaveScene()
     self.scene = _scene
     self.obj.Parent = _scene.obj
     self.scene.player = self
-    self.obj.Offset = _pos
+    self.obj.Offset = _scene.enterPos
+    self.scene:SetVisible(true)
     self:SetVisible(true)
     if self.faceLeft then
         self:AnimationPlay("Idle_Left")
     else
         self:AnimationPlay("Idle_Right")
     end
-    self:EnableControl(true)
+end
+
+function Player:LeaveScene()
+    if self.scene == nil then
+        return
+    end
+    self.scene:SetVisible(false)
+    self.scene.player = nil
+    self.obj.Parent = self.scene.obj.Parent
+    self.scene = nil
 end
 
 function Player:Move()
@@ -85,7 +93,7 @@ function Player:Move()
         face = "Right"
     end
     local ani = ""
-    if self.controlEnabled == false or self.moveSpeed == 0 then
+    if self.moveSpeed == 0 then
         ani = "Idle" .. "_" .. face
     elseif self.moveSpeed == 1 then
         ani = "Walk" .. "_" .. face

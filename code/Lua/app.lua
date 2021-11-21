@@ -31,10 +31,7 @@ function App:InitPlayer()
 end
 
 function App:ChangeScene(_name) 
-    if self.currentScene ~= "" then
-        self.scenes[self.currentScene]:SetVisible(false)
-    end
-    self.scenes[_name]:SetVisible(true)
+    self.player:EnterScene(self.scenes[_name])
     self.currentScene = _name
 end
 
@@ -44,8 +41,6 @@ function App:Run()
     self:InitPlayer()
     print("start!")
     self:ChangeScene("s1")
-    self.player:EnterScene(self.scenes["s1"], Vector2(0, -150))
-    self.player.controlEnabled = true
     -- wait(2)
     -- self:ChangeScene("s2")
     -- self.player:EnterScene(self.scenes["s2"])
