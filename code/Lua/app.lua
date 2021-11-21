@@ -44,7 +44,7 @@ function App:Run()
     self:InitPlayer()
     print("start!")
     self:ChangeScene("s1")
-    self.player:EnterScene(self.scenes["s1"], Vector2(500, -150))
+    self.player:EnterScene(self.scenes["s1"], Vector2(0, -150))
     self.player.controlEnabled = true
     -- wait(2)
     -- self:ChangeScene("s2")

@@ -43,7 +43,7 @@ Resource.Scene1 = {
     All = "Local/客厅场景/整体1",
     NoBucket = "Local/客厅场景/去掉水桶",
     NoCanvas = "Local/客厅场景/去掉画板",
-    Empty = "Local/客厅场景/去掉画板和水桶",
+    Empty = "Local/客厅场景/去掉画板和水桶"
 }
 
 Resource.MainDoor = {
@@ -64,7 +64,7 @@ Resource.MainDoor = {
         "Local/打不开的大门/大门3",
         "Local/打不开的大门/大门1",
         "Local/打不开的大门/大门2",
-        "Local/打不开的大门/大门1",
+        "Local/打不开的大门/大门1"
     },
     Maoyan = "Local/猫眼/猫眼界面1",
     MaoyanAni = {
@@ -105,7 +105,7 @@ Resource.Bucket = {
         "Local/其他动效/水桶3",
         "Local/其他动效/水桶4",
         "Local/其他动效/水桶4",
-        "Local/其他动效/水桶4",
+        "Local/其他动效/水桶4"
     }
 }
 
@@ -114,8 +114,51 @@ Resource.Canvas = {
     CanvasAni = {
         "Local/其他动效/画布1",
         "Local/其他动效/画布2",
-        "Local/其他动效/画布3",
+        "Local/其他动效/画布3"
     }
 }
 
+Resource.RoomDoor = {
+    Door = "Local/打开卧室门/卧室门1",
+    Lock = "Local/RoomDoor/电子锁界面",
+    Text = "Local/文本框",
+    ButtonConfirm = "Local/RoomDoor/确认",
+    ButtonClear = "Local/RoomDoor/清空",
+    Back = "Local/RoomDoor/返回",
+    Answer = "Local/RoomDoor/密码锁小框",
+    DoorOpen = {},
+    LockNumbers = {
+        "Local/RoomDoor/1",
+        "Local/RoomDoor/2",
+        "Local/RoomDoor/3",
+        "Local/RoomDoor/4",
+        "Local/RoomDoor/5",
+        "Local/RoomDoor/6",
+        "Local/RoomDoor/7",
+        "Local/RoomDoor/8",
+        "Local/RoomDoor/9"
+    }
+}
+
+Resource.Photo = {
+    Photo = "Local/相框/相框",
+    PhotoInfo = "Local/相框/相框界面",
+    Text = "Local/文本框",
+    PhotoAni = {
+        "Local/相框/相框1",
+        "Local/相框/相框2",
+        "Local/相框/相框3"
+    }
+}
+
+Resource.Calendar = {
+    Calendar = "Local/日历/日历",
+    CalendarInfo = "Local/日历/日历界面",
+    Text = "Local/文本框",
+    CalendarAni = {
+        "Local/日历/日历1",
+        "Local/日历/日历2",
+        "Local/日历/日历3"
+    }
+}
 return Resource

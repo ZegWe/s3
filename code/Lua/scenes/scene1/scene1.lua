@@ -5,6 +5,9 @@ local MainDoor = require("Lua/scenes/scene1/mainDoor")
 local Mirror = require("Lua/scenes/scene1/mirror")
 local Bucket = require("Lua/scenes/scene1/bucket")
 local Canvas = require("Lua/scenes/scene1/canvas")
+local Lock = require("Lua/scenes/scene1/lock")
+local Photo = require("Lua/scenes/scene1/photo")
+local Calendar = require("Lua/scenes/scene1/calendar")
 
 local module = {}
 
@@ -22,7 +25,10 @@ function module:Get(_name, _parent)
     scene:AddInteractive(Mirror.Get(scene))
     scene:AddInteractive(Bucket.Get(scene))
     scene:AddInteractive(Canvas.Get(scene))
+    scene:AddInteractive(Lock.Get(scene))
+    scene:AddInteractive(Photo.Get(scene))
+    scene:AddInteractive(Calendar.Get(scene))
     return scene
 end
 
-return module 
+return module

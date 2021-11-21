@@ -98,13 +98,13 @@ function Player:Move()
         speed = speed * -1
     end
     self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
-    if self.scene == nil then
+    if self.scene == nil or self.scene.obj.ActiveSelf == false then
         return
     end
     if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) < 200 then
         self.obj.Offset = self.obj.Offset - Vector2(speed, 0)
     end
-    if self.scene.obj.Parent.Size.X / 2 - math.abs(self.obj.Offset.X + self.scene.obj.Offset.X) < 400 then
+    if self.scene.obj.Parent.Size.X / 2 - math.abs(self.obj.Offset.X + self.scene.obj.Offset.X) < 600 then
         self.scene.obj.Offset = self.scene.obj.Offset - Vector2(speed, 0)
     end
 end
@@ -122,6 +122,7 @@ function Player:InitControl()
     Input.OnKeyDown:Connect(
         function()
             if self.controlEnabled == false then
+                self.moveSpeed = 0
                 return
             end
             if Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStatePress then
