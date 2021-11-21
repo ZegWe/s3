@@ -46,6 +46,10 @@ Resource.Scene1 = {
     Empty = "Local/客厅场景/去掉画板和水桶"
 }
 
+Resource.BedRoom = {
+    Background = "Local/卧室场景/卧室整体"
+}
+
 Resource.MainDoor = {
     Door = "Local/打不开的大门/大门1",
     DoorShake = {
@@ -98,14 +102,14 @@ Resource.Mirror = {
 }
 
 Resource.Bucket = {
-    Bucket = "Local/其他动效/水桶4",
+    Bucket = "Local/Bucket/水桶4",
     BucketAni = {
-        "Local/其他动效/水桶1",
-        "Local/其他动效/水桶2",
-        "Local/其他动效/水桶3",
-        "Local/其他动效/水桶4",
-        "Local/其他动效/水桶4",
-        "Local/其他动效/水桶4"
+        "Local/Bucket/水桶1",
+        "Local/Bucket/水桶2",
+        "Local/Bucket/水桶3",
+        "Local/Bucket/水桶4",
+        "Local/Bucket/水桶4",
+        "Local/Bucket/水桶4"
     }
 }
 
@@ -163,13 +167,13 @@ Resource.Calendar = {
 }
 
 Resource.Draw = {
-    Draw = "Local/日历/日历",
+    Draw = "Local/涂鸦/涂鸦4",
     DrawInfo = "Local/涂鸦/涂鸦界面",
     Text = "Local/文本框",
     DrawAni = {
-        "Local/日历/日历1",
-        "Local/日历/日历2",
-        "Local/日历/日历3"
+        "Local/涂鸦/涂鸦1",
+        "Local/涂鸦/涂鸦2",
+        "Local/涂鸦/涂鸦3"
     }
 }
 

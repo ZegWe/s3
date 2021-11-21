@@ -77,8 +77,28 @@ function Scene:Tip(_text, _time)
         self.tip = nil
     end
     self.tip = FloatTip:new(_text, self.obj, Vector2(-self.obj.Offset.X, -325))
+    local tip = self.tip
+    tip:SetClickFunc(
+        function()
+            if tip == nil then return end
+            tip:Destroy()
+            tip = nil
+            self.tip = nil
+        end
+    )
+    tip.obj:ToTop()
     if _time > 0 then
         wait(_time)
+        if tip == nil or self.tip == nil then
+            return
+        end
+        self.tip = nil
+        tip:Destroy()
+    end
+end
+
+function Scene:ClearTip()
+    if self.tip ~= nil then
         self.tip:Destroy()
         self.tip = nil
     end

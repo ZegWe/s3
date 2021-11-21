@@ -86,6 +86,7 @@ function doorlock.Get(_parent)
                 roomdoorAni:Play()
                 ----enter next room
                 print("-----------------------EnterScene 2!!!!!!!!!!!!!!---------------------")
+                GameManager.CallFunc("EnterBedRoom")
             else
                 setResult(0)
                 tips1.Text = "看来密码不对，再找找看吧。"

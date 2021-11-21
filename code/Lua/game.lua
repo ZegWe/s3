@@ -62,4 +62,19 @@ function GameManager.GetCanvas(_canvas, _scene)
     print("get canvas!")
 end
 
+local funcTable = {}
+
+--- @param _name string
+--- @param _func function
+function GameManager.RegisterFunc(_name, _func)
+    funcTable[_name] = _func
+end
+
+--- @param _name string
+function GameManager.CallFunc(_name)
+    if funcTable[_name] ~= nil then
+        funcTable[_name]()
+    end
+end
+
 return GameManager

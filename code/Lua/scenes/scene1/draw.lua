@@ -8,7 +8,7 @@ local Draw = {}
 
 --- @param _parent Scene
 function Draw.Get(_parent)
-    local draw = Interactive:new("Draw", DrawImage.Draw, DrawImage.Draw, _parent, Vector2(100, 100), Vector2(500, 0))
+    local draw = Interactive:new("Draw", DrawImage.Draw, DrawImage.Draw, _parent, Vector2(100, 140), Vector2(525, -20))
 
     local animation = Animation:new(draw.obj, DrawImage.DrawAni, 0.3)
     draw:SetAnimation(animation)

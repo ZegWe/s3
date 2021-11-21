@@ -2,6 +2,7 @@ local Interactive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
 local GameManager = require("Lua/game")
 local UIObject = require("Lua/module/uiObject")
+local FloatTip = require("Lua/module/floatTip")
 local DoorImage = require("Lua/resource").MainDoor
 
 --- 正门
@@ -16,6 +17,8 @@ function MainDoor.Get(_parent)
     local Maoyan = UIObject:new("Maoyan", DoorImage.Maoyan, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     local maoyanAni = Animation:new(Maoyan.obj, DoorImage.MaoyanAni, 0.4, true)
     local aniPlayed = false
+    local tip = FloatTip:new("女人：爸爸他甚至都记错了我的生日！他凭什么……做我的英雄！", Maoyan.obj, Vector2(0, -325))
+
     Maoyan:SetClickFunc(
         function()
             Maoyan:SetVisible(false)
@@ -26,11 +29,13 @@ function MainDoor.Get(_parent)
         function()
             if GameManager.MirrorChecked() then
                 _parent:SetVisible(false)
+                Maoyan:SetVisible(true)
                 if not aniPlayed then
                     maoyanAni:Play()
                     aniPlayed = true
+                    wait(3)
+                    tip:SetText("刚刚的人不见了……墙上好像写了什么？")
                 end
-                Maoyan:SetVisible(true)
             else
                 print("door shake")
                 animation:Play()
