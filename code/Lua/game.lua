@@ -5,7 +5,12 @@ local GameManager = {}
 local gameStage = 1
 
 function GameManager.Start()
+end
 
+local draw
+
+function GameManager.SetDraw(_draw)
+    draw = _draw
 end
 
 local mirrorChecked = false
@@ -53,6 +58,7 @@ function GameManager.GetCanvas(_canvas, _scene)
     _canvas.obj:Destroy()
     canvasGot = true
     updateScene1Texture(_scene)
+    _scene:AddInteractive(draw)
     print("get canvas!")
 end
 

@@ -110,11 +110,11 @@ Resource.Bucket = {
 }
 
 Resource.Canvas = {
-    Canvas = "Local/其他动效/画布1",
+    Canvas = "Local/画布/画布1",
     CanvasAni = {
-        "Local/其他动效/画布1",
-        "Local/其他动效/画布2",
-        "Local/其他动效/画布3"
+        "Local/画布/画布1",
+        "Local/画布/画布2",
+        "Local/画布/画布3"
     }
 }
 
@@ -161,4 +161,20 @@ Resource.Calendar = {
         "Local/日历/日历3"
     }
 }
+
+Resource.Draw = {
+    Draw = "Local/日历/日历",
+    DrawInfo = "Local/涂鸦/涂鸦界面",
+    Text = "Local/文本框",
+    DrawAni = {
+        "Local/日历/日历1",
+        "Local/日历/日历2",
+        "Local/日历/日历3"
+    }
+}
+
+Resource.FloatTip = {
+    Background = "Local/文本框"
+}
+
 return Resource
