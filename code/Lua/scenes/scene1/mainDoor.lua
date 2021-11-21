@@ -34,6 +34,7 @@ function MainDoor.Get(_parent)
             else
                 print("door shake")
                 animation:Play()
+                _parent:Tip("门打不开……", 5)
             end
         end
     )

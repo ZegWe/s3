@@ -1,4 +1,5 @@
 local UIObject = require("Lua/module/uiObject")
+local FloatTip = require("Lua/module/floatTip")
 
 --- @class Scene:UIObject
 local Scene = class("Scene", UIObject)
@@ -13,8 +14,12 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
     print("new scene: " .. self.name)
     self.interactives = {}
     self.enterPos = _enterPos
+    --- @type FloatTip
+    self.tip = nil
     --- @type Player
     self.player = nil
+
+    --- Update Interactive
     world.OnRenderStepped:Connect(
         function()
             if self.player == nil then
@@ -26,6 +31,15 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
                 else
                     v:SetActive(false)
                 end
+            end
+        end
+    )
+
+    --- Update FloatTip
+    world.OnRenderStepped:Connect(
+        function()
+            if self.tip ~= nil then
+                self.tip.obj.Offset = Vector2(-self.obj.Offset.X, -325)
             end
         end
     )
@@ -55,5 +69,19 @@ function Scene:RemoveInteractive(_interactive)
     end
 end
 
+--- @param _text string
+--- @param _time number
+function Scene:Tip(_text, _time)
+    if self.tip ~= nil then
+        self.tip:Destroy()
+        self.tip = nil
+    end
+    self.tip = FloatTip:new(_text, self.obj, Vector2(-self.obj.Offset.X, -325))
+    if _time > 0 then
+        wait(_time)
+        self.tip:Destroy()
+        self.tip = nil
+    end
+end
 
 return Scene
