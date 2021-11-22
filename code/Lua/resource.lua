@@ -186,4 +186,8 @@ Resource.FloatTip = {
     Background = "Local/文本框"
 }
 
+Resource.RoomDoorInside = {
+    Door = "",
+}
+
 return Resource
