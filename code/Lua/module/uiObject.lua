@@ -33,7 +33,6 @@ end
 --- 设置是否可见
 --- @param _visible boolean
 function UIObject:SetVisible(_visible)
-    print("-------UIObject--------")
     self.obj:SetActive(_visible)
 end
 

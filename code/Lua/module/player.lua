@@ -21,6 +21,7 @@ function Player:initialize(_parent)
         Vector2(playerWidth, playerHeight),
         Vector2.Zero
     )
+	self.obj.RaycastTarget = false
     --- @type Scene
     self.scene = nil
     self.animation = {}

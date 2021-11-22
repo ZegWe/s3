@@ -16,6 +16,8 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
     self.enterPos = _enterPos
     --- @type FloatTip
     self.tip = nil
+    --- @type number
+    self.tipTime = 0
     --- @type Player
     self.player = nil
 
@@ -26,7 +28,7 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
                 return
             end
             for k, v in ipairs(self.interactives) do
-                if math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= 400 then
+                if math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= math.max(200, v.obj.Size.X / 2 + 100) then
                     v:SetActive(true)
                 else
                     v:SetActive(false)
@@ -48,7 +50,6 @@ end
 --- 设置是否可见
 --- @param _visible boolean
 function Scene:SetVisible(_visible)
-    print("-------Scene--------")
     if self.player ~= nil then
         self.player:EnableControl(_visible)
     end
@@ -72,28 +73,30 @@ end
 --- @param _text string
 --- @param _time number
 function Scene:Tip(_text, _time)
-    if self.tip ~= nil then
-        self.tip:Destroy()
-        self.tip = nil
+    if self.tip == nil then
+        print("----------------new tip")
+        self.tip = FloatTip:new(_text, self.obj, Vector2(-self.obj.Offset.X, -325))
+        self.tip:SetClickFunc(
+            function()
+                print("-------------------click")
+                self.tip:SetVisible(false)
+            end
+        )
     end
-    self.tip = FloatTip:new(_text, self.obj, Vector2(-self.obj.Offset.X, -325))
-    local tip = self.tip
-    tip:SetClickFunc(
-        function()
-            if tip == nil then return end
-            tip:Destroy()
-            tip = nil
-            self.tip = nil
-        end
-    )
-    tip.obj:ToTop()
+    self.tip:SetText(_text)
+    self.tip.obj:ToTop()
+    self.tip:SetVisible(true)
+    self.tipTime = Timer.GetTime() + _time
+    if _time <= 0 then
+        self.tipTime = Timer.GetTime() + 999
+    end
     if _time > 0 then
         wait(_time)
-        if tip == nil or self.tip == nil then
+        if Timer.GetTime() < self.tipTime then
             return
         end
-        self.tip = nil
-        tip:Destroy()
+        print("-----------------time out")
+        self.tip:SetVisible(false)
     end
 end
 
