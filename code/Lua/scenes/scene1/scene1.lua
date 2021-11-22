@@ -1,6 +1,5 @@
 local Scene = require("Lua/module/scene")
-local Interactive = require("Lua/module/interactive")
-local UIObject = require("Lua/module/uiObject")
+local Resource = require("Lua/resource").Scene1
 local MainDoor = require("Lua/scenes/scene1/mainDoor")
 local Mirror = require("Lua/scenes/scene1/mirror")
 local Bucket = require("Lua/scenes/scene1/bucket")
@@ -16,7 +15,7 @@ local module = {}
 --- @param _parent Canvas
 function module:Get(_name, _parent)
     --- @type Scene
-    local scene = Scene:new(_name, "Local/客厅场景/整体1", _parent, Vector2(3290, 900), Vector2(0, -150))
+    local scene = Scene:new(_name, Resource.All, _parent, Vector2(3290, 900), Vector2(0, -150), Resource.BGM)
 
     Draw.Get(scene)
     scene:AddInteractive(MainDoor.Get(scene))

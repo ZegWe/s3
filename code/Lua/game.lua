@@ -77,4 +77,16 @@ function GameManager.CallFunc(_name)
     end
 end
 
+local doorRing = nil
+
+function GameManager.SetDoorRing(_ring)
+    doorRing = _ring
+end
+
+function GameManager.StopDoorRing()
+    if doorRing ~= nil then
+        doorRing:Stop()
+    end
+end
+
 return GameManager

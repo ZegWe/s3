@@ -1,5 +1,6 @@
 local UIObject = require("Lua/module/uiObject")
 local FloatTip = require("Lua/module/floatTip")
+local AudioPlayer = require("Lua/module/audio")
 
 --- @class Scene:UIObject
 local Scene = class("Scene", UIObject)
@@ -9,7 +10,8 @@ local Scene = class("Scene", UIObject)
 --- @param _parent Canvas
 --- @param _size Vector2
 --- @param _enterPos Vector2
-function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
+--- @param _bgm string
+function Scene:initialize(_name, _ref, _parent, _size, _enterPos, _bgm)
     UIObject.initialize(self, _name, _ref, _parent.obj, _size, Vector2.Zero)
     print("new scene: " .. self.name)
     self.interactives = {}
@@ -20,6 +22,8 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos)
     self.tipTime = 0
     --- @type Player
     self.player = nil
+    --- @type AudioPlayer
+    self.bgm = AudioPlayer:new(_name .. "_bgm", _bgm, true)
 
     --- Update Interactive
     world.OnRenderStepped:Connect(
@@ -54,6 +58,12 @@ function Scene:SetVisible(_visible)
         self.player:EnableControl(_visible)
     end
     self.obj:SetActive(_visible)
+    if _visible == true then
+        self.bgm:Play()
+        print("play bgm")
+    else
+        self.bgm:Stop()
+    end
 end
 
 --- @param _interactive Interactive
@@ -91,12 +101,16 @@ function Scene:Tip(_text, _time)
         self.tipTime = Timer.GetTime() + 999
     end
     if _time > 0 then
-        wait(_time)
-        if Timer.GetTime() < self.tipTime then
-            return
-        end
-        print("-----------------time out")
-        self.tip:SetVisible(false)
+        invoke(
+            function()
+                wait(_time)
+                if Timer.GetTime() < self.tipTime then
+                    return
+                end
+                print("-----------------time out")
+                self.tip:SetVisible(false)
+            end
+        )
     end
 end
 

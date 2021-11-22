@@ -40,6 +40,7 @@ Resource.Player = {
 }
 
 Resource.Scene1 = {
+    BGM = "Sound/场景一bgm",
     All = "Local/客厅场景/整体1",
     NoBucket = "Local/客厅场景/去掉水桶",
     NoCanvas = "Local/客厅场景/去掉画板",
@@ -47,6 +48,7 @@ Resource.Scene1 = {
 }
 
 Resource.BedRoom = {
+    BGM = "",
     Background = "Local/卧室场景/卧室整体"
 }
 
@@ -79,7 +81,8 @@ Resource.MainDoor = {
         "Local/猫眼/猫眼界面3",
         "Local/猫眼/猫眼界面4",
         "Local/猫眼/猫眼界面5"
-    }
+    },
+    MaoyanBGM = "Sound/猫眼动画"
 }
 
 Resource.Mirror = {
@@ -98,7 +101,8 @@ Resource.Mirror = {
         "Local/镜子/镜子映射1",
         "Local/镜子/镜子映射2",
         "Local/镜子/镜子映射3"
-    }
+    },
+    DoorRing = "Sound/门铃声"
 }
 
 Resource.Bucket = {
@@ -123,6 +127,7 @@ Resource.Canvas = {
 }
 
 Resource.RoomDoor = {
+    ButtonPressSound = "Sound/电子锁按键音",
     Door = "Local/打开卧室门/卧室门1",
     Lock = "Local/RoomDoor/电子锁界面",
     Text = "Local/文本框",
