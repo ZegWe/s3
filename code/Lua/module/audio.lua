@@ -20,4 +20,8 @@ function AudioPlayer:Stop()
     self.obj:Stop()
 end
 
+function AudioPlayer:UnPause()
+    self.obj:UnPause()
+end
+
 return AudioPlayer

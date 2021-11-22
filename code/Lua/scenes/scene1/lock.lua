@@ -1,6 +1,7 @@
 local UIObject = require("Lua/module/uiObject")
 local InterActive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
+local AudioPlayer = require("Lua/module/audio")
 local GameManager = require("Lua/game")
 local lockImage = require("Lua/resource").RoomDoor
 
@@ -19,6 +20,8 @@ function doorlock.Get(_parent)
 
     local numbers = {}
 
+    local buttonPressSound = AudioPlayer:new("buttonPress", lockImage.ButtonPressSound, false)
+
     numbers[1] = UIObject:new("number1", lockImage.LockNumbers[1], biglock.obj, Vector2(30, 50), Vector2(-115, 15))
     numbers[2] = UIObject:new("number2", lockImage.LockNumbers[2], biglock.obj, Vector2(30, 50), Vector2(-25, 15))
     numbers[3] = UIObject:new("number3", lockImage.LockNumbers[3], biglock.obj, Vector2(30, 50), Vector2(65, 15))
@@ -32,9 +35,10 @@ function doorlock.Get(_parent)
     local tips = UIObject:new("tips", lockImage.Text, biglock.obj, Vector2(1030, 250), Vector2(-35, 325))
     local tips1 = world:CreateObject("UiTextObject", "tips1", tips.obj)
 
-    local enterRoom = UIObject:new("enterRoom", lockImage.ButtonConfirm, biglock.obj, Vector2(190, 150), Vector2(245, 5))
+    local confirm =
+        UIObject:new("confirm", lockImage.ButtonConfirm, biglock.obj, Vector2(190, 150), Vector2(245, 5))
 
-    local recover = UIObject:new("recover", lockImage.ButtonClear, biglock.obj, Vector2(190, 150), Vector2(245, -145))
+    local clear = UIObject:new("clear", lockImage.ButtonClear, biglock.obj, Vector2(190, 150), Vector2(245, -145))
 
     local back = UIObject:new("back", lockImage.Back, biglock.obj, Vector2(390, 140), Vector2(-25, -380))
 
@@ -43,12 +47,12 @@ function doorlock.Get(_parent)
 
     answer1.FontSize = 36
     tips1.FontSize = 36
-    tips1.Color = Color(255,255,255)
+    tips1.Color = Color(255, 255, 255)
 
     tips:SetVisible(true)
-    recover:SetVisible(true)
+    clear:SetVisible(true)
     back:SetVisible(true)
-    enterRoom:SetVisible(true)
+    confirm:SetVisible(true)
     answer:SetVisible(true)
 
     local result = 0
@@ -71,12 +75,13 @@ function doorlock.Get(_parent)
         local calcFunc = clickNumber(i)
         v:SetClickFunc(
             function()
+                buttonPressSound:Play()
                 setResult(calcFunc(result))
             end
         )
     end
 
-    enterRoom:SetClickFunc(
+    confirm:SetClickFunc(
         function()
             if result == 523 then
                 tips1.Text = "门开了"
@@ -93,7 +98,7 @@ function doorlock.Get(_parent)
             end
         end
     )
-    recover:SetClickFunc(
+    clear:SetClickFunc(
         function()
             tips1.Text = "需要密码才能进去吗……？"
             setResult(0)

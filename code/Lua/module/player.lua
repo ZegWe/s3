@@ -67,6 +67,7 @@ function Player:EnterScene(_scene)
     self.obj.Parent = _scene.obj
     self.scene.player = self
     self.obj.Offset = _scene.enterPos
+    self.scene.bgm:Play()
     self.scene:SetVisible(true)
     self:SetVisible(true)
     if self.faceLeft then

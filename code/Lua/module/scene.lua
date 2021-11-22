@@ -59,10 +59,9 @@ function Scene:SetVisible(_visible)
     end
     self.obj:SetActive(_visible)
     if _visible == true then
-        self.bgm:Play()
-        print("play bgm")
+        -- self.bgm:UnPause()
     else
-        self.bgm:Stop()
+        -- self.bgm:Pause()
     end
 end
 
