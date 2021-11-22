@@ -14,6 +14,8 @@ function doorlock.Get(_parent)
     local roomdoor =
         InterActive:new("roomdoor", lockImage.Door, lockImage.Door, _parent, Vector2(420, 720), Vector2(-795, -30))
 
+    local doorOPenAni = Animation(roomdoor.obj, lockImage.DoorOpen, 0.3, true)
+    
     local biglock = UIObject:new("biglock", lockImage.Lock, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     biglock:SetVisible(false)
     local roomdoorAni = Animation:new(roomdoor.obj, lockImage.DoorOpen, 0.5, true)
@@ -90,8 +92,12 @@ function doorlock.Get(_parent)
                 biglock:SetVisible(false)
                 roomdoorAni:Play()
                 ----enter next room
-                print("-----------------------EnterScene 2!!!!!!!!!!!!!!---------------------")
+                biglock:SetVisible(false)
+                _parent:SetVisible(true)
+                doorOPenAni:Play()
+                wait(2)
                 GameManager.CallFunc("EnterBedRoom")
+                print("-----------------------EnterScene 2!!!!!!!!!!!!!!---------------------")
             else
                 setResult(0)
                 tips1.Text = "看来密码不对，再找找看吧。"

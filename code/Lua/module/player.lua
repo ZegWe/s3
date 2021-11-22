@@ -67,6 +67,7 @@ function Player:EnterScene(_scene)
     self.obj.Parent = _scene.obj
     self.scene.player = self
     self.obj.Offset = _scene.enterPos
+    self.scene.obj.Offset = Vector2(-self.obj.Offset.X, 0)
     self.scene.bgm:Play()
     self.scene:SetVisible(true)
     self:SetVisible(true)

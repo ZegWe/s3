@@ -135,7 +135,12 @@ Resource.RoomDoor = {
     ButtonClear = "Local/RoomDoor/清空",
     Back = "Local/RoomDoor/返回",
     Answer = "Local/RoomDoor/密码锁小框",
-    DoorOpen = {},
+    DoorOpen = {
+        "Local/打开卧室门/卧室门1",
+        "Local/打开卧室门/卧室门2",
+        "Local/打开卧室门/卧室门3",
+        "Local/打开卧室门/卧室门4",
+    },
     LockNumbers = {
         "Local/RoomDoor/1",
         "Local/RoomDoor/2",
