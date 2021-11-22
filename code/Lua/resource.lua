@@ -195,4 +195,14 @@ Resource.RoomDoorInside = {
     Door = "",
 }
 
+Resource.RoomTable = {
+    Table = "",
+    TableInfo = "",
+    NewsPaper1 = "",
+    NewsPaper2 = "",
+    NewsPaper3 = "",
+    Phone = "",
+    DrawPaper = "",
+}
+
 return Resource
