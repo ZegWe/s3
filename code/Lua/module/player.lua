@@ -83,6 +83,7 @@ function Player:LeaveScene()
         return
     end
     self.scene:SetVisible(false)
+    self.scene.enterPos = self.obj.Offset
     self.scene.player = nil
     self.obj.Parent = self.scene.obj.Parent
     self.scene = nil
