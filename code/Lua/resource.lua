@@ -49,7 +49,7 @@ Resource.Scene1 = {
 
 Resource.BedRoom = {
     BGM = "Sound/场景一bgm",
-    Background = "Local/卧室场景/卧室整体",
+    Background = "Local/卧室场景/卧室整体"
 }
 
 Resource.MainDoor = {
@@ -87,29 +87,27 @@ Resource.MainDoor = {
 
 Resource.Drawer = {
     ButtonPressSound = "Sound/电子锁按键音",
-	Text = "Local/文本框",
     ButtonConfirm = "Local/抽屉/确认",
     ButtonClear = "Local/抽屉/清空",
     Back = "Local/抽屉/返回",
-    Book= "Local/抽屉/书柜",
-	Drawer = "Local/抽屉/柜子九宫格界面",
-    white = "Local/抽屉/九宫格白块",
-	black = "Local/抽屉/九宫格黑块",
-	BookdrawerAni = {
-	     "Local/抽屉/书柜1",
-		 "Local/抽屉/书柜2",
-		 "Local/抽屉/书柜3",
-		 "Local/抽屉/书柜4"
-	}, 
-	Color = "Local/颜料/柜子颜料1",
-	nocolor = "Local/颜料/柜子颜料2",
-	ColorAni = { 
-	     "Local/颜料/颜料1",
-		 "Local/颜料/颜料2",
-		 "Local/颜料/颜料3",
-	     "Local/颜料/颜料4",
-		 "Local/颜料/颜料5"
-	}
+    Bookshelf = "Local/抽屉/书柜",
+    Lock = "Local/抽屉/柜子九宫格界面",
+    WhiteBlock = "Local/抽屉/九宫格白块",
+    BlackBlock = "Local/抽屉/九宫格黑块",
+    BookshelfAni = {
+        "Local/抽屉/书柜1",
+        "Local/抽屉/书柜2",
+        "Local/抽屉/书柜3",
+        "Local/抽屉/书柜4"
+    },
+    Drawer = "Local/颜料/柜子颜料1",
+    EmptyDrawer = "Local/颜料/柜子颜料5",
+    DrawerAni = {
+        "Local/颜料/颜料1",
+        "Local/颜料/颜料2",
+        "Local/颜料/颜料3",
+        "Local/颜料/颜料4"
+    }
 }
 
 Resource.Mirror = {
@@ -166,7 +164,7 @@ Resource.RoomDoor = {
         "Local/打开卧室门/卧室门1",
         "Local/打开卧室门/卧室门2",
         "Local/打开卧室门/卧室门3",
-        "Local/打开卧室门/卧室门4",
+        "Local/打开卧室门/卧室门4"
     },
     LockNumbers = {
         "Local/RoomDoor/1",
@@ -219,7 +217,7 @@ Resource.FloatTip = {
 }
 
 Resource.RoomDoorInside = {
-    Door = "",
+    Door = ""
 }
 
 Resource.RoomTable = {
@@ -236,7 +234,7 @@ Resource.RoomTable = {
         "Local/桌子/桌面4",
         "Local/桌子/桌面5",
         "Local/桌子/桌面5",
-        "Local/桌子/桌面5",
+        "Local/桌子/桌面5"
     },
     PhoneAni = {
         "Local/桌子/小灵通1",
@@ -244,7 +242,7 @@ Resource.RoomTable = {
         "Local/桌子/小灵通3",
         "Local/桌子/小灵通4",
         "Local/桌子/小灵通4",
-        "Local/桌子/小灵通4",
+        "Local/桌子/小灵通4"
     },
     DrawPaperAni = {
         "Local/桌子/小稿1",
@@ -252,11 +250,9 @@ Resource.RoomTable = {
         "Local/桌子/小稿3",
         "Local/桌子/小稿4",
         "Local/桌子/小稿4",
-        "Local/桌子/小稿4",
-    },
+        "Local/桌子/小稿4"
+    }
 }
-
-
 
 Resource.Easel = {
     Easel = "Local/画架/画架4",
@@ -267,7 +263,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     }
 }
 
