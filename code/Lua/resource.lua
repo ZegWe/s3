@@ -229,4 +229,17 @@ Resource.RoomTable = {
     },
 }
 
+Resource.Easel = {
+    Easel = "Local/画架/画架4",
+    EaselInfo = "Local/画架/画架界面",
+    EaselAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    }
+}
+
 return Resource
