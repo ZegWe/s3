@@ -10,6 +10,7 @@ local FloatTip = class("FloatTip", UIObject)
 function FloatTip:initialize(_text, _parent, _pos)
     UIObject.initialize(self, "float tip", Background, _parent, Vector2(1030, 250), _pos)
     self.obj:SetActive(true)
+    --- @type UiTextObject
     self.text = world:CreateObject("UiTextObject", "text", self.obj)
     self.text.FontSize = 36
     self.text.Color = Color(255, 255, 255)
@@ -17,8 +18,19 @@ function FloatTip:initialize(_text, _parent, _pos)
 end
 
 --- @param _text string
-function FloatTip:SetText(_text)
+--- @param _align string
+function FloatTip:SetText(_text, _align)
     self.text.Text = _text
+    if _align == "left" then
+        self.text.XAlignment = Enum.XAlignment.Left
+        self.text.Offset = Vector2(-470,0)
+    elseif _align == "right" then
+        self.text.XAlignment = Enum.XAlignment.Right
+        self.text.Offset = Vector2(470,0)
+    else
+        self.text.XAlignment = Enum.XAlignment.Center
+        self.text.Offset = Vector2(0,0)
+    end
 end
 
 --- @param _color Color

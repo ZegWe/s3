@@ -48,7 +48,7 @@ Resource.Scene1 = {
 }
 
 Resource.BedRoom = {
-    BGM = "",
+    BGM = "Sound/场景一bgm",
     Background = "Local/卧室场景/卧室整体"
 }
 
@@ -196,13 +196,37 @@ Resource.RoomDoorInside = {
 }
 
 Resource.RoomTable = {
-    Table = "",
-    TableInfo = "",
-    NewsPaper1 = "",
-    NewsPaper2 = "",
-    NewsPaper3 = "",
-    Phone = "",
-    DrawPaper = "",
+    Table = "Local/桌子/桌面5",
+    TableInfo = "Local/桌子/桌面界面",
+    Newspaper = "",
+    Phone = "Local/桌子/小灵通4",
+    DrawPaper = "Local/桌子/小稿4",
+    DrawPaperBig = "Local/桌子/小稿放大",
+    TableAni = {
+        "Local/桌子/桌面1",
+        "Local/桌子/桌面2",
+        "Local/桌子/桌面3",
+        "Local/桌子/桌面4",
+        "Local/桌子/桌面5",
+        "Local/桌子/桌面5",
+        "Local/桌子/桌面5",
+    },
+    PhoneAni = {
+        "Local/桌子/小灵通1",
+        "Local/桌子/小灵通2",
+        "Local/桌子/小灵通3",
+        "Local/桌子/小灵通4",
+        "Local/桌子/小灵通4",
+        "Local/桌子/小灵通4",
+    },
+    DrawPaperAni = {
+        "Local/桌子/小稿1",
+        "Local/桌子/小稿2",
+        "Local/桌子/小稿3",
+        "Local/桌子/小稿4",
+        "Local/桌子/小稿4",
+        "Local/桌子/小稿4",
+    },
 }
 
 return Resource

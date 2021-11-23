@@ -1,12 +1,18 @@
 local Scene = require("Lua/module/scene")
-local RoomImage = require("Lua/resource").BedRoom
+local RoomDoor = require("Lua/scenes/scene2/roomDoor")
+local Table = require("Lua/scenes/scene2/table")
+local Resource = require("Lua/resource").BedRoom
 
 local module = {}
 
 --- @param _name string
 --- @param _parent Canvas
 function module:Get(_name, _parent)
-    local scene = Scene:new(_name, RoomImage.Background, _parent, Vector2(3290, 900), Vector2(-750, -150), RoomImage.BGM)
+    local scene = Scene:new(_name, Resource.Background, _parent, Vector2(3290, 900), Vector2(-750, -150), Resource.BGM)
+
+    scene:AddInteractive(RoomDoor.Get(scene))
+    scene:AddInteractive(Table.Get(scene))
+
     return scene
 end
 

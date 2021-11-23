@@ -14,11 +14,10 @@ function doorlock.Get(_parent)
     local roomdoor =
         InterActive:new("roomdoor", lockImage.Door, lockImage.Door, _parent, Vector2(420, 720), Vector2(-795, -30))
 
-    local doorOPenAni = Animation(roomdoor.obj, lockImage.DoorOpen, 0.3, true)
+    local doorOpenAni = Animation(roomdoor.obj, lockImage.DoorOpen, 0.5, true)
     
     local biglock = UIObject:new("biglock", lockImage.Lock, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     biglock:SetVisible(false)
-    local roomdoorAni = Animation:new(roomdoor.obj, lockImage.DoorOpen, 0.5, true)
 
     local numbers = {}
 
@@ -57,6 +56,7 @@ function doorlock.Get(_parent)
     confirm:SetVisible(true)
     answer:SetVisible(true)
 
+    local unlocked = false
     local result = 0
     local function clickNumber(_number)
         return function(_res)
@@ -87,15 +87,14 @@ function doorlock.Get(_parent)
         function()
             if result == 523 then
                 tips1.Text = "门开了"
+                unlocked = true
                 wait(0.2)
-                ---openAnimation
-                biglock:SetVisible(false)
-                roomdoorAni:Play()
                 ----enter next room
                 biglock:SetVisible(false)
                 _parent:SetVisible(true)
-                doorOPenAni:Play()
+                doorOpenAni:Play()
                 wait(2)
+                roomdoor:UpdateTexture(lockImage.Door)
                 GameManager.CallFunc("EnterBedRoom")
                 print("-----------------------EnterScene 2!!!!!!!!!!!!!!---------------------")
             else
@@ -118,7 +117,10 @@ function doorlock.Get(_parent)
     )
     roomdoor:SetFunc(
         function()
-            i = 1
+            if unlocked == true then
+                GameManager.CallFunc("EnterBedRoom")
+                return
+            end
             setResult(0)
             tips1.Text = "需要密码才能进去吗……？"
             biglock:SetVisible(true)

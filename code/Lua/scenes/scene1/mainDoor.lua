@@ -18,7 +18,7 @@ function MainDoor.Get(_parent)
     local Maoyan = UIObject:new("Maoyan", DoorImage.Maoyan, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     local maoyanAni = Animation:new(Maoyan.obj, DoorImage.MaoyanAni, 0.4, true)
     local aniPlayed = false
-    local tip = FloatTip:new("女人：爸爸他甚至都记错了我的生日！他凭什么……做我的英雄！", Maoyan.obj, Vector2(0, -325))
+    local tip = FloatTip:new("爸爸他甚至都记错了我的生日！他凭什么……做我的英雄！", Maoyan.obj, Vector2(0, -325))
     local sound = AudioPlayer:new("Maoyan", DoorImage.MaoyanBGM, false)
     Maoyan:SetClickFunc(
         function()

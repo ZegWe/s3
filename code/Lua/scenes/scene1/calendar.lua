@@ -28,7 +28,7 @@ function Calendar.Get(_parent)
     tips:SetVisible(true)
 
     local tips1 = world:CreateObject("UiTextObject", "tips1", tips.obj)
-    tips1.Text = "红笔圈住的是今天？有什么重要的事情吗？"
+    tips1.Text = "这个月是谁的生日吗……？"
     tips1.FontSize = 36
     tips1.Color = Color(255, 255, 255)
 
