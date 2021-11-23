@@ -1,8 +1,10 @@
 local Resource = {}
 
 --- Player Image Resource
---- @type table
 Resource.Player = {
+    Bucket = "",
+    Canvas = "",
+    Pigment = "",
     --- Player Idle Left
     Idle_Left = {
         "Local/人物/主角待机左/主角待机1",
@@ -231,7 +233,15 @@ Resource.RoomTable = {
 
 Resource.Easel = {
     Easel = "Local/画架/画架4",
+    EaselWithBucket = "Local/画架/画架4",
+    EaselWithCanvas = "Local/画架/画架4",
+    EaselWithPigment = "Local/画架/画架4",
+    EaselWithBucketAndCanvas = "Local/画架/画架4",
+    EaselWithBucketAndPigment = "Local/画架/画架4",
+    EaselWithCanvasAndPigment = "Local/画架/画架4",
+    EaselWithBucketCanvasAndPigment = "Local/画架/画架4",
     EaselInfo = "Local/画架/画架界面",
+    Paint = "",
     EaselAni = {
         "Local/画架/画架1",
         "Local/画架/画架2",
@@ -239,7 +249,63 @@ Resource.Easel = {
         "Local/画架/画架4",
         "Local/画架/画架4",
         "Local/画架/画架4",
-    }
+    },
+    EaselWithBucketAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
+    EaselWithCanvasAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
+    EaselWithPigmentAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
+    EaselWithBucketAndCanvasAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
+    EaselWithBucketAndPigmentAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
+    EaselWithCanvasAndPigmentAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
+    EaselWithBucketCanvasAndPigmentAni = {
+        "Local/画架/画架1",
+        "Local/画架/画架2",
+        "Local/画架/画架3",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+        "Local/画架/画架4",
+    },
 }
 
 return Resource

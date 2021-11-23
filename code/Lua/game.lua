@@ -23,8 +23,9 @@ function GameManager.MirrorChecked()
     return mirrorChecked
 end
 
-local bucketGot = false
-local canvasGot = false
+local bucketGot = true
+local canvasGot = true
+local pigmentGot = true
 
 --- @param _scene Scene
 local function updateScene1Texture(_scene)
@@ -62,6 +63,50 @@ function GameManager.GetCanvas(_canvas, _scene)
     print("get canvas!")
 end
 
+function GameManager.GetPigment()
+    pigmentGot = true
+end
+
+function GameManager.ItemGot(_item)
+    if _item == "Bucket" then
+        return bucketGot
+    elseif _item == "Canvas" then
+        return canvasGot
+    elseif _item == "Pigment" then
+        return pigmentGot
+    end
+end
+
+local bucketPlaced = false
+local canvasPlaced = false
+local pigmentPlaced = false
+
+function GameManager.ItemPlaced(_item)
+    if _item == "Bucket" then
+        return bucketPlaced
+    elseif _item == "Canvas" then
+        return canvasPlaced
+    elseif _item == "Pigment" then
+        return pigmentPlaced
+    end
+end
+
+--- @param _item string
+function GameManager.PlaceItem(_item)
+    if _item == "Bucket" then
+        bucketPlaced = true
+    elseif _item == "Canvas" then
+        canvasPlaced = true
+    elseif _item == "Pigment" then
+        pigmentPlaced = true
+    end
+    GameManager.CallFunc("UpdateEasel")
+end
+
+function GameManager.CheckEasel()
+    return bucketPlaced and canvasPlaced and pigmentPlaced
+end
+
 local funcTable = {}
 
 --- @param _name string
@@ -71,9 +116,9 @@ function GameManager.RegisterFunc(_name, _func)
 end
 
 --- @param _name string
-function GameManager.CallFunc(_name)
+function GameManager.CallFunc(_name, ...)
     if funcTable[_name] ~= nil then
-        funcTable[_name]()
+        funcTable[_name](...)
     end
 end
 

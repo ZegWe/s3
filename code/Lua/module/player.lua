@@ -1,6 +1,7 @@
 local UIObject = require("Lua/module/uiObject")
 local PlayerImage = require("Lua/resource").Player
 local Animation = require("Lua/module/animation")
+local GameManager = require("Lua/game")
 
 local playerWidth = 610
 local playerHeight = 610
@@ -22,6 +23,33 @@ function Player:initialize(_parent)
         Vector2.Zero
     )
 	self.obj.RaycastTarget = false
+    self.bucket = UIObject:new("Bucket", PlayerImage.Bucket , self.obj, Vector2(60, 60), Vector2(-100, 300))
+    self.bucket:SetClickFunc(function()
+        self.bucket:SetVisible(false)
+        GameManager.PlaceItem("Bucket")
+        self.scene:Tip("已放置【水桶】", 5)
+    end)
+    self.canvas = UIObject:new("Canvas", PlayerImage.Canvas, self.obj, Vector2(60, 60), Vector2(0, 300))
+    self.canvas:SetClickFunc(function()
+        self.canvas:SetVisible(false)
+        GameManager.PlaceItem("Canvas")
+        self.scene:Tip("已放置【空画布】", 5)
+    end)
+    self.pigment = UIObject:new("Pigment", PlayerImage.Pigment, self.obj, Vector2(60, 60), Vector2(100, 300))
+    self.pigment:SetClickFunc(function()
+        self.pigment:SetVisible(false)
+        GameManager.PlaceItem("Pigment")
+        self.scene:Tip("已放置【颜料】", 5)
+    end)
+    GameManager.RegisterFunc("SetItemVisible", function(_item, _visible)
+        if _item == "Bucket" then
+            self.bucket:SetVisible(_visible)
+        elseif _item == "Canvas" then
+            self.canvas:SetVisible(_visible)
+        elseif _item == "Pigment" then
+            self.pigment:SetVisible(_visible)
+        end
+    end)
     --- @type Scene
     self.scene = nil
     self.animation = {}
