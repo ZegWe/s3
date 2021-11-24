@@ -18,7 +18,7 @@ function UIObject:initialize(_name, _ref, _parent, _size, _offset)
     self.clickable = false
     self.func = nil
     self.clickFunc = function()
-        if self.clickable == true and Input.GetPressKeyData(Enum.KeyCode.Mouse0) == Enum.KeyState.KeyStatePress then
+        if self.func and self.clickable == true and Input.GetPressKeyData(Enum.KeyCode.Mouse0) == Enum.KeyState.KeyStatePress then
             self.func()
         end
     end

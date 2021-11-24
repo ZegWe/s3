@@ -2,9 +2,9 @@ local Resource = {}
 
 --- Player Image Resource
 Resource.Player = {
-    Bucket = "",
-    Canvas = "",
-    Pigment = "",
+    Bucket = "Local/人物/小水桶",
+    Canvas = "Local/人物/小画布",
+    Pigment = "Local/人物/小颜料",
     --- Player Idle Left
     Idle_Left = {
         "Local/人物/主角待机左/主角待机1",
@@ -109,7 +109,7 @@ Resource.Drawer = {
         "Local/抽屉/颜料2",
         "Local/抽屉/颜料3",
         "Local/抽屉/颜料4",
-        "Local/抽屉/颜料5",
+        "Local/抽屉/颜料5"
     }
 }
 
@@ -259,6 +259,9 @@ Resource.RoomTable = {
 
 Resource.Easel = {
     Easel = "Local/画架/画架4",
+    Bucket = "",
+    Canvas = "",
+    Pigment = "",
     EaselWithBucket = "Local/画架/画架4",
     EaselWithCanvas = "Local/画架/画架4",
     EaselWithPigment = "Local/画架/画架4",
@@ -334,7 +337,156 @@ Resource.Easel = {
 }
 
 Resource.Paint = {
-    Paint = "Local/涂鸦/涂鸦1"
+    Paint = "Local/绘画界面/空画布",
+    Pallete = "Local/透明",
+    Door = "Local/透明",
+    Paints = {
+        "Local/绘画界面/3/3",
+        "Local/绘画界面/6/第二幅画完成",
+        "Local/绘画界面/9/3"
+    },
+    Stages = {
+        {
+            Paint = "Local/绘画界面/1/0",
+            PaintAni = {
+                "Local/绘画界面/1/1",
+                "Local/绘画界面/1/2",
+                "Local/绘画界面/1/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/2/0",
+            PaintAni = {
+                "Local/绘画界面/2/1",
+                "Local/绘画界面/2/2",
+                "Local/绘画界面/2/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/3/0",
+            PaintAni = {
+                "Local/绘画界面/3/1",
+                "Local/绘画界面/3/2",
+                "Local/绘画界面/3/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/4/0",
+            PaintAni = {
+                "Local/绘画界面/4/1",
+                "Local/绘画界面/4/2",
+                "Local/绘画界面/4/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/5/0",
+            PaintAni = {
+                "Local/绘画界面/5/1",
+                "Local/绘画界面/5/2",
+                "Local/绘画界面/5/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/6/0",
+            PaintAni = {
+                "Local/绘画界面/6/1",
+                "Local/绘画界面/6/2",
+                "Local/绘画界面/6/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/7/0",
+            PaintAni = {
+                "Local/绘画界面/7/1",
+                "Local/绘画界面/7/2",
+                "Local/绘画界面/7/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/8/0",
+            PaintAni = {
+                "Local/绘画界面/8/1",
+                "Local/绘画界面/8/2",
+                "Local/绘画界面/8/3"
+            }
+        },
+        {
+            Paint = "Local/绘画界面/9/0",
+            PaintAni = {
+                "Local/绘画界面/9/1",
+                "Local/绘画界面/9/2",
+                "Local/绘画界面/9/3"
+            }
+        }
+    },
+    DoorOpenAni = {
+        "Local/绘画界面/10/1",
+        "Local/绘画界面/10/2",
+        "Local/绘画界面/10/3",
+        "Local/绘画界面/10/4"
+    },
+    DoorAni = {
+        "Local/绘画界面/11/1",
+        "Local/绘画界面/11/2",
+        "Local/绘画界面/11/3"
+    },
+    SquareAni = {
+        "Local/方块/1",
+        "Local/方块/2",
+        "Local/方块/3"
+    },
+    Squares = {
+        {
+            "Local/方块/4",
+            "Local/方块/5"
+        },
+        {
+            "Local/方块/4（2",
+            "Local/方块/5（2"
+        },
+        {
+            "Local/方块/4（3",
+            "Local/方块/5（3"
+        },
+        {
+            "Local/方块/4（4",
+            "Local/方块/5（4"
+        },
+        {
+            "Local/方块/4（5",
+            "Local/方块/5（5"
+        },
+        {
+            "Local/方块/4",
+            "Local/方块/5"
+        },
+        {
+            "Local/方块/4（7",
+            "Local/方块/5（7"
+        },
+        {
+            "Local/方块/4（8",
+            "Local/方块/5（8"
+        },
+        {
+            "Local/方块/4（2",
+            "Local/方块/5（2"
+        }
+    },
+    Tips = {
+        "我似乎从未见过我的母亲。自我有记忆以来，\n父亲高大的身影就伫立在我的面前。",
+        "别的小女孩有的玩偶、漂亮衣服，爸爸也都给我买，\n我和爸爸一起的生活很幸福。",
+        "爸爸是我的英雄。",
+        "爸爸说，不能再穿漂亮的裙子，不能再玩玩偶，\n我长大了要懂事。我要做一个懂事的女儿。",
+        "我脱下了裙子，放下了玩偶，但是我拿起画笔的时候，\n爸爸又出现了。他英雄一般的身影横亘在我和画具之间。",
+        "我和爸爸说，我把爸爸画成了英雄，爸爸会在画里一直一直保护我。\n但是爸爸还是很生气，他把画具扔掉说都是为了我好。",
+        "我的画被画展签约了，精心绘制的、我的名为《英雄》的画作。",
+        "但是当我带着画想要出门的时候，爸爸一如既往地发了怒，\n他又想把我关进阁楼去，和我破旧的玩偶、过时的裙子一起。",
+        "成为英雄，就要为了自己的信念而牺牲。我只能这样做了。",
+        "这下爸爸真的是我的英雄了……",
+        "爸爸是我的英雄，他会把我保护得很好。",
+        "爸爸是我的英雄……？",
+    }
 }
 
 return Resource

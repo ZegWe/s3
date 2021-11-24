@@ -23,8 +23,8 @@ function GameManager.MirrorChecked()
     return mirrorChecked
 end
 
-local bucketGot = false
-local canvasGot = false
+local bucketGot = true
+local canvasGot = true
 local pigmentGot = false
 
 --- @param _scene Scene
