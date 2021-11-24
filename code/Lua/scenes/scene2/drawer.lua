@@ -18,8 +18,8 @@ function drawer.Get(_parent)
         Resource.Bookshelf,
         Resource.Bookshelf,
         _parent,
-        Vector2(360, 220),
-        Vector2(420, -260)
+        Vector2(370, 220),
+        Vector2(420, -270)
     )
     local animation = Animation:new(bookdrawer.obj, Resource.BookshelfAni, 0.3)
     bookdrawer:SetAnimation(animation)
@@ -33,25 +33,21 @@ function drawer.Get(_parent)
     local buttonPressSound = AudioPlayer:new("buttonPress", Resource.ButtonPressSound, false)
 
     local blocks = {}
-    blocks[1] = UIObject:new("b1", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(-280, 255))
-    blocks[2] = UIObject:new("b2", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(5, 255))
-    blocks[3] = UIObject:new("b3", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(290, 255))
+    blocks[1] = UIObject:new("b1", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(-285, 260))
+    blocks[2] = UIObject:new("b2", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(5, 260))
+    blocks[3] = UIObject:new("b3", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(295, 260))
     blocks[4] = UIObject:new("b4", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(-280, 0))
     blocks[5] = UIObject:new("b5", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(5, 0))
-    blocks[6] = UIObject:new("b6", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(290, 0))
-    blocks[7] = UIObject:new("b7", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(-280, -255))
-    blocks[8] = UIObject:new("b8", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(5, -255))
-    blocks[9] = UIObject:new("b9", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(290, -255))
+    blocks[6] = UIObject:new("b6", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(295, 0))
+    blocks[7] = UIObject:new("b7", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(-280, -260))
+    blocks[8] = UIObject:new("b8", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(5, -260))
+    blocks[9] = UIObject:new("b9", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(295, -260))
 
-    local confirm = UIObject:new("confirm", Resource.ButtonConfirm, lock.obj, Vector2(190, 150), Vector2(245, 5))
-    local clear = UIObject:new("clear", Resource.ButtonClear, lock.obj, Vector2(190, 150), Vector2(245, -145))
-    local back = UIObject:new("back", Resource.Back, lock.obj, Vector2(390, 140), Vector2(-25, -380))
+    local confirm = UIObject:new("confirm", Resource.ButtonConfirm, lock.obj, Vector2(190, 150), Vector2(635, 0))
 
     local tip1 = FloatTip:new("", lock.obj, Vector2(0, 325))
     local tip2 = FloatTip:new("", drawer.obj, Vector2(0, 325))
 
-    clear:SetVisible(true)
-    back:SetVisible(true)
     confirm:SetVisible(true)
 
     tip1:SetClickFunc(
@@ -107,6 +103,11 @@ function drawer.Get(_parent)
         end
     )
 
+    lock:SetClickFunc(function()
+        lock:SetVisible(false)
+        _parent:SetVisible(true)
+    end)
+
     confirm:SetClickFunc(
         function()
             if sum == 439 then
@@ -121,18 +122,7 @@ function drawer.Get(_parent)
             end
         end
     )
-    clear:SetClickFunc(
-        function()
-            tip1:SetText("黑白格子……？好像可以根据见过的黑白印象来填色？")
-            tip1:SetVisible(true)
-        end
-    )
-    back:SetClickFunc(
-        function()
-            lock:SetVisible(false)
-            _parent:SetVisible(true)
-        end
-    )
+
     bookdrawer:SetFunc(
         function()
             _parent:SetVisible(false)

@@ -88,9 +88,7 @@ Resource.MainDoor = {
 Resource.Drawer = {
     ButtonPressSound = "Sound/电子锁按键音",
     ButtonConfirm = "Local/抽屉/确认",
-    ButtonClear = "Local/抽屉/清空",
-    Back = "Local/抽屉/返回",
-    Bookshelf = "Local/抽屉/书柜",
+    Bookshelf = "Local/抽屉/书柜4",
     Lock = "Local/抽屉/柜子九宫格界面",
     WhiteBlock = "Local/抽屉/九宫格白块",
     BlackBlock = "Local/抽屉/九宫格黑块",
@@ -98,15 +96,18 @@ Resource.Drawer = {
         "Local/抽屉/书柜1",
         "Local/抽屉/书柜2",
         "Local/抽屉/书柜3",
+        "Local/抽屉/书柜4",
+        "Local/抽屉/书柜4",
         "Local/抽屉/书柜4"
     },
-    Drawer = "Local/颜料/柜子颜料1",
-    EmptyDrawer = "Local/颜料/柜子颜料5",
+    Drawer = "Local/抽屉/柜子颜料1",
+    EmptyDrawer = "Local/抽屉/柜子颜料2",
     DrawerAni = {
-        "Local/颜料/颜料1",
-        "Local/颜料/颜料2",
-        "Local/颜料/颜料3",
-        "Local/颜料/颜料4"
+        "Local/抽屉/颜料1",
+        "Local/抽屉/颜料2",
+        "Local/抽屉/颜料3",
+        "Local/抽屉/颜料4",
+        "Local/抽屉/颜料5",
     }
 }
 
