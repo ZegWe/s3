@@ -23,9 +23,9 @@ function GameManager.MirrorChecked()
     return mirrorChecked
 end
 
-local bucketGot = true
-local canvasGot = true
-local pigmentGot = true
+local bucketGot = false
+local canvasGot = false
+local pigmentGot = false
 
 --- @param _scene Scene
 local function updateScene1Texture(_scene)

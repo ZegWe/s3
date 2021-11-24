@@ -87,6 +87,32 @@ Resource.MainDoor = {
     MaoyanBGM = "Sound/猫眼动画"
 }
 
+Resource.Drawer = {
+    ButtonPressSound = "Sound/电子锁按键音",
+    ButtonConfirm = "Local/抽屉/确认",
+    Bookshelf = "Local/抽屉/书柜4",
+    Lock = "Local/抽屉/柜子九宫格界面",
+    WhiteBlock = "Local/抽屉/九宫格白块",
+    BlackBlock = "Local/抽屉/九宫格黑块",
+    BookshelfAni = {
+        "Local/抽屉/书柜1",
+        "Local/抽屉/书柜2",
+        "Local/抽屉/书柜3",
+        "Local/抽屉/书柜4",
+        "Local/抽屉/书柜4",
+        "Local/抽屉/书柜4"
+    },
+    Drawer = "Local/抽屉/柜子颜料1",
+    EmptyDrawer = "Local/抽屉/柜子颜料2",
+    DrawerAni = {
+        "Local/抽屉/颜料1",
+        "Local/抽屉/颜料2",
+        "Local/抽屉/颜料3",
+        "Local/抽屉/颜料4",
+        "Local/抽屉/颜料5",
+    }
+}
+
 Resource.Mirror = {
     Mirror = "Local/镜子/镜子1",
     MirrorAni = {
