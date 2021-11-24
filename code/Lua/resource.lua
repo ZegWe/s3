@@ -141,7 +141,7 @@ Resource.RoomDoor = {
         "Local/打开卧室门/卧室门1",
         "Local/打开卧室门/卧室门2",
         "Local/打开卧室门/卧室门3",
-        "Local/打开卧室门/卧室门4",
+        "Local/打开卧室门/卧室门4"
     },
     LockNumbers = {
         "Local/RoomDoor/1",
@@ -194,7 +194,7 @@ Resource.FloatTip = {
 }
 
 Resource.RoomDoorInside = {
-    Door = "",
+    Door = ""
 }
 
 Resource.RoomTable = {
@@ -211,7 +211,7 @@ Resource.RoomTable = {
         "Local/桌子/桌面4",
         "Local/桌子/桌面5",
         "Local/桌子/桌面5",
-        "Local/桌子/桌面5",
+        "Local/桌子/桌面5"
     },
     PhoneAni = {
         "Local/桌子/小灵通1",
@@ -219,7 +219,7 @@ Resource.RoomTable = {
         "Local/桌子/小灵通3",
         "Local/桌子/小灵通4",
         "Local/桌子/小灵通4",
-        "Local/桌子/小灵通4",
+        "Local/桌子/小灵通4"
     },
     DrawPaperAni = {
         "Local/桌子/小稿1",
@@ -227,8 +227,8 @@ Resource.RoomTable = {
         "Local/桌子/小稿3",
         "Local/桌子/小稿4",
         "Local/桌子/小稿4",
-        "Local/桌子/小稿4",
-    },
+        "Local/桌子/小稿4"
+    }
 }
 
 Resource.Easel = {
@@ -241,14 +241,13 @@ Resource.Easel = {
     EaselWithCanvasAndPigment = "Local/画架/画架4",
     EaselWithBucketCanvasAndPigment = "Local/画架/画架4",
     EaselInfo = "Local/画架/画架界面",
-    Paint = "",
     EaselAni = {
         "Local/画架/画架1",
         "Local/画架/画架2",
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithBucketAni = {
         "Local/画架/画架1",
@@ -256,7 +255,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithCanvasAni = {
         "Local/画架/画架1",
@@ -264,7 +263,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithPigmentAni = {
         "Local/画架/画架1",
@@ -272,7 +271,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithBucketAndCanvasAni = {
         "Local/画架/画架1",
@@ -280,7 +279,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithBucketAndPigmentAni = {
         "Local/画架/画架1",
@@ -288,7 +287,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithCanvasAndPigmentAni = {
         "Local/画架/画架1",
@@ -296,7 +295,7 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
+        "Local/画架/画架4"
     },
     EaselWithBucketCanvasAndPigmentAni = {
         "Local/画架/画架1",
@@ -304,8 +303,12 @@ Resource.Easel = {
         "Local/画架/画架3",
         "Local/画架/画架4",
         "Local/画架/画架4",
-        "Local/画架/画架4",
-    },
+        "Local/画架/画架4"
+    }
+}
+
+Resource.Paint = {
+    Paint = "Local/涂鸦/涂鸦1"
 }
 
 return Resource

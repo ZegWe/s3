@@ -3,6 +3,7 @@ local Interactive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
 local GameManager = require("Lua/game")
 local Resource = require("Lua/resource").Easel
+local Paint = require("Lua/scenes/scene2/paint")
 
 local Easel = {}
 
@@ -21,7 +22,7 @@ function Easel.Get(_parent)
         Animation:new(easel.obj, Resource.EaselWithBucketCanvasAndPigmentAni, 0.3)
     easel:SetAnimation(animation)
 
-    local paint = UIObject:new("Paint", Resource.Paint, _parent.obj.Parent, Vector2(1600, 900), Vector2(0, 0))
+    local paint = Paint.Get(_parent)
 
     world.OnRenderStepped:Connect(function()
         if easel.interactive == true and GameManager.ItemGot("Bucket") and GameManager.ItemPlaced("Bucket") == false then
