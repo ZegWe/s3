@@ -30,7 +30,6 @@ function App:InitScene()
     end)
     GameManager.RegisterFunc("EnterBedRoom", function()
         self:ChangeScene("s2")
-        print("BedRoom!")
     end)
 end
 

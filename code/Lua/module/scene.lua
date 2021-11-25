@@ -23,7 +23,7 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos, _bgm)
     --- @type Player
     self.player = nil
     --- @type AudioPlayer
-    self.bgm = AudioPlayer:new(_name .. "_bgm", _bgm, true)
+    self.bgm = AudioPlayer:new(_name .. "_bgm", _bgm, true, true)
 
     --- Update Interactive
     world.OnRenderStepped:Connect(

@@ -21,10 +21,15 @@ function Paint.Get(_parent)
         end
     )
     tip:SetVisible(false)
+    local paintSound = AudioPlayer:new("PaintSound", Resource.PaintSound, false)
+    paint.bgm1 = AudioPlayer:new("bgm1", Resource.Bgm1, true, true)
+    paint.bgm2 = AudioPlayer:new("bgm2", Resource.Bgm2, true, true)
+    paint.bgm3 = AudioPlayer:new("bgm3", Resource.Bgm3, true, true)
 
-    paint.bgm1 = AudioPlayer:new("bgm1", Resource.Bgm1, true)
-    paint.bgm2 = AudioPlayer:new("bgm2", Resource.Bgm2, true)
-    paint.bgm3 = AudioPlayer:new("bgm3", Resource.Bgm3, true)
+    paintSound.obj.Volume = 30
+    paint.bgm1.obj.Volume = 20
+    paint.bgm2.obj.Volume = 50
+    paint.bgm3.obj.Volume = 50
 
     local paintAnis = {}
     for i = 1, 9 do
@@ -39,21 +44,20 @@ function Paint.Get(_parent)
 
     local squares, animations, aniPerStage, clicked = {}, {}, {}, {}
     for i = 1, 3 do
-        squares[i] = UIObject:new("Square" .. i, Resource.SquareAni[1], paint.obj, Vector2(120, 120), Vector2(0, 0))
-        animations[i] = Animation:new(squares[i].obj, Resource.SquareAni, 0.3)
-        aniPerStage[i] = {}
-        for j = 1, 9 do
-            aniPerStage[i][j] = Animation:new(squares[i].obj, Resource.Squares[j], 0.3, true)
-        end
+        squares[i] = UIObject:new("Square" .. i, Resource.SquareAni[1][1][1], paint.obj, Vector2(120, 120), Vector2(0, 0))
+        animations[i] = Animation:new(squares[i].obj, Resource.SquareAni[1][1], 0.3, false)
+        aniPerStage[i] = Animation:new(squares[i].obj, Resource.SquareAni[1][2], 0.1, true)
+
         squares[i]:SetClickFunc(
             function()
                 if clicked[i] then
                     return
                 end
                 clicked[i] = true
+                paintSound:Play()
                 wait(0.3)
                 animations[i]:Stop()
-                aniPerStage[i][stage]:Play()
+                aniPerStage[i]:Play()
                 count = count + 1
                 if count == goal then
                     wait(1)
@@ -78,8 +82,6 @@ function Paint.Get(_parent)
                                 paint:SetClickFunc(nil)
                                 tip:SetText(Resource.Tips[10])
                                 tip:SetVisible(true)
-                                paint.bgm1:Stop()
-                                paint.bgm2:Play()
                             end
                         )
                     elseif stage == 7 then
@@ -92,8 +94,6 @@ function Paint.Get(_parent)
                                 paint:SetClickFunc()
                                 tip:SetText(Resource.Tips[11])
                                 tip:SetVisible(true)
-                                paint.bgm2:Stop()
-                                paint.bgm3:Play()
                             end
                         )
                     elseif stage == 10 then
@@ -138,7 +138,16 @@ function Paint.Get(_parent)
                     goal = goal + 1
                     squares[i].obj.Offset = v
                     squares[i]:SetVisible(true)
+                    animations[i].t = Resource.SquareAni[stage][1]
+                    aniPerStage[i].t = Resource.SquareAni[stage][2]
                     animations[i]:Play()
+                end
+                if stage == 4 then
+                    paint.bgm1:Stop()
+                    paint.bgm2:Play()
+                elseif stage == 7 then
+                    paint.bgm2:Stop()
+                    paint.bgm3:Play()
                 end
             end
         end
