@@ -134,7 +134,7 @@ function Player:Move(_dt)
         ani = "Idle" .. "_" .. face
     end
     self:AnimationPlay(ani)
-    local speed = self.moveSpeed * 300 * _dt
+    local speed = self.moveSpeed * 600 * _dt
     if self.faceLeft then
         speed = speed * -1
     end

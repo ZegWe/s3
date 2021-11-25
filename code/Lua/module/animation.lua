@@ -33,7 +33,7 @@ function Animation:Play()
     end
     self.playing = true
     self.tickNow = 0
-    local tt = 0
+    local tt = self.dt
     local function tickFunc(_dt)
         if self.playing == false then
             world.OnRenderStepped:Disconnect(tickFunc)
