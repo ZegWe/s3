@@ -259,9 +259,9 @@ Resource.RoomTable = {
 
 Resource.Easel = {
     Easel = "Local/画架/画架4",
-    Bucket = "",
-    Canvas = "",
-    Pigment = "",
+    Bucket = "Local/水桶",
+    Canvas = "Local/画布/画布",
+    Pigment = "Local/颜料",
     EaselWithBucket = "Local/画架/画架4",
     EaselWithCanvas = "Local/画架/画架4",
     EaselWithPigment = "Local/画架/画架4",
