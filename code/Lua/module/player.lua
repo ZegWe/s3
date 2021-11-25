@@ -118,7 +118,7 @@ function Player:LeaveScene()
     self.scene = nil
 end
 
-function Player:Move()
+function Player:Move(_dt)
     local face = ""
     if self.faceLeft == true then
         face = "Left"
@@ -134,7 +134,7 @@ function Player:Move()
         ani = "Idle" .. "_" .. face
     end
     self:AnimationPlay(ani)
-    local speed = self.moveSpeed * 10
+    local speed = self.moveSpeed * 300 * _dt
     if self.faceLeft then
         speed = speed * -1
     end
@@ -156,8 +156,8 @@ function Player:InitControl()
     self.faceLeft = false
     self.moveSpeed = 0
     world.OnRenderStepped:Connect(
-        function()
-            self:Move()
+        function(_dt)
+            self:Move(_dt)
         end
     )
     Input.OnKeyDown:Connect(

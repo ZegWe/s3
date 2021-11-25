@@ -20,12 +20,7 @@ function MainDoor.Get(_parent)
     local aniPlayed = false
     local tip = FloatTip:new("爸爸他甚至都记错了我的生日！他凭什么……做我的英雄！", Maoyan.obj, Vector2(0, -325))
     local sound = AudioPlayer:new("Maoyan", DoorImage.MaoyanBGM, false)
-    Maoyan:SetClickFunc(
-        function()
-            Maoyan:SetVisible(false)
-            _parent:SetVisible(true)
-        end
-    )
+    local count = 0
     door:SetFunc(
         function()
             if GameManager.MirrorChecked() then
@@ -37,7 +32,23 @@ function MainDoor.Get(_parent)
                     sound:Play()
                     aniPlayed = true
                     wait(3)
-                    tip:SetText("刚刚的人不见了……墙上好像写了什么？")
+                    Maoyan:SetClickFunc(
+                        function()
+                            if count == 0 then
+                                tip:SetText("刚刚那女人说了什么？")
+                                count = 1
+                            elseif count == 1 then
+                                tip:SetText("爸爸记错了生日……？")
+                                count = 2
+                            elseif count == 2 then
+                                tip:SetText("刚刚的人不见了……墙上好像写了什么？")
+                                count = 3
+                            else
+                                Maoyan:SetVisible(false)
+                                _parent:SetVisible(true)
+                            end
+                        end
+                    )
                 end
             else
                 print("door shake")
