@@ -87,32 +87,6 @@ Resource.MainDoor = {
     MaoyanBGM = "Sound/猫眼动画"
 }
 
-Resource.Drawer = {
-    ButtonPressSound = "Sound/电子锁按键音",
-    ButtonConfirm = "Local/抽屉/确认",
-    Bookshelf = "Local/抽屉/书柜4",
-    Lock = "Local/抽屉/柜子九宫格界面",
-    WhiteBlock = "Local/抽屉/九宫格白块",
-    BlackBlock = "Local/抽屉/九宫格黑块",
-    BookshelfAni = {
-        "Local/抽屉/书柜1",
-        "Local/抽屉/书柜2",
-        "Local/抽屉/书柜3",
-        "Local/抽屉/书柜4",
-        "Local/抽屉/书柜4",
-        "Local/抽屉/书柜4"
-    },
-    Drawer = "Local/抽屉/柜子颜料1",
-    EmptyDrawer = "Local/抽屉/柜子颜料2",
-    DrawerAni = {
-        "Local/抽屉/颜料1",
-        "Local/抽屉/颜料2",
-        "Local/抽屉/颜料3",
-        "Local/抽屉/颜料4",
-        "Local/抽屉/颜料5"
-    }
-}
-
 Resource.Mirror = {
     Mirror = "Local/镜子/镜子1",
     MirrorAni = {
@@ -226,7 +200,7 @@ Resource.RoomDoorInside = {
 Resource.RoomTable = {
     Table = "Local/桌子/桌面5",
     TableInfo = "Local/桌子/桌面界面",
-    Newspaper = "",
+    Newspaper = "Local/透明",
     Phone = "Local/桌子/小灵通4",
     DrawPaper = "Local/桌子/小稿4",
     DrawPaperBig = "Local/桌子/小稿放大",
@@ -266,18 +240,37 @@ Resource.RoomTable = {
     }
 }
 
+Resource.Drawer = {
+    ButtonPressSound = "Sound/填方块音效",
+    ButtonConfirm = "Local/抽屉/确认",
+    Bookshelf = "Local/抽屉/书柜4",
+    Lock = "Local/抽屉/柜子九宫格界面",
+    WhiteBlock = "Local/抽屉/九宫格白块",
+    BlackBlock = "Local/抽屉/九宫格黑块",
+    BookshelfAni = {
+        "Local/抽屉/书柜1",
+        "Local/抽屉/书柜2",
+        "Local/抽屉/书柜3",
+        "Local/抽屉/书柜4",
+        "Local/抽屉/书柜4",
+        "Local/抽屉/书柜4"
+    },
+    Drawer = "Local/抽屉/柜子颜料1",
+    EmptyDrawer = "Local/抽屉/柜子颜料2",
+    DrawerAni = {
+        "Local/抽屉/颜料1",
+        "Local/抽屉/颜料2",
+        "Local/抽屉/颜料3",
+        "Local/抽屉/颜料4",
+        "Local/抽屉/颜料5"
+    }
+}
+
 Resource.Easel = {
     Easel = "Local/画架/画架4",
     Bucket = "Local/水桶",
     Canvas = "Local/画布/画布",
     Pigment = "Local/颜料",
-    EaselWithBucket = "Local/画架/画架4",
-    EaselWithCanvas = "Local/画架/画架4",
-    EaselWithPigment = "Local/画架/画架4",
-    EaselWithBucketAndCanvas = "Local/画架/画架4",
-    EaselWithBucketAndPigment = "Local/画架/画架4",
-    EaselWithCanvasAndPigment = "Local/画架/画架4",
-    EaselWithBucketCanvasAndPigment = "Local/画架/画架4",
     EaselInfo = "Local/画架/画架界面",
     EaselAni = {
         "Local/画架/画架1",
@@ -294,60 +287,21 @@ Resource.Easel = {
         "Local/画架/画架4",
         "Local/画架/画架4",
         "Local/画架/画架4"
-    },
-    EaselWithCanvasAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
-    },
-    EaselWithPigmentAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
-    },
-    EaselWithBucketAndCanvasAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
-    },
-    EaselWithBucketAndPigmentAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
-    },
-    EaselWithCanvasAndPigmentAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
-    },
-    EaselWithBucketCanvasAndPigmentAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
     }
 }
 
 Resource.Paint = {
     Paint = "Local/绘画界面/空画布",
     Pallete = "Local/透明",
+    Bgm1 = "Sound/画1",
+    Bgm2 = "Sound/画2",
+    Bgm3 = "Sound/画3",
+    PalleteAni = {
+        "Local/调色盘/1",
+        "Local/调色盘/2",
+        "Local/调色盘/3",
+        "Local/调色盘/4"
+    },
     Door = "Local/透明",
     Paints = {
         "Local/绘画界面/3/3",
@@ -480,6 +434,50 @@ Resource.Paint = {
         {
             "Local/方块/4（2",
             "Local/方块/5（2"
+        }
+    },
+    DrawPos = {
+        {
+            Vector2(-200, -300),
+            Vector2(300, -300),
+            Vector2(200, 200)
+        },
+        {
+            Vector2(100, 200),
+            Vector2(400, 200),
+            Vector2(0, -300)
+        },
+        {
+            Vector2(-400, 300),
+            Vector2(-400, -100),
+            Vector2(100, 100)
+        },
+        {
+            Vector2(-300, -200)
+        },
+        {
+            Vector2(-100, 300),
+            Vector2(400, 300),
+            Vector2(-200, 0)
+        },
+        {
+            Vector2(-300, 200),
+            Vector2(300, 200),
+            Vector2(300, -300)
+        },
+        {
+            Vector2(-300, 0),
+            Vector2(-300, -300)
+        },
+        {
+            Vector2(-300, 300),
+            Vector2(200, 200),
+            Vector2(300, -200)
+        },
+        {
+            Vector2(0, -350),
+            Vector2(100, 0),
+            Vector2(400, 200)
         }
     },
     Tips = {

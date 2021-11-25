@@ -19,6 +19,9 @@ function MainDoor.Get(_parent)
     local maoyanAni = Animation:new(Maoyan.obj, DoorImage.MaoyanAni, 0.4, true)
     local aniPlayed = false
     local tip = FloatTip:new("爸爸他甚至都记错了我的生日！他凭什么……做我的英雄！", Maoyan.obj, Vector2(0, -325))
+    tip:SetClickFunc(function()
+        tip:SetVisible(false)
+    end)
     local sound = AudioPlayer:new("Maoyan", DoorImage.MaoyanBGM, false)
     local count = 0
     door:SetFunc(
@@ -31,17 +34,20 @@ function MainDoor.Get(_parent)
                     maoyanAni:Play()
                     sound:Play()
                     aniPlayed = true
-                    wait(3)
+                    wait(2)
                     Maoyan:SetClickFunc(
                         function()
                             if count == 0 then
                                 tip:SetText("刚刚那女人说了什么？")
+                                tip:SetVisible(true)
                                 count = 1
                             elseif count == 1 then
                                 tip:SetText("爸爸记错了生日……？")
+                                tip:SetVisible(true)
                                 count = 2
                             elseif count == 2 then
                                 tip:SetText("刚刚的人不见了……墙上好像写了什么？")
+                                tip:SetVisible(true)
                                 count = 3
                             else
                                 Maoyan:SetVisible(false)

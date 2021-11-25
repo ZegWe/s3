@@ -1,6 +1,7 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
 local FloatTip = require("Lua/module/floatTip")
+local AudioPlayer = require("Lua/module/audio")
 local Resource = require("Lua/resource").Paint
 
 local Paint = {}
@@ -8,8 +9,10 @@ local Paint = {}
 --- @param _parent Scene
 function Paint.Get(_parent)
     local paint = UIObject:new("Paint", Resource.Paint, _parent.obj.Parent, Vector2(1600, 900), Vector2(0, 0))
-    local pallete = UIObject:new("Pallete", Resource.Pallete, paint.obj, Vector2(400, 250), Vector2(-550, -330))
+    local pallete = UIObject:new("Pallete", Resource.Pallete, paint.obj, Vector2(410, 260), Vector2(-545, -320))
     pallete:SetVisible(true)
+    local palleteAni = Animation:new(pallete.obj, Resource.PalleteAni, 0.3)
+    palleteAni:Play()
     local door = UIObject:new("Door", Resource.Door, paint.obj, Vector2(150, 200), Vector2(380, 320))
     local tip = FloatTip:new("", paint.obj, Vector2(0, -325))
     tip:SetClickFunc(
@@ -19,6 +22,10 @@ function Paint.Get(_parent)
     )
     tip:SetVisible(false)
 
+    paint.bgm1 = AudioPlayer:new("bgm1", Resource.Bgm1, true)
+    paint.bgm2 = AudioPlayer:new("bgm2", Resource.Bgm2, true)
+    paint.bgm3 = AudioPlayer:new("bgm3", Resource.Bgm3, true)
+
     local paintAnis = {}
     for i = 1, 9 do
         paintAnis[i] = Animation:new(paint.obj, Resource.Stages[i].PaintAni, 0.4, true)
@@ -27,7 +34,7 @@ function Paint.Get(_parent)
     local doorOpenAni = Animation:new(paint.obj, Resource.DoorOpenAni, 0.4, true)
     local doorAni = Animation:new(paint.obj, Resource.DoorAni, 0.3)
 
-    local stage, count = 1, 0
+    local stage, count, goal = 1, 0, 0
     local palleteEnabled = true
 
     local squares, animations, aniPerStage, clicked = {}, {}, {}, {}
@@ -48,7 +55,7 @@ function Paint.Get(_parent)
                 animations[i]:Stop()
                 aniPerStage[i][stage]:Play()
                 count = count + 1
-                if count == 3 then
+                if count == goal then
                     wait(1)
                     for i = 1, 3 do
                         squares[i]:SetVisible(false)
@@ -60,6 +67,7 @@ function Paint.Get(_parent)
                     stage = stage + 1
                     count = 0
                     palleteEnabled = true
+                    pallete:SetVisible(true)
                     if stage == 4 then
                         pallete:SetVisible(false)
                         wait(1)
@@ -70,6 +78,8 @@ function Paint.Get(_parent)
                                 paint:SetClickFunc(nil)
                                 tip:SetText(Resource.Tips[10])
                                 tip:SetVisible(true)
+                                paint.bgm1:Stop()
+                                paint.bgm2:Play()
                             end
                         )
                     elseif stage == 7 then
@@ -82,6 +92,8 @@ function Paint.Get(_parent)
                                 paint:SetClickFunc()
                                 tip:SetText(Resource.Tips[11])
                                 tip:SetVisible(true)
+                                paint.bgm2:Stop()
+                                paint.bgm3:Play()
                             end
                         )
                     elseif stage == 10 then
@@ -98,6 +110,7 @@ function Paint.Get(_parent)
                                 door:SetClickFunc(
                                     function()
                                         paint:SetVisible(false)
+                                        paint.bgm3:Stop()
                                         print("进入阁楼")
                                     end
                                 )
@@ -116,10 +129,14 @@ function Paint.Get(_parent)
     pallete:SetClickFunc(
         function()
             if palleteEnabled then
+                pallete:SetVisible(false)
                 paint:UpdateTexture(Resource.Stages[stage].Paint)
                 print("stage " .. stage)
                 palleteEnabled = false
-                for i = 1, 3 do
+                goal = 0
+                for i, v in ipairs(Resource.DrawPos[stage]) do
+                    goal = goal + 1
+                    squares[i].obj.Offset = v
                     squares[i]:SetVisible(true)
                     animations[i]:Play()
                 end
