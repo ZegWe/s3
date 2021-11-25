@@ -1,6 +1,7 @@
 local UIObject = require("Lua/module/uiObject")
 local PlayerImage = require("Lua/resource").Player
 local Animation = require("Lua/module/animation")
+local Camera = require("Lua/module/camera")
 local GameManager = require("Lua/game")
 
 local playerWidth = 610
@@ -59,6 +60,7 @@ function Player:initialize(_parent)
     self:AnimationCreate("Walk_Right", PlayerImage.Walk_Right, 0.1)
     self:AnimationPlay("Idle_Left")
     self:InitControl()
+    self.camera = Camera:new(self)
 end
 
 --- @param _name string
@@ -144,9 +146,6 @@ function Player:Move(_dt)
     end
     if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) < 200 then
         self.obj.Offset = self.obj.Offset - Vector2(speed, 0)
-    end
-    if self.scene.obj.Parent.Size.X / 2 - math.abs(self.obj.Offset.X + self.scene.obj.Offset.X) < 600 then
-        self.scene.obj.Offset = self.scene.obj.Offset - Vector2(speed, 0)
     end
 end
 
