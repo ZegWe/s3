@@ -54,6 +54,11 @@ Resource.BedRoom = {
     Background = "Local/卧室场景/卧室整体"
 }
 
+Resource.Attic = {
+    BGM = "Sound/场景一bgm",
+    Background = "Local/阁楼场景/阁楼整体"
+}
+
 Resource.MainDoor = {
     Door = "Local/打不开的大门/大门1",
     DoorShake = {
@@ -263,6 +268,16 @@ Resource.Drawer = {
         "Local/抽屉/颜料3",
         "Local/抽屉/颜料4",
         "Local/抽屉/颜料5"
+    }
+}
+
+Resource.Wardrobe = {
+    Wardrobe = "Local/衣柜/衣柜",
+    WardrobeUI = "Local/衣柜/衣柜界面",
+    ShortClockHand = "Local/衣柜/衣柜短针",
+    LongClockHand = "Local/衣柜/衣柜长针",
+    WardrobeAni = {
+        ""
     }
 }
 
