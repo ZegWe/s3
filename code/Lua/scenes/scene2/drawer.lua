@@ -2,16 +2,13 @@ local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
 local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
-<<<<<<< HEAD
 local drawerImage = require("Lua/resource").Drawer
 local InterActive = require("Lua/module/interactive")
-=======
 local GameManager = require("Lua/game")
 local Resource = require("Lua/resource").Drawer
 local FloatTip = require("Lua/module/floatTip")
 
 --书柜抽屉
->>>>>>> origin/dev_s2
 
 local drawer = {}
 
