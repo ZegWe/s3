@@ -33,14 +33,18 @@ function Animation:Play()
     end
     self.playing = true
     self.tickNow = 0
-    invoke(
-        function()
-            while self.playing == true do
-                self:tickNext()
-                wait(self.dt)
-            end
+    local tt = self.dt
+    local function tickFunc(_dt)
+        if self.playing == false then
+            world.OnRenderStepped:Disconnect(tickFunc)
         end
-    )
+        tt = tt + _dt
+        if tt >= self.dt then
+            self:tickNext()
+            tt = 0
+        end
+    end
+    world.OnRenderStepped:Connect(tickFunc)
 end
 
 function Animation:Stop()

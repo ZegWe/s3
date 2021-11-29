@@ -1,6 +1,7 @@
 local UIObject = require("Lua/module/uiObject")
 local PlayerImage = require("Lua/resource").Player
 local Animation = require("Lua/module/animation")
+local GameManager = require("Lua/game")
 
 local playerWidth = 610
 local playerHeight = 610
@@ -22,6 +23,33 @@ function Player:initialize(_parent)
         Vector2.Zero
     )
 	self.obj.RaycastTarget = false
+    self.bucket = UIObject:new("Bucket", PlayerImage.Bucket , self.obj, Vector2(110, 90), Vector2(-130, 300))
+    self.bucket:SetClickFunc(function()
+        self.bucket:SetVisible(false)
+        GameManager.PlaceItem("Bucket")
+        self.scene:Tip("已放置【水桶】", 5)
+    end)
+    self.canvas = UIObject:new("Canvas", PlayerImage.Canvas, self.obj, Vector2(70, 80), Vector2(-30, 300))
+    self.canvas:SetClickFunc(function()
+        self.canvas:SetVisible(false)
+        GameManager.PlaceItem("Canvas")
+        self.scene:Tip("已放置【空画布】", 5)
+    end)
+    self.pigment = UIObject:new("Pigment", PlayerImage.Pigment, self.obj, Vector2(90, 60), Vector2(60, 300))
+    self.pigment:SetClickFunc(function()
+        self.pigment:SetVisible(false)
+        GameManager.PlaceItem("Pigment")
+        self.scene:Tip("已放置【颜料】", 5)
+    end)
+    GameManager.RegisterFunc("SetItemVisible", function(_item, _visible)
+        if _item == "Bucket" then
+            self.bucket:SetVisible(_visible)
+        elseif _item == "Canvas" then
+            self.canvas:SetVisible(_visible)
+        elseif _item == "Pigment" then
+            self.pigment:SetVisible(_visible)
+        end
+    end)
     --- @type Scene
     self.scene = nil
     self.animation = {}
@@ -90,7 +118,7 @@ function Player:LeaveScene()
     self.scene = nil
 end
 
-function Player:Move()
+function Player:Move(_dt)
     local face = ""
     if self.faceLeft == true then
         face = "Left"
@@ -106,7 +134,7 @@ function Player:Move()
         ani = "Idle" .. "_" .. face
     end
     self:AnimationPlay(ani)
-    local speed = self.moveSpeed * 10
+    local speed = self.moveSpeed * 600 * _dt
     if self.faceLeft then
         speed = speed * -1
     end
@@ -128,8 +156,8 @@ function Player:InitControl()
     self.faceLeft = false
     self.moveSpeed = 0
     world.OnRenderStepped:Connect(
-        function()
-            self:Move()
+        function(_dt)
+            self:Move(_dt)
         end
     )
     Input.OnKeyDown:Connect(

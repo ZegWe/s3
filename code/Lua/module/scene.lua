@@ -23,16 +23,13 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos, _bgm)
     --- @type Player
     self.player = nil
     --- @type AudioPlayer
-    self.bgm = AudioPlayer:new(_name .. "_bgm", _bgm, true)
+    self.bgm = AudioPlayer:new(_name .. "_bgm", _bgm, true, true)
 
     --- Update Interactive
     world.OnRenderStepped:Connect(
         function()
-            if self.player == nil then
-                return
-            end
             for k, v in ipairs(self.interactives) do
-                if math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= math.max(200, v.obj.Size.X / 2 + 100) then
+                if self.player ~= nil and math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= math.max(200, v.obj.Size.X / 2 + 100) then
                     v:SetActive(true)
                 else
                     v:SetActive(false)

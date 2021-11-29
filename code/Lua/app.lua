@@ -33,7 +33,6 @@ function App:InitScene()
     end)
     GameManager.RegisterFunc("EnterBedRoom", function()
         self:ChangeScene("s2")
-        print("BedRoom!")
     end)
 end
 
@@ -50,7 +49,12 @@ function App:Run()
     self:Init()
     self:InitScene()
     self:InitPlayer()
+<<<<<<< HEAD
     GameManager.CallFunc("EnterBedRoom")
+=======
+    print("start!")
+    GameManager.CallFunc("EnterLivingRoom")
+>>>>>>> origin/dev_s2
     -- wait(2)
     -- self:ChangeScene("s2")
     -- self.player:EnterScene(self.scenes["s2"])

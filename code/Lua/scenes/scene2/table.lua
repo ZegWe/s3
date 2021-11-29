@@ -15,8 +15,10 @@ function Table.Get(_parent)
 
     local tableInfo =
         UIObject:new("tableInfo", Resource.TableInfo, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
+    local newspaperAni = Animation:new(tableInfo.obj, Resource.NewspaperAni, 0.3)
+    newspaperAni:Play()
 
-    local newspaper = UIObject:new("newspaper1", Resource.Newspaper, tableInfo.obj, Vector2(900, 600), Vector2(0, 0))
+    local newspaper = UIObject:new("newspaper", Resource.Newspaper, tableInfo.obj, Vector2(700, 800), Vector2(-250, 0))
     newspaper:SetVisible(true)
 
     local phone = UIObject:new("phone", Resource.Phone, tableInfo.obj, Vector2(330, 370), Vector2(-455, -125))
