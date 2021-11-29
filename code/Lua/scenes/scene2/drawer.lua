@@ -1,12 +1,9 @@
 local UIObject = require("Lua/module/uiObject")
-local InterActive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
-local AudioPlayer = require("Lua/module/audio")
-local GameManager = require("Lua/game")
-local drawerImage = require("Lua/resource").Drawer
 local FloatTip = require("Lua/module/floatTip")
-
---书柜抽屉
+local AudioPlayer = require("Lua/module/audio")
+local drawerImage = require("Lua/resource").Drawer
+local InterActive = require("Lua/module/interactive")
 
 local drawer = {}
 

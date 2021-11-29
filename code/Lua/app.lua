@@ -3,7 +3,7 @@ local App = {}
 local Canvas = require("Lua/module/canvas")
 local Player = require("Lua/module/player")
 local GameManager = require("Lua/game")
-local scene1 = require("Lua/scenes/scene1/scene1")
+local scene3 = require("Lua/scenes/scene3/scene3")
 local scene2 = require("Lua/scenes/scene2/scene2")
 
 function App:Init()
@@ -21,10 +21,13 @@ function App:Init()
 end
 
 function App:InitScene()
-    local s1 = scene1:Get("s1", self.canvas)
+    local s1 = scene3:Get("s3", self.canvas)
     local s2 = scene2:Get("s2", self.canvas)
+
     self.scenes["s1"] = s1
     self.scenes["s2"] = s2
+
+	
     GameManager.RegisterFunc("EnterLivingRoom", function()
         self:ChangeScene("s1")
     end)
@@ -47,7 +50,6 @@ function App:Run()
     self:Init()
     self:InitScene()
     self:InitPlayer()
-    print("start!")
     GameManager.CallFunc("EnterBedRoom")
     -- wait(2)
     -- self:ChangeScene("s2")

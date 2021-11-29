@@ -52,6 +52,11 @@ Resource.BedRoom = {
     Background = "Local/卧室场景/卧室整体",
 }
 
+Resource.Loft = {
+    BGM = "Sound/场景一bgm",
+	Background = "Local/阁楼场景/阁楼底",
+    Background1 = "Local/阁楼场景/阁楼前景"	
+}
 Resource.MainDoor = {
     Door = "Local/打不开的大门/大门1",
     DoorShake = {
@@ -270,5 +275,88 @@ Resource.Easel = {
         "Local/画架/画架4",
     }
 }
+Resource.Toy = {
+            Cloth = "Local/玩具/1",
+            ClothshakeAni = {
+			    "Local/阁楼布的闪光/1-1",
+				"Local/阁楼布的闪光/1-2",
+				"Local/阁楼布的闪光/1-3",
+				"Local/阁楼布的闪光/1-4"   
+			},
+			Toystand = "Local/玩具/6",
+			ClothdownAni = {
+			    "Local/玩具/1",
+				"Local/玩具/2",
+				"Local/玩具/3",
+				"Local/玩具/4",
+		        "Local/玩具/5",
+			    "Local/玩具/6"
+            },
+			ToyrunAni = {
+			    "Local/玩具/玩具跑1",
+				"Local/玩具/玩具跑2",
+				"Local/玩具/玩具跑3",
+				"Local/玩具/玩具跑4"		  
+			}
+}
 
+Resource.Hanger = {
+            Cloth = "Local/衣架/1",	
+			Hangerlose = "Local/衣架/衣服6",
+			Hangerstand = "Local/衣架/7",
+			ClothshakeAni = {
+			    "Local/阁楼布的闪光/2-1",
+				"Local/阁楼布的闪光/2-2",
+				"Local/阁楼布的闪光/2-3",
+				"Local/阁楼布的闪光/2-4"	
+			},
+			
+			ClothdownAni = {
+			    "Local/衣架/1",
+				"Local/衣架/2",
+			    "Local/衣架/3",
+				"Local/衣架/4",
+				"Local/衣架/5",
+				"Local/衣架/6",
+				"Local/衣架/7"
+			},
+            HangerAni = {
+			"Local/衣架/衣服1",
+			"Local/衣架/衣服2",
+			"Local/衣架/衣服3",
+			"Local/衣架/衣服4",
+			"Local/衣架/衣服5",
+			"Local/衣架/衣服6"	
+            }	
+}
+
+
+Resource.Lofteasal = {
+            Cloth = "Local/阁楼画架/1",
+			Lofteasalstand = "Local/阁楼画架/5",
+			Lofteasallose = "Local/阁楼画架/画布7",
+			ClothshakeAni = {
+			     "Local/阁楼布的闪光/3-1",
+				 "Local/阁楼布的闪光/3-2",
+				 "Local/阁楼布的闪光/3-3",
+				 "Local/阁楼布的闪光/3-4"
+		    },
+		
+			ClothdownAni = {
+				 "Local/阁楼画架/1",
+				 "Local/阁楼画架/2",
+				 "Local/阁楼画架/3",
+				 "Local/阁楼画架/4",
+				 "Local/阁楼画架/5"
+			} ,
+			LofteasaldownAni = {
+			     "Local/阁楼画架/画布1",
+				 "Local/阁楼画架/画布2",
+		         "Local/阁楼画架/画布3",
+                 "Local/阁楼画架/画布4",
+                 "Local/阁楼画架/画布5",
+				 "Local/阁楼画架/画布6",
+				 "Local/阁楼画架/画布7"
+			}			
+}
 return Resource
