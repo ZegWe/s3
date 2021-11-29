@@ -276,6 +276,9 @@ Resource.Wardrobe = {
     WardrobeUI = "Local/衣柜/衣柜界面",
     ShortClockHand = "Local/衣柜/衣柜短针",
     LongClockHand = "Local/衣柜/衣柜长针",
+    ArrowLeft = "Local/衣柜/左箭头",
+    ArrowRight = "Local/衣柜/右箭头",
+    Confirm = "Local/衣柜/确认",
     WardrobeAni = {
         ""
     }
