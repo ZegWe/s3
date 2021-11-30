@@ -14,21 +14,13 @@ function hanger.Get(_parent)
     local Hanger1 =
         InterActive:new(
         "hanger1",
-        HangerImage.Cloth,
-        HangerImage.Cloth,
+        HangerImage.Hangerstand,
+        HangerImage.Hangerstand,
         _parent,
         Vector2(1010, 730),
         Vector2(-145, -85)
     )
-    local Hanger2 =
-        InterActive:new(
-        "Hanger2",
-        HangerImage.Hangerstand,
-        HangerImage.Hangerstand,
-        _parent,
-        Vector2(920, 670),
-        Vector2(-150, -85)
-    )
+    local Hanger2 = UIObject:new("Hanger2", HangerImage.Hangerstand, _parent.obj, Vector2(920, 670), Vector2(-150, -85))
 
     local animation = Animation:new(Hanger.obj, HangerImage.ClothshakeAni, 0.2)
     Hanger:SetAnimation(animation)
@@ -50,9 +42,9 @@ function hanger.Get(_parent)
 
     Hanger1:SetFunc(
         function()
-			_parent:RemoveInteractive(Hanger1)
-			Hanger1:SetVisible(false)
-			Hanger2:SetVisible(true)
+            _parent:RemoveInteractive(Hanger1)
+            Hanger1:SetVisible(false)
+            Hanger2:SetVisible(true)
             animation2:Play()
         end
     )

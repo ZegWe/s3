@@ -14,14 +14,13 @@ function toy.Get(_parent)
     Toy:SetAnimation(animation)
 
     local Toy1 =
-        InterActive:new("toy1", ToyImage.Cloth, ToyImage.Cloth, _parent, Vector2(640, 640), Vector2(-1000, -140))
+        InterActive:new("toy1", ToyImage.Toystand, ToyImage.Toystand, _parent, Vector2(640, 640), Vector2(-1000, -140))
     local animation1 = Animation:new(Toy1.obj, ToyImage.ClothdownAni, 0.2, true)
-	Toy1:SetVisible(false)
+    Toy1:SetVisible(false)
 
-    local Toy2 =
-        InterActive:new("toy2", ToyImage.Toystand, ToyImage.Toystand, _parent, Vector2(870, 390), Vector2(-1095, -225))
+    local Toy2 = UIObject:new("toy2", ToyImage.Toystand, _parent.obj, Vector2(870, 390), Vector2(-1095, -225))
     local animation2 = Animation:new(Toy2.obj, ToyImage.ToyrunAni, 0.2, true)
-	Toy2:SetVisible(false)
+    Toy2:SetVisible(false)
 
     Toy1:SetVisible(false)
     Toy2:SetVisible(false)
@@ -43,8 +42,8 @@ function toy.Get(_parent)
             Toy1:SetVisible(false)
             Toy2:SetVisible(true)
             animation2:Play()
-			wait(1)
-			Toy2:SetVisible(false)
+            wait(1)
+            Toy2:SetVisible(false)
         end
     )
 

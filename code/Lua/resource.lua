@@ -288,7 +288,7 @@ Resource.Wardrobe = {
     WardrobeAni = {
         "Local/衣柜/衣柜1",
         "Local/衣柜/衣柜2",
-        "Local/衣柜/衣柜3",
+        "Local/衣柜/衣柜3"
     }
 }
 
@@ -971,7 +971,7 @@ Resource.Paint = {
     }
 }
 Resource.Toy = {
-    Cloth = "Local/阁楼布的闪光/1-1",
+    Cloth = "Local/阁楼布的闪光/1-4",
     ClothshakeAni = {
         "Local/阁楼布的闪光/1-1",
         "Local/阁楼布的闪光/1-2",
@@ -996,8 +996,8 @@ Resource.Toy = {
 }
 
 Resource.Hanger = {
-    Cloth = "Local/阁楼布的闪光/2-1",
-    Hangerstand = "Local/衣架/衣服1",
+    Cloth = "Local/阁楼布的闪光/2-4",
+    Hangerstand = "Local/衣架/7",
     ClothshakeAni = {
         "Local/阁楼布的闪光/2-1",
         "Local/阁楼布的闪光/2-2",
@@ -1024,8 +1024,8 @@ Resource.Hanger = {
 }
 
 Resource.Lofteasal = {
-    Cloth = "Local/阁楼布的闪光/3-1",
-    Lofteasalstand = "Local/阁楼画架/画布1",
+    Cloth = "Local/阁楼布的闪光/3-4",
+    Lofteasalstand = "Local/阁楼画架/5",
     ClothshakeAni = {
         "Local/阁楼布的闪光/3-1",
         "Local/阁楼布的闪光/3-2",
@@ -1049,4 +1049,44 @@ Resource.Lofteasal = {
         "Local/阁楼画架/画布7"
     }
 }
+
+Resource.Cabinet = {
+    Cabinet = ""
+}
+
+Resource.Dad = {
+    Dad = "Local/阁楼布的闪光/4-4",
+    DadStand = "Local/人物/父亲站起来/1",
+    DadRun = "Local/人物/父亲奔跑/父亲跑1",
+    Door = "",
+    DoorOpen = "",
+    DadAni = {
+        "Local/阁楼布的闪光/4-1",
+        "Local/阁楼布的闪光/4-2",
+        "Local/阁楼布的闪光/4-3",
+        "Local/阁楼布的闪光/4-4"
+    },
+    DadStandAni = {
+        "Local/人物/父亲站起来/1",
+        "Local/人物/父亲站起来/2",
+        "Local/人物/父亲站起来/3",
+        "Local/人物/父亲站起来/4",
+        "Local/人物/父亲站起来/5",
+        "Local/人物/父亲站起来/6",
+        "Local/人物/父亲站起来/7",
+        "Local/人物/父亲站起来/8"
+    },
+    DadRunAni = {
+        "Local/人物/父亲奔跑/父亲跑1",
+        "Local/人物/父亲奔跑/父亲跑2",
+        "Local/人物/父亲奔跑/父亲跑3",
+        "Local/人物/父亲奔跑/父亲跑4",
+        "Local/人物/父亲奔跑/父亲跑5",
+        "Local/人物/父亲奔跑/父亲跑6",
+        "Local/人物/父亲奔跑/父亲跑7",
+        "Local/人物/父亲奔跑/父亲跑8",
+        "Local/人物/父亲奔跑/父亲跑9"
+    }
+}
+
 return Resource

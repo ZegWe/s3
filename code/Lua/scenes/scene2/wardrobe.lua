@@ -87,6 +87,8 @@ function Wardrobe.Get(_parent)
                 unlocked = true
                 wardrobe:SetAnimation(nil)
                 animation:Stop()
+                wardrobe.ref = Resource.WardrobeOpen
+                wardrobe.ref_active = Resource.WardrobeOpen
                 wardrobe:UpdateTexture(Resource.WardrobeOpen)
             end
         end

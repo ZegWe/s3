@@ -61,7 +61,7 @@ function Easel.Get(_parent)
         end
     )
 
-    local stage = 1
+    local stage = 2
 
     GameManager.RegisterFunc(
         "NextStage",

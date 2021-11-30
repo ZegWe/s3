@@ -12,16 +12,15 @@ function easal.Get(_parent)
     local Easal =
         InterActive:new("Easal", EasalImage.Cloth, EasalImage.Cloth, _parent, Vector2(360, 650), Vector2(850, -80))
     local Easal1 =
-        InterActive:new("Easal1", EasalImage.Cloth, EasalImage.Cloth, _parent, Vector2(670, 770), Vector2(765, -45))
-    local Easal2 =
         InterActive:new(
-        "Easal2",
+        "Easal1",
         EasalImage.Lofteasalstand,
         EasalImage.Lofteasalstand,
         _parent,
-        Vector2(570, 810),
-        Vector2(815, -15)
+        Vector2(670, 770),
+        Vector2(765, -45)
     )
+    local Easal2 = UIObject:new("Easal2", EasalImage.Lofteasalstand, _parent.obj, Vector2(570, 810), Vector2(815, -15))
 
     local animation = Animation:new(Easal.obj, EasalImage.ClothshakeAni, 0.2)
     Easal:SetAnimation(animation)
