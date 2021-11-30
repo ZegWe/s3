@@ -82,7 +82,8 @@ function Wardrobe.Get(_parent)
         function()
             print(hour, min)
             if hour == 3 and min == 15 then
-                GameManager.CallFunc("EnterAttic")
+                wardrobeUI:SetVisible(false)
+                GameManager.CallFunc("EnterLoft")
                 unlocked = true
                 wardrobe:SetAnimation(nil)
                 animation:Stop()
@@ -107,7 +108,7 @@ function Wardrobe.Get(_parent)
                 _parent:SetVisible(false)
                 wardrobeUI:SetVisible(true)
             else
-                GameManager.CallFunc("EnterAttic")
+                GameManager.CallFunc("EnterLoft")
             end
         end
     )

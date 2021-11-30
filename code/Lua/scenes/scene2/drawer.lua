@@ -1,7 +1,8 @@
 local UIObject = require("Lua/module/uiObject")
-local InterActive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
+local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
+local InterActive = require("Lua/module/interactive")
 local GameManager = require("Lua/game")
 local Resource = require("Lua/resource").Drawer
 local FloatTip = require("Lua/module/floatTip")
@@ -103,10 +104,12 @@ function drawer.Get(_parent)
         end
     )
 
-    lock:SetClickFunc(function()
-        lock:SetVisible(false)
-        _parent:SetVisible(true)
-    end)
+    lock:SetClickFunc(
+        function()
+            lock:SetVisible(false)
+            _parent:SetVisible(true)
+        end
+    )
 
     confirm:SetClickFunc(
         function()

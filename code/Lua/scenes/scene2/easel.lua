@@ -63,13 +63,19 @@ function Easel.Get(_parent)
 
     local stage = 1
 
-    GameManager.RegisterFunc("NextStage", function()
-        stage = stage + 1
-    end)
+    GameManager.RegisterFunc(
+        "NextStage",
+        function()
+            stage = stage + 1
+        end
+    )
 
-    GameManager.RegisterFunc("GetStage", function()
-        return stage
-    end)
+    GameManager.RegisterFunc(
+        "GetStage",
+        function()
+            return stage
+        end
+    )
 
     easel:SetFunc(
         function()
