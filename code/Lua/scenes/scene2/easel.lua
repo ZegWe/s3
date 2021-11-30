@@ -61,15 +61,45 @@ function Easel.Get(_parent)
         end
     )
 
+    local stage = 1
+
+    GameManager.RegisterFunc("NextStage", function()
+        stage = stage + 1
+    end)
+
+    GameManager.RegisterFunc("GetStage", function()
+        return stage
+    end)
+
     easel:SetFunc(
         function()
-            if GameManager.CheckEasel() then
-                _parent:SetVisible(false)
-                _parent.bgm:Stop()
-                paint:SetVisible(true)
-                paint.bgm1:Play()
-            else
-                _parent:Tip("好像还缺一些工具才能开始作画。", 5)
+            if stage == 1 then
+                if GameManager.CheckEasel() then
+                    _parent:SetVisible(false)
+                    _parent.bgm:Stop()
+                    paint:SetVisible(true)
+                    paint.bgm1:Play()
+                else
+                    _parent:Tip("好像还缺一些工具才能开始作画。", 5)
+                end
+            elseif stage == 2 then
+                if GameManager.CheckMemory(1) then
+                    _parent:SetVisible(false)
+                    _parent.bgm:Stop()
+                    paint:SetVisible(true)
+                    paint.bgm2:Play()
+                else
+                    _parent:Tip("画作还没有完成，我还没有想起来。", 5)
+                end
+            elseif stage == 3 then
+                if GameManager.CheckMemory(2) then
+                    _parent:SetVisible(false)
+                    _parent.bgm:Stop()
+                    paint:SetVisible(true)
+                    paint.bgm3:Play()
+                else
+                    _parent:Tip("画作还没有完成，我还没有想起来。", 5)
+                end
             end
         end
     )

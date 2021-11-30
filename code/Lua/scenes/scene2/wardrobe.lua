@@ -2,6 +2,7 @@ local UIObject = require("Lua/module/uiObject")
 local Interactive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
 local Resource = require("Lua/resource").Wardrobe
+local GameManager = require("Lua/game")
 
 local Wardrobe = {}
 
@@ -20,7 +21,7 @@ function Wardrobe.Get(_parent)
 
     local shortHand =
         UIObject:new("shortHand", Resource.ShortClockHand, wardrobeUI.obj, Vector2(30, 70), Vector2(-445, 15))
-    shortHand.obj.Pivot = Vector2(0.5, 1/14)
+    shortHand.obj.Pivot = Vector2(0.5, 1 / 14)
     shortHand:SetVisible(true)
 
     local shortHandArrowLeft =
@@ -47,7 +48,7 @@ function Wardrobe.Get(_parent)
 
     local longHand =
         UIObject:new("longHand", Resource.LongClockHand, wardrobeUI.obj, Vector2(30, 130), Vector2(445, 15))
-    longHand.obj.Pivot = Vector2(0.5, 1/26)
+    longHand.obj.Pivot = Vector2(0.5, 1 / 26)
     longHand:SetVisible(true)
 
     local longHandArrowLeft =
@@ -72,6 +73,8 @@ function Wardrobe.Get(_parent)
         end
     )
 
+    local unlocked = false
+
     local confirm = UIObject:new("confirm", Resource.Confirm, wardrobeUI.obj, Vector2(176, 116), Vector2(0, -340))
     confirm:SetVisible(true)
 
@@ -79,7 +82,11 @@ function Wardrobe.Get(_parent)
         function()
             print(hour, min)
             if hour == 3 and min == 15 then
-                print("Right")
+                GameManager.CallFunc("EnterAttic")
+                unlocked = true
+                wardrobe:SetAnimation(nil)
+                animation:Stop()
+                wardrobe:UpdateTexture(Resource.WardrobeOpen)
             end
         end
     )
@@ -93,8 +100,15 @@ function Wardrobe.Get(_parent)
 
     wardrobe:SetFunc(
         function()
-            _parent:SetVisible(false)
-            wardrobeUI:SetVisible(true)
+            if GameManager.CallFunc("GetStage") == 1 then
+                _parent:Tip("暂时无法打开", 5)
+                return
+            elseif unlocked == false then
+                _parent:SetVisible(false)
+                wardrobeUI:SetVisible(true)
+            else
+                GameManager.CallFunc("EnterAttic")
+            end
         end
     )
 

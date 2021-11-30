@@ -3,6 +3,7 @@ local Animation = require("Lua/module/animation")
 local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local Resource = require("Lua/resource").Paint
+local GameManager = require("Lua/game")
 
 local Paint = {}
 
@@ -44,7 +45,8 @@ function Paint.Get(_parent)
 
     local squares, animations, aniPerStage, clicked = {}, {}, {}, {}
     for i = 1, 3 do
-        squares[i] = UIObject:new("Square" .. i, Resource.SquareAni[1][1][1], paint.obj, Vector2(120, 120), Vector2(0, 0))
+        squares[i] =
+            UIObject:new("Square" .. i, Resource.SquareAni[1][1][1], paint.obj, Vector2(120, 120), Vector2(0, 0))
         animations[i] = Animation:new(squares[i].obj, Resource.SquareAni[1][1], 0.3, false)
         aniPerStage[i] = Animation:new(squares[i].obj, Resource.SquareAni[1][2], 0.1, true)
 
@@ -74,26 +76,33 @@ function Paint.Get(_parent)
                     pallete:SetVisible(true)
                     if stage == 4 then
                         pallete:SetVisible(false)
-                        wait(1)
                         paint:SetClickFunc(
                             function()
+                                GameManager.CallFunc("NextStage")
+                                GameManager.CallFunc("SetClock")
+                                paint:SetVisible(false)
+                                _parent:SetVisible(true)
+                                paint.bgm1:Stop()
+                                _parent.bgm:Play()
+                                _parent:Tip("记忆在这里中断了……需要什么才能唤醒我的记忆？", 5)
                                 paint:UpdateTexture(Resource.Paints[1])
-                                pallete:SetVisible(true)
                                 paint:SetClickFunc(nil)
-                                tip:SetText(Resource.Tips[10])
-                                tip:SetVisible(true)
+                                pallete:SetVisible(true)
                             end
                         )
                     elseif stage == 7 then
                         pallete:SetVisible(false)
-                        wait(1)
                         paint:SetClickFunc(
                             function()
+                                GameManager.CallFunc("NextStage")
+                                paint:SetVisible(false)
+                                _parent:SetVisible(true)
+                                paint.bgm2:Stop()
+                                _parent.bgm:Play()
+                                _parent:Tip("记忆又断掉了，回之前那个地方看看有什么线索吧。", 5)
                                 paint:UpdateTexture(Resource.Paints[2])
+                                paint:SetClickFunc(nil)
                                 pallete:SetVisible(true)
-                                paint:SetClickFunc()
-                                tip:SetText(Resource.Tips[11])
-                                tip:SetVisible(true)
                             end
                         )
                     elseif stage == 10 then
@@ -141,13 +150,6 @@ function Paint.Get(_parent)
                     animations[i].t = Resource.SquareAni[stage][1]
                     aniPerStage[i].t = Resource.SquareAni[stage][2]
                     animations[i]:Play()
-                end
-                if stage == 4 then
-                    paint.bgm1:Stop()
-                    paint.bgm2:Play()
-                elseif stage == 7 then
-                    paint.bgm2:Stop()
-                    paint.bgm3:Play()
                 end
             end
         end

@@ -273,6 +273,7 @@ Resource.Drawer = {
 
 Resource.Wardrobe = {
     Wardrobe = "Local/衣柜/衣柜",
+    WardrobeOpen = "Local/衣柜/衣柜打开",
     WardrobeUI = "Local/衣柜/衣柜界面",
     ShortClockHand = "Local/衣柜/衣柜短针",
     LongClockHand = "Local/衣柜/衣柜长针",
@@ -282,6 +283,11 @@ Resource.Wardrobe = {
     WardrobeAni = {
         ""
     }
+}
+
+Resource.Clock = {
+    ClockEight = "Local/时钟/时钟",
+    ClockThree = "Local/时钟/时钟3",
 }
 
 Resource.Easel = {

@@ -118,7 +118,7 @@ end
 --- @param _name string
 function GameManager.CallFunc(_name, ...)
     if funcTable[_name] ~= nil then
-        funcTable[_name](...)
+        return funcTable[_name](...)
     end
 end
 
@@ -131,6 +131,25 @@ end
 function GameManager.StopDoorRing()
     if doorRing ~= nil then
         doorRing:Stop()
+    end
+end
+
+local mem1 = false
+local mem2 = false
+
+function GameManager.CheckMemory(_m)
+    if _m == 1 then
+        return mem1
+    elseif _m == 2 then
+        return mem2
+    end
+end
+
+function GameManager.PickMemory(_m)
+    if _m == 1 then
+        mem1 = true
+    elseif _m == 2 then
+        mem2 = true
     end
 end
 
