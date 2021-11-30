@@ -10,7 +10,7 @@ local Wardrobe = {}
 function Wardrobe.Get(_parent)
     --- @type Interactive
     local wardrobe =
-        Interactive:new("Wardrobe", Resource.Wardrobe, Resource.Wardrobe, _parent, Vector2(200, 200), Vector2(0, 0))
+        Interactive:new("Wardrobe", Resource.Wardrobe, Resource.Wardrobe, _parent, Vector2(380, 720), Vector2(895, -40))
     local animation = Animation:new(wardrobe.obj, Resource.WardrobeAni, 0.3)
     wardrobe:SetAnimation(animation)
 

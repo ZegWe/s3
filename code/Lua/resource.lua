@@ -272,8 +272,8 @@ Resource.Drawer = {
 }
 
 Resource.Wardrobe = {
-    Wardrobe = "Local/衣柜/衣柜",
-    WardrobeOpen = "Local/衣柜/衣柜打开",
+    Wardrobe = "Local/透明",
+    WardrobeOpen = "Local/衣柜/衣柜门打开",
     WardrobeUI = "Local/衣柜/衣柜界面",
     ShortClockHand = "Local/衣柜/衣柜短针",
     LongClockHand = "Local/衣柜/衣柜长针",
@@ -281,13 +281,27 @@ Resource.Wardrobe = {
     ArrowRight = "Local/衣柜/右箭头",
     Confirm = "Local/衣柜/确认",
     WardrobeAni = {
-        ""
+        "Local/衣柜/衣柜1",
+        "Local/衣柜/衣柜2",
+        "Local/衣柜/衣柜3",
     }
 }
 
 Resource.Clock = {
-    ClockEight = "Local/时钟/时钟",
-    ClockThree = "Local/时钟/时钟3",
+    ClockEight = "Local/衣柜/八点",
+    ClockThree = "Local/衣柜/三点一刻",
+    ClockEightAni = {
+        "Local/衣柜/八点1",
+        "Local/衣柜/八点2",
+        "Local/衣柜/八点",
+        "Local/衣柜/八点"
+    },
+    ClockThreeAni = {
+        "Local/衣柜/三点一刻1",
+        "Local/衣柜/三点一刻2",
+        "Local/衣柜/三点一刻",
+        "Local/衣柜/三点一刻"
+    }
 }
 
 Resource.Easel = {
@@ -571,7 +585,7 @@ Resource.Paint = {
                 "Local/方块/填充/白色/6",
                 "Local/方块/填充/白色/7"
             }
-        },
+        }
     },
     DrawPos = {
         {

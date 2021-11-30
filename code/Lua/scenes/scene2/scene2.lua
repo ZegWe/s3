@@ -3,6 +3,7 @@ local RoomDoor = require("Lua/scenes/scene2/roomDoor")
 local Table = require("Lua/scenes/scene2/table")
 local Easel = require("Lua/scenes/scene2/easel")
 local Wardrobe = require("Lua/scenes/scene2/wardrobe")
+local Clock = require("Lua/scenes/scene2/clock")
 local Resource = require("Lua/resource").BedRoom
 local Drawer = require("Lua/scenes/scene2/drawer")
 
@@ -18,6 +19,7 @@ function module:Get(_name, _parent)
     scene:AddInteractive(Easel.Get(scene))
     scene:AddInteractive(Drawer.Get(scene))
     scene:AddInteractive(Wardrobe.Get(scene))
+    scene:AddInteractive(Clock.Get(scene))
     return scene
 end
 
