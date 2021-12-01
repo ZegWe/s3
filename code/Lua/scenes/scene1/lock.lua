@@ -96,7 +96,7 @@ function doorlock.Get(_parent)
                 _parent.player:EnableControl(false)
                 wait(2)
                 roomdoor:UpdateTexture(lockImage.Door)
-                GameManager.CallFunc("EnterBedRoom")
+                GameManager.CallFunc("EnterBedRoom", Vector2(-750, -150))
                 print("-----------------------EnterScene 2!!!!!!!!!!!!!!---------------------")
             else
                 setResult(0)
@@ -119,7 +119,7 @@ function doorlock.Get(_parent)
     roomdoor:SetFunc(
         function()
             if unlocked == true then
-                GameManager.CallFunc("EnterBedRoom")
+                GameManager.CallFunc("EnterBedRoom", Vector2(-750, -115))
                 return
             end
             setResult(0)

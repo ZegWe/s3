@@ -41,6 +41,11 @@ Resource.Player = {
     }
 }
 
+Resource.Beginning = {
+    Background = "Local/开场/后景",
+    BGM = "Sound/场景一bgm"
+}
+
 Resource.Scene1 = {
     BGM = "Sound/场景一bgm",
     All = "Local/客厅场景/整体1",
@@ -54,16 +59,12 @@ Resource.BedRoom = {
     Background = "Local/卧室场景/卧室整体"
 }
 
-Resource.Attic = {
-    BGM = "Sound/场景一bgm",
-    Background = "Local/阁楼场景/阁楼整体"
-}
-
 Resource.Loft = {
     BGM = "Sound/场景一bgm",
     Background = "Local/阁楼场景/阁楼底",
     Background1 = "Local/阁楼场景/阁楼前景"
 }
+
 Resource.MainDoor = {
     Door = "Local/打不开的大门/大门1",
     DoorShake = {
@@ -1051,15 +1052,16 @@ Resource.Lofteasal = {
 }
 
 Resource.Cabinet = {
-    Cabinet = ""
+    Cabinet = "Local/透明"
 }
 
 Resource.Dad = {
     Dad = "Local/阁楼布的闪光/4-4",
     DadStand = "Local/人物/父亲站起来/1",
     DadRun = "Local/人物/父亲奔跑/父亲跑1",
-    Door = "",
-    DoorOpen = "",
+    DadFell = "Local/人物/父亲倒下/1",
+    Door = "Local/阁楼门/门（关",
+    DoorOpen = "Local/阁楼门/门（开",
     DadAni = {
         "Local/阁楼布的闪光/4-1",
         "Local/阁楼布的闪光/4-2",
@@ -1086,7 +1088,100 @@ Resource.Dad = {
         "Local/人物/父亲奔跑/父亲跑7",
         "Local/人物/父亲奔跑/父亲跑8",
         "Local/人物/父亲奔跑/父亲跑9"
+    },
+    DadFellAni = {
+        "Local/人物/父亲倒下/1",
+        "Local/人物/父亲倒下/2",
+        "Local/人物/父亲倒下/3",
+        "Local/人物/父亲倒下/4",
+        "Local/人物/父亲倒下/5",
+        "Local/人物/父亲倒下/6"
     }
+}
+
+Resource.Ladder = {
+    Ladder = "Local/梯子",
+    Dad = "Local/人物/爸爸躺下/1",
+    DadAni = {
+        "Local/人物/爸爸躺下/1",
+        "Local/人物/爸爸躺下/2",
+        "Local/人物/爸爸躺下/3",
+        "Local/人物/爸爸躺下/4"
+    }
+}
+
+Resource.Ticket = {
+    Ticket = "Local/门票/5",
+    TicketUI = "Local/门票/门票点开页面",
+    TicketAni = {
+        "Local/门票/1",
+        "Local/门票/2",
+        "Local/门票/3",
+        "Local/门票/4",
+        "Local/门票/5"
+    }
+}
+
+Resource.DadBeginning = {
+    Dad = "Local/开场/父亲（跪着）",
+    Fog = "Local/开场/雾",
+    Start = "Local/开场/开始"
+}
+
+Resource.Start = {
+    Start = "Local/封面/背景/1",
+    Button = "Local/封面/按钮/start",
+    StartAni = {
+        "Local/封面/背景/1",
+        "Local/封面/背景/2",
+        "Local/封面/背景/3",
+        "Local/封面/背景/4",
+        "Local/封面/背景/5",
+        "Local/封面/背景/6",
+        "Local/封面/背景/7",
+        "Local/封面/背景/8",
+        "Local/封面/背景/9"
+    },
+    ButtonAni = {
+        "Local/封面/按钮/1",
+        "Local/封面/按钮/2",
+        "Local/封面/按钮/3",
+        "Local/封面/按钮/4",
+        "Local/封面/按钮/5"
+    },
+    StartGameAni = {
+        "Local/封面/进入游戏/10",
+        "Local/封面/进入游戏/11",
+        "Local/封面/进入游戏/12",
+        "Local/封面/进入游戏/13",
+        "Local/封面/进入游戏/14",
+        "Local/封面/进入游戏/15",
+        "Local/封面/进入游戏/16",
+        "Local/封面/进入游戏/17",
+        "Local/封面/进入游戏/18",
+        "Local/封面/进入游戏/19",
+        "Local/封面/进入游戏/20",
+        "Local/封面/进入游戏/21",
+        "Local/封面/进入游戏/22",
+        "Local/封面/进入游戏/23",
+        "Local/封面/进入游戏/24",
+        "Local/封面/进入游戏/25",
+        "Local/封面/进入游戏/26",
+        "Local/封面/进入游戏/27",
+        "Local/封面/进入游戏/28",
+        "Local/封面/进入游戏/29",
+        "Local/封面/进入游戏/30",
+        "Local/封面/进入游戏/31",
+        "Local/封面/进入游戏/32",
+        "Local/封面/进入游戏/33",
+        "Local/封面/进入游戏/34"
+    }
+}
+
+Resource.End = {
+    Background = "Local/结尾",
+    BGM = "Sound/场景一bgm",
+    Sofa = ""
 }
 
 return Resource

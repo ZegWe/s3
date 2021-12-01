@@ -10,7 +10,7 @@ function RoomDoor.Get(_parent)
     local door = Interactive:new("RoomDoor",Resource.Door, Resource.Door, _parent, Vector2(420, 720), Vector2(-800,-30))
 
     door:SetFunc(function()
-        GameManager.CallFunc("EnterLivingRoom")
+        GameManager.CallFunc("EnterLivingRoom", Vector2(-750, -115))
     end)
 
     return door

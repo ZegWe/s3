@@ -8,6 +8,7 @@ local Lock = require("Lua/scenes/scene1/lock")
 local Photo = require("Lua/scenes/scene1/photo")
 local Calendar = require("Lua/scenes/scene1/calendar")
 local Draw = require("Lua/scenes/scene1/draw")
+local Ladder = require("Lua/scenes/scene1/ladder")
 
 local module = {}
 
@@ -15,7 +16,7 @@ local module = {}
 --- @param _parent Canvas
 function module:Get(_name, _parent)
     --- @type Scene
-    local scene = Scene:new(_name, Resource.All, _parent, Vector2(3290, 900), Vector2(0, -150), Resource.BGM)
+    local scene = Scene:new(_name, Resource.All, _parent, Vector2(3290, 900), Vector2(0, -115), Resource.BGM)
 
     Draw.Get(scene)
     scene:AddInteractive(MainDoor.Get(scene))
@@ -25,6 +26,7 @@ function module:Get(_name, _parent)
     scene:AddInteractive(Lock.Get(scene))
     scene:AddInteractive(Photo.Get(scene))
     scene:AddInteractive(Calendar.Get(scene))
+    Ladder.Get(scene)
     return scene
 end
 

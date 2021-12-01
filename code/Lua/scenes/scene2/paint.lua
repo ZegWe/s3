@@ -120,7 +120,7 @@ function Paint.Get(_parent)
                                     function()
                                         paint:SetVisible(false)
                                         paint.bgm3:Stop()
-                                        print("进入阁楼")
+                                        GameManager.CallFunc("End")
                                     end
                                 )
                             end

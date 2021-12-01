@@ -18,12 +18,24 @@ function Dad.Get(_parent)
     local dad2 = UIObject:new("Dad2", Resource.DadRun, _parent.obj, Vector2(1150, 900), Vector2(2070, -10))
     local animation2 = Animation:new(dad2.obj, Resource.DadRunAni, 0.2)
 
-    local dad3 =
-        Interactive:new("Dad3", Resource.DadRun, Resource.DadRun, _parent, Vector2(730, 480), Vector2(2000, -200))
-    dad3:SetVisible(false)
+    local door = UIObject:new("door", Resource.Door, _parent.obj, Vector2(350, 60), Vector2(2250, -380))
+    door:SetVisible(true)
 
-    local door = Interactive:new("door", Resource.Door, Resource.Door, _parent, Vector2(730, 480), Vector2(2200, -200))
-    _parent:AddInteractive(door)
+    local doorOpen =
+        Interactive:new(
+        "doorOpen",
+        Resource.DoorOpen,
+        Resource.DoorOpen,
+        _parent,
+        Vector2(450, 260),
+        Vector2(2300, -280)
+    )
+    doorOpen:SetVisible(false)
+
+    local dad3 =
+        Interactive:new("Dad3", Resource.DadFell, Resource.DadFell, _parent, Vector2(930, 840), Vector2(1900, 0))
+    dad3:SetVisible(false)
+    local animation3 = Animation:new(dad3.obj, Resource.DadFellAni, 0.3, true)
 
     local function dadRun(_dt)
         if _parent.player ~= nil then
@@ -32,14 +44,16 @@ function Dad.Get(_parent)
                 print("caught!")
                 animation2:Stop()
                 world.OnRenderStepped:Disconnect(dadRun)
-                _parent:Tip("被抓住了！", 1)
-                wait(1)
+                local player = _parent.player
                 GameManager.CallFunc("EnterBedRoom")
+                player.scene:SetVisible(false)
+                wait(1)
+                player.scene:SetVisible(true)
+                player.scene:Tip("刚刚好像做了什么噩梦……", 5)
                 _parent:AddInteractive(dad)
                 dad1:SetVisible(false)
                 dad2:SetVisible(false)
                 dad2.obj.Offset = Vector2(2070, -10)
-                _parent.enterPos = Vector2(-1900, -115)
             end
         end
     end
@@ -70,13 +84,13 @@ function Dad.Get(_parent)
         end
     )
 
-    local doorOpen = false
-
-    door:SetFunc(
+    doorOpen:SetFunc(
         function()
-            if doorOpen then
-                GameManager.CallFunc("EnterLivingRoom")
-            end
+            local player = _parent.player
+            GameManager.CallFunc("EnterLivingRoom", Vector2(-750, -115))
+            GameManager.PickMemory(2)
+            GameManager.CallFunc("ladder")
+            player.scene:Tip("父亲，我自由了。", 5)
         end
     )
 
@@ -92,8 +106,12 @@ function Dad.Get(_parent)
             elseif cnt == 2 then
                 _parent:Tip("成为英雄，就要为了自己的信念而牺牲。", 5)
                 cnt = cnt + 1
-                doorOpen = true
-                door:UpdateTexture(Resource.DoorOpen)
+                animation3:Play()
+                wait(2)
+                dad3:SetVisible(false)
+                door:SetVisible(false)
+                _parent:AddInteractive(doorOpen)
+                doorOpen:SetVisible(true)
             end
         end
     )
