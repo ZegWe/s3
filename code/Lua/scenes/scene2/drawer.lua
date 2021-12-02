@@ -27,7 +27,6 @@ function drawer.Get(_parent)
 
     local drawer = UIObject:new("drawer", Resource.Drawer, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     local drawerAni = Animation:new(drawer.obj, Resource.DrawerAni, 0.2)
-    drawerAni:Play()
 
     local buttonPressSound = AudioPlayer:new("buttonPress", Resource.ButtonPressSound, false)
 
@@ -43,7 +42,6 @@ function drawer.Get(_parent)
     blocks[9] = UIObject:new("b9", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(295, -260))
 
     local confirm = UIObject:new("confirm", Resource.ButtonConfirm, lock.obj, Vector2(190, 150), Vector2(635, 0))
-
 
     confirm:SetVisible(true)
     local sum = 0
@@ -76,7 +74,6 @@ function drawer.Get(_parent)
                 GameManager.GetPigment()
                 GameManager.ShowTip("拿到了【颜料】", 5)
                 drawerAni:Stop()
-                drawer:UpdateTexture(Resource.EmptyDrawer)
                 picked = true
             else
                 drawer:SetVisible(false)
@@ -99,6 +96,11 @@ function drawer.Get(_parent)
                 unlocked = true
                 lock:SetVisible(false)
                 drawer:SetVisible(true)
+                drawerAni:Play(
+                    function()
+                        drawer:UpdateTexture(Resource.EmptyDrawer)
+                    end
+                )
             else
                 GameManager.ShowTip("好像不太对……", 5)
             end

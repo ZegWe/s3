@@ -18,6 +18,8 @@ function module:Get(_name, _parent)
     sofa:SetFunc(
         function()
             print("---------------end")
+            GameManager.ShowTip("爸爸……你还能做我的英雄吗？", 5)
+            wait(2)
             GameManager.CallFunc(
                 "FadeOut",
                 2,

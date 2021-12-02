@@ -8,6 +8,9 @@ local Dad = {}
 
 --- @param _parent Scene
 function Dad.Get(_parent)
+    local door = UIObject:new("door", Resource.Door, _parent.obj, Vector2(350, 60), Vector2(2250, -380))
+    door:SetVisible(true)
+
     local dad = Interactive:new("Dad", Resource.Dad, Resource.Dad, _parent, Vector2(730, 480), Vector2(2000, -200))
     local animation = Animation:new(dad.obj, Resource.DadAni, 0.3)
     dad:SetAnimation(animation)
@@ -17,9 +20,6 @@ function Dad.Get(_parent)
 
     local dad2 = UIObject:new("Dad2", Resource.DadRun, _parent.obj, Vector2(1150, 900), Vector2(2070, -10))
     local animation2 = Animation:new(dad2.obj, Resource.DadRunAni, 0.2)
-
-    local door = UIObject:new("door", Resource.Door, _parent.obj, Vector2(350, 60), Vector2(2250, -380))
-    door:SetVisible(true)
 
     local doorOpen =
         Interactive:new(
@@ -64,16 +64,20 @@ function Dad.Get(_parent)
                 print("caught!")
                 animation2:Stop()
                 world.OnRenderStepped:Disconnect(dadRun)
-                local player = _parent.player
-                GameManager.CallFunc("EnterBedRoom")
-                player.scene:SetVisible(false)
-                wait(1)
-                player.scene:SetVisible(true)
-                GameManager.ShowTip("刚刚好像做了什么噩梦……", 5)
-                _parent:AddInteractive(dad)
-                dad1:SetVisible(false)
-                dad2:SetVisible(false)
-                dad2.obj.Offset = Vector2(2070, -10)
+                GameManager.CallFunc(
+                    "FadeOut",
+                    1,
+                    function()
+                        GameManager.CallFunc("EnterBedRoom")
+                        GameManager.ShowTip("刚刚好像做了什么噩梦……", 5)
+                        _parent:AddInteractive(dad)
+                        dad:SetActive(true)
+                        dad1:SetVisible(false)
+                        dad2:SetVisible(false)
+                        dad2.obj.Offset = Vector2(2070, -10)
+                        GameManager.CallFunc("FadeIn", 1)
+                    end
+                )
             end
         end
     end
@@ -91,6 +95,8 @@ function Dad.Get(_parent)
             GameManager.CallFunc("cabinet")
             wait(1)
             animation2:Play()
+            tt = 0
+            vis = {false, false, false, false, false, false}
             world.OnRenderStepped:Connect(dadRun)
         end
     )
@@ -102,6 +108,7 @@ function Dad.Get(_parent)
                 world.OnRenderStepped:Disconnect(dadRun)
             end
             animation2:Stop()
+            wait(1)
             dad2:SetVisible(false)
             _parent:AddInteractive(dad3)
             dad3:SetVisible(true)
