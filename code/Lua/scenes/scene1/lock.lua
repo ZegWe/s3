@@ -15,7 +15,7 @@ function doorlock.Get(_parent)
         InterActive:new("roomdoor", lockImage.Door, lockImage.Door, _parent, Vector2(420, 720), Vector2(-795, -30))
 
     local doorOpenAni = Animation(roomdoor.obj, lockImage.DoorOpen, 0.5, true)
-    
+
     local biglock = UIObject:new("biglock", lockImage.Lock, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     biglock:SetVisible(false)
 
@@ -33,11 +33,7 @@ function doorlock.Get(_parent)
     numbers[8] = UIObject:new("number8", lockImage.LockNumbers[8], biglock.obj, Vector2(30, 50), Vector2(-25, -145))
     numbers[9] = UIObject:new("number9", lockImage.LockNumbers[9], biglock.obj, Vector2(30, 50), Vector2(65, -145))
 
-    local tips = UIObject:new("tips", lockImage.Text, biglock.obj, Vector2(1030, 250), Vector2(-35, 325))
-    local tips1 = world:CreateObject("UiTextObject", "tips1", tips.obj)
-
-    local confirm =
-        UIObject:new("confirm", lockImage.ButtonConfirm, biglock.obj, Vector2(190, 150), Vector2(245, 5))
+    local confirm = UIObject:new("confirm", lockImage.ButtonConfirm, biglock.obj, Vector2(190, 150), Vector2(245, 5))
 
     local clear = UIObject:new("clear", lockImage.ButtonClear, biglock.obj, Vector2(190, 150), Vector2(245, -145))
 
@@ -47,10 +43,7 @@ function doorlock.Get(_parent)
     local answer1 = world:CreateObject("UiTextObject", "answer1", answer.obj)
 
     answer1.FontSize = 36
-    tips1.FontSize = 36
-    tips1.Color = Color(255, 255, 255)
 
-    tips:SetVisible(true)
     clear:SetVisible(true)
     back:SetVisible(true)
     confirm:SetVisible(true)
@@ -83,30 +76,41 @@ function doorlock.Get(_parent)
         )
     end
 
+    local animating = false
+
     confirm:SetClickFunc(
         function()
             if result == 523 then
-                tips1.Text = "门开了"
+                GameManager.ShowTip("门开了", 5)
                 unlocked = true
                 wait(0.2)
                 ----enter next room
                 biglock:SetVisible(false)
                 _parent:SetVisible(true)
-                doorOpenAni:Play()
                 _parent.player:EnableControl(false)
-                wait(2)
-                roomdoor:UpdateTexture(lockImage.Door)
-                GameManager.CallFunc("EnterBedRoom", Vector2(-750, -150))
-                print("-----------------------EnterScene 2!!!!!!!!!!!!!!---------------------")
+                animating = true
+                doorOpenAni:Play(
+                    function()
+                        GameManager.CallFunc(
+                            "FadeOut",
+                            1,
+                            function()
+                                animating = false
+                                roomdoor:UpdateTexture(lockImage.Door)
+                                GameManager.CallFunc("EnterBedRoom", Vector2(-750, -150))
+                                GameManager.CallFunc("FadeIn", 1)
+                            end
+                        )
+                    end
+                )
             else
                 setResult(0)
-                tips1.Text = "看来密码不对，再找找看吧。"
+                GameManager.ShowTip("看来密码不对，再找找看吧。", 5)
             end
         end
     )
     clear:SetClickFunc(
         function()
-            tips1.Text = "需要密码才能进去吗……？"
             setResult(0)
         end
     )
@@ -118,12 +122,22 @@ function doorlock.Get(_parent)
     )
     roomdoor:SetFunc(
         function()
+            if animating then
+                return
+            end
             if unlocked == true then
-                GameManager.CallFunc("EnterBedRoom", Vector2(-750, -115))
+                GameManager.CallFunc(
+                    "FadeOut",
+                    1,
+                    function()
+                        GameManager.CallFunc("EnterBedRoom", Vector2(-750, -150))
+                        GameManager.CallFunc("FadeIn", 1)
+                    end
+                )
                 return
             end
             setResult(0)
-            tips1.Text = "需要密码才能进去吗……？"
+            GameManager.ShowTip("需要密码才能进去吗……？", 5)
             biglock:SetVisible(true)
             _parent:SetVisible(false)
         end

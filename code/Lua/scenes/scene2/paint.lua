@@ -1,6 +1,5 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local Resource = require("Lua/resource").Paint
 local GameManager = require("Lua/game")
@@ -15,13 +14,7 @@ function Paint.Get(_parent)
     local palleteAni = Animation:new(pallete.obj, Resource.PalleteAni, 0.3)
     palleteAni:Play()
     local door = UIObject:new("Door", Resource.Door, paint.obj, Vector2(150, 200), Vector2(380, 320))
-    local tip = FloatTip:new("", paint.obj, Vector2(0, -325))
-    tip:SetClickFunc(
-        function()
-            tip:SetVisible(false)
-        end
-    )
-    tip:SetVisible(false)
+
     local paintSound = AudioPlayer:new("PaintSound", Resource.PaintSound, false)
     paint.bgm1 = AudioPlayer:new("bgm1", Resource.Bgm1, true, true)
     paint.bgm2 = AudioPlayer:new("bgm2", Resource.Bgm2, true, true)
@@ -68,8 +61,7 @@ function Paint.Get(_parent)
                         clicked[i] = false
                     end
                     paintAnis[stage]:Play()
-                    tip:SetText(Resource.Tips[stage])
-                    tip:SetVisible(true)
+                    GameManager.ShowTip(Resource.Tips[stage], 5)
                     stage = stage + 1
                     count = 0
                     palleteEnabled = true
@@ -84,7 +76,7 @@ function Paint.Get(_parent)
                                 _parent:SetVisible(true)
                                 paint.bgm1:Stop()
                                 _parent.bgm:Play()
-                                _parent:Tip("记忆在这里中断了……需要什么才能唤醒我的记忆？", 5)
+                                GameManager.ShowTip("记忆在这里中断了……需要什么才能唤醒我的记忆？", 5)
                                 paint:UpdateTexture(Resource.Paints[1])
                                 paint:SetClickFunc(nil)
                                 pallete:SetVisible(true)
@@ -99,7 +91,7 @@ function Paint.Get(_parent)
                                 _parent:SetVisible(true)
                                 paint.bgm2:Stop()
                                 _parent.bgm:Play()
-                                _parent:Tip("记忆又断掉了，回之前那个地方看看有什么线索吧。", 5)
+                                GameManager.ShowTip("记忆又断掉了，回之前那个地方看看有什么线索吧。", 5)
                                 paint:UpdateTexture(Resource.Paints[2])
                                 paint:SetClickFunc(nil)
                                 pallete:SetVisible(true)
@@ -111,16 +103,28 @@ function Paint.Get(_parent)
                         paint:SetClickFunc(
                             function()
                                 doorOpenAni:Play()
-                                tip:SetText(Resource.Tips[12])
-                                tip:SetVisible(true)
+                                GameManager.ShowTip(Resource.Tips[12], 5)
                                 wait(1)
                                 doorAni:Play()
                                 door:SetVisible(true)
                                 door:SetClickFunc(
                                     function()
-                                        paint:SetVisible(false)
-                                        paint.bgm3:Stop()
-                                        GameManager.CallFunc("End")
+                                        GameManager.CallFunc(
+                                            "FadeOut",
+                                            1,
+                                            function()
+                                                paint:SetVisible(false)
+                                                paint.bgm3:Stop()
+                                                GameManager.CallFunc("End")
+                                                GameManager.CallFunc(
+                                                    "FadeIn",
+                                                    1,
+                                                    function()
+                                                        GameManager.ShowTip("获得了【名为《英雄》】的画作", 5)
+                                                    end
+                                                )
+                                            end
+                                        )
                                     end
                                 )
                             end

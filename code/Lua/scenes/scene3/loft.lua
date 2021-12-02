@@ -1,6 +1,5 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local Resource = require("Lua/resource").Loft
 local InterActive = require("Lua/module/interactive")

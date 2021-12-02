@@ -86,7 +86,7 @@ function Easel.Get(_parent)
                     paint:SetVisible(true)
                     paint.bgm1:Play()
                 else
-                    _parent:Tip("好像还缺一些工具才能开始作画。", 5)
+                    GameManager.ShowTip("好像还缺一些工具才能开始作画。", 5)
                 end
             elseif stage == 2 then
                 if GameManager.CheckMemory(1) then
@@ -95,7 +95,7 @@ function Easel.Get(_parent)
                     paint:SetVisible(true)
                     paint.bgm2:Play()
                 else
-                    _parent:Tip("画作还没有完成，我还没有想起来。", 5)
+                    GameManager.ShowTip("画作还没有完成，我还没有想起来。", 5)
                 end
             elseif stage == 3 then
                 if GameManager.CheckMemory(2) then
@@ -104,7 +104,7 @@ function Easel.Get(_parent)
                     paint:SetVisible(true)
                     paint.bgm3:Play()
                 else
-                    _parent:Tip("画作还没有完成，我还没有想起来。", 5)
+                    GameManager.ShowTip("画作还没有完成，我还没有想起来。", 5)
                 end
             end
         end

@@ -37,7 +37,7 @@ function Mirror.Get(_parent)
         function()
             world.OnRenderStepped:Connect(syncMirror)
             GameManager.CheckMirror()
-            _parent:Tip("这是我吗……？为什么看起来这么陌生，我是谁？", 3)
+            GameManager.ShowTip("这是我吗……？为什么看起来这么陌生，我是谁？", 3)
             if doorRinged == false then
                 doorRing:Play()
                 doorRinged = true

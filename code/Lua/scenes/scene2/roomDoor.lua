@@ -7,11 +7,21 @@ local RoomDoor = {}
 --- @param _parent Scene
 function RoomDoor.Get(_parent)
     --- @type Interactive
-    local door = Interactive:new("RoomDoor",Resource.Door, Resource.Door, _parent, Vector2(420, 720), Vector2(-800,-30))
+    local door =
+        Interactive:new("RoomDoor", Resource.Door, Resource.Door, _parent, Vector2(420, 720), Vector2(-800, -30))
 
-    door:SetFunc(function()
-        GameManager.CallFunc("EnterLivingRoom", Vector2(-750, -115))
-    end)
+    door:SetFunc(
+        function()
+            GameManager.CallFunc(
+                "FadeOut",
+                1,
+                function()
+                    GameManager.CallFunc("EnterLivingRoom", Vector2(-750, -135))
+                    GameManager.CallFunc("FadeIn", 1)
+                end
+            )
+        end
+    )
 
     return door
 end

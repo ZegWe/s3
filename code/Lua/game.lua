@@ -153,4 +153,27 @@ function GameManager.PickMemory(_m)
     end
 end
 
+--- @type FloatTip
+local tip = nil
+local timer = 0
+
+--- @param _tip FloatTip
+function GameManager.InitTip(_tip)
+    tip = _tip
+end
+
+function GameManager.ShowTip(_text, _time)
+    tip:SetText(_text)
+    tip:SetVisible(true)
+    timer = Timer.GetTime() + _time
+    invoke(
+        function()
+            if timer < Timer.GetTime() then
+                tip:SetVisible(false)
+            end
+        end,
+        _time
+    )
+end
+
 return GameManager

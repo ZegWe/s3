@@ -2,6 +2,7 @@ local Interactive = require("Lua/module/interactive")
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
 local Resource = require("Lua/resource").Ticket
+local GameManager = require("Lua/game")
 
 local Ticket = {}
 
@@ -18,7 +19,9 @@ function Ticket.Get(_parent)
         function()
             ticketUI:SetVisible(false)
             _parent:SetVisible(true)
-            _parent:Tip("继续往前走", 5)
+            GameManager.ShowTip("继续往前走", 5)
+            _parent:RemoveInteractive(ticket)
+            ticket:SetVisible(false)
         end
     )
 

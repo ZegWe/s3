@@ -27,7 +27,8 @@ function Animation:tickNext()
     self.obj.Texture = ResourceManager.GetTexture(self.t[self.tickNow])
 end
 
-function Animation:Play()
+--- @param _callback function
+function Animation:Play(_callback)
     if self.playing == true then
         return
     end
@@ -37,6 +38,9 @@ function Animation:Play()
     local function tickFunc(_dt)
         if self.playing == false then
             world.OnRenderStepped:Disconnect(tickFunc)
+            if _callback ~= nil then
+                _callback()
+            end
         end
         tt = tt + _dt
         if tt >= self.dt then

@@ -16,7 +16,7 @@ local module = {}
 --- @param _parent Canvas
 function module:Get(_name, _parent)
     --- @type Scene
-    local scene = Scene:new(_name, Resource.All, _parent, Vector2(3290, 900), Vector2(0, -115), Resource.BGM)
+    local scene = Scene:new(_name, Resource.All, _parent, Vector2(3290, 900), Vector2(0, -135), Resource.BGM)
 
     Draw.Get(scene)
     scene:AddInteractive(MainDoor.Get(scene))

@@ -13,13 +13,6 @@ function Photo.Get(_parent)
     local bigPhoto =
         UIObject:new("bigphoto", PhotoImage.PhotoInfo, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
 
-    local tips = UIObject:new("tips", PhotoImage.Text, bigPhoto.obj, Vector2(1030, 250), Vector2(0, -325))
-    tips:SetVisible(true)
-
-    local tips1 = world:CreateObject("UiTextObject", "tips1", tips.obj)
-    tips1.FontSize = 36
-    tips1.Color = Color(255, 255, 255)
-
     bigPhoto:SetVisible(false)
     local animation = Animation:new(photo.obj, PhotoImage.PhotoAni, 0.2)
     photo:SetAnimation(animation)
@@ -28,7 +21,7 @@ function Photo.Get(_parent)
     bigPhoto:SetClickFunc(
         function()
             if count == 0 then
-                tips1.Text = "428。这有什么意义吗？"
+                GameManager.ShowTip("428。这有什么意义吗？", 5)
                 count = 1
             else
                 bigPhoto:SetVisible(false)
@@ -36,25 +29,12 @@ function Photo.Get(_parent)
             end
         end
     )
-
-    tips:SetClickFunc(
-        function()
-            if count == 0 then
-                tips1.Text = "428。这有什么意义吗？"
-                count = 1
-            else
-                bigPhoto:SetVisible(false)
-                _parent:SetVisible(true)
-            end
-        end
-    )
-
 
     photo:SetFunc(
         function()
             _parent:SetVisible(false)
             bigPhoto:SetVisible(true)
-            tips1.Text = "这个男人总给我一种很熟悉的感觉……嗯？背面好像有字。"
+            GameManager.ShowTip("这个男人总给我一种很熟悉的感觉……\n嗯？背面好像有字。", 5)
             count = 0
         end
     )

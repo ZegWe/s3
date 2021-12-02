@@ -22,16 +22,22 @@ function Cabinet.Get(_parent)
     cabinet:SetFunc(
         function()
             if enabled then
-                local player = _parent.player
-                GameManager.CallFunc("EnterBedRoom")
-                if not picked then
-                    picked = true
-                GameManager.PickMemory(1)
                 GameManager.CallFunc("escape")
-                player.scene:Tip("我想起了那些事情，必须画下来才行……", 5)
-                end
+                GameManager.CallFunc(
+                    "FadeOut",
+                    1,
+                    function()
+                        GameManager.CallFunc("EnterBedRoom")
+                        if not picked then
+                            picked = true
+                            GameManager.PickMemory(1)
+                            GameManager.ShowTip("我想起了那些事情，必须画下来才行……", 5)
+                        end
+                        GameManager.CallFunc("FadeIn", 1)
+                    end
+                )
             else
-                _parent:Tip("这是一条无法回头的道路。", 5)
+                GameManager.ShowTip("这是一条无法回头的道路。", 5)
             end
         end
     )

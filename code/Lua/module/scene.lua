@@ -1,5 +1,4 @@
 local UIObject = require("Lua/module/uiObject")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 
 --- @class Scene:UIObject
@@ -16,8 +15,6 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos, _bgm)
     print("new scene: " .. self.name)
     self.interactives = {}
     self.enterPos = _enterPos
-    --- @type FloatTip
-    self.tip = nil
     --- @type number
     self.tipTime = 0
     --- @type Player
@@ -34,15 +31,6 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos, _bgm)
                 else
                     v:SetActive(false)
                 end
-            end
-        end
-    )
-
-    --- Update FloatTip
-    world.OnRenderStepped:Connect(
-        function()
-            if self.tip ~= nil then
-                self.tip.obj.Offset = Vector2(-self.obj.Offset.X, -325)
             end
         end
     )
@@ -73,47 +61,6 @@ function Scene:RemoveInteractive(_interactive)
         if v == _interactive then
             table.remove(self.interactives, k)
         end
-    end
-end
-
---- @param _text string
---- @param _time number
-function Scene:Tip(_text, _time)
-    if self.tip == nil then
-        print("----------------new tip")
-        self.tip = FloatTip:new(_text, self.obj, Vector2(-self.obj.Offset.X, -325))
-        self.tip:SetClickFunc(
-            function()
-                print("-------------------click")
-                self.tip:SetVisible(false)
-            end
-        )
-    end
-    self.tip:SetText(_text)
-    self.tip.obj:ToTop()
-    self.tip:SetVisible(true)
-    self.tipTime = Timer.GetTime() + _time
-    if _time <= 0 then
-        self.tipTime = Timer.GetTime() + 999
-    end
-    if _time > 0 then
-        invoke(
-            function()
-                wait(_time)
-                if Timer.GetTime() < self.tipTime then
-                    return
-                end
-                print("-----------------time out")
-                self.tip:SetVisible(false)
-            end
-        )
-    end
-end
-
-function Scene:ClearTip()
-    if self.tip ~= nil then
-        self.tip:Destroy()
-        self.tip = nil
     end
 end
 

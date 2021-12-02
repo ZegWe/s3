@@ -1181,7 +1181,43 @@ Resource.Start = {
 Resource.End = {
     Background = "Local/结尾",
     BGM = "Sound/场景一bgm",
-    Sofa = ""
+    Sofa = "Local/椅子/6",
+    SofaAni = {
+        "Local/椅子/1",
+        "Local/椅子/2",
+        "Local/椅子/3",
+        "Local/椅子/4",
+        "Local/椅子/5",
+        "Local/椅子/6"
+    }
+}
+
+Resource.FadeInOut = {
+    Image = "Local/渐变/1",
+    FadeOutAni = {
+        "Local/渐变/1",
+        "Local/渐变/2",
+        "Local/渐变/3",
+        "Local/渐变/4",
+        "Local/渐变/5",
+        "Local/渐变/6",
+        "Local/渐变/7",
+        "Local/渐变/8",
+        "Local/渐变/9",
+        "Local/渐变/10"
+    },
+    FadeInAni = {
+        "Local/渐变/10",
+        "Local/渐变/9",
+        "Local/渐变/8",
+        "Local/渐变/7",
+        "Local/渐变/6",
+        "Local/渐变/5",
+        "Local/渐变/4",
+        "Local/渐变/3",
+        "Local/渐变/2",
+        "Local/渐变/1"
+    }
 }
 
 return Resource

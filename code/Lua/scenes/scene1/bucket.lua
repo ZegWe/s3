@@ -12,7 +12,7 @@ function Bucket.Get(_parent)
     bucket:SetAnimation(animation)
     bucket:SetFunc(function()
         GameManager.GetBucket(bucket, _parent)
-        _parent:Tip("拿到了【水桶】", 5)
+        GameManager.ShowTip("拿到了【水桶】", 5)
     end)
     return bucket
 end

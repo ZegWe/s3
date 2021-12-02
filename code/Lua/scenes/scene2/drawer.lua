@@ -1,11 +1,9 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local InterActive = require("Lua/module/interactive")
 local GameManager = require("Lua/game")
 local Resource = require("Lua/resource").Drawer
-local FloatTip = require("Lua/module/floatTip")
 
 --书柜抽屉
 
@@ -46,23 +44,8 @@ function drawer.Get(_parent)
 
     local confirm = UIObject:new("confirm", Resource.ButtonConfirm, lock.obj, Vector2(190, 150), Vector2(635, 0))
 
-    local tip1 = FloatTip:new("", lock.obj, Vector2(0, 325))
-    local tip2 = FloatTip:new("", drawer.obj, Vector2(0, 325))
 
     confirm:SetVisible(true)
-
-    tip1:SetClickFunc(
-        function()
-            tip1:SetVisible(false)
-        end
-    )
-
-    tip2:SetClickFunc(
-        function()
-            tip2:SetVisible(false)
-        end
-    )
-
     local sum = 0
     local pressed = {0, 0, 0, 0, 0, 0, 0, 0, 0}
     local pow = {1, 2, 4, 8, 16, 32, 64, 128, 256}
@@ -91,15 +74,13 @@ function drawer.Get(_parent)
         function()
             if picked == false then
                 GameManager.GetPigment()
-                tip2:SetText("拿到了【颜料】")
-                tip2:SetVisible(true)
+                GameManager.ShowTip("拿到了【颜料】", 5)
                 drawerAni:Stop()
                 drawer:UpdateTexture(Resource.EmptyDrawer)
                 picked = true
             else
                 drawer:SetVisible(false)
                 _parent:SetVisible(true)
-                tip2:SetVisible(false)
             end
         end
     )
@@ -114,14 +95,12 @@ function drawer.Get(_parent)
     confirm:SetClickFunc(
         function()
             if sum == 439 then
-                tip2:SetText("抽屉开了")
-                tip2:SetVisible(true)
+                GameManager.ShowTip("抽屉开了", 5)
                 unlocked = true
                 lock:SetVisible(false)
                 drawer:SetVisible(true)
             else
-                tip1:SetText("好像不太对……")
-                tip1:SetVisible(true)
+                GameManager.ShowTip("好像不太对……", 5)
             end
         end
     )
@@ -131,8 +110,7 @@ function drawer.Get(_parent)
             _parent:SetVisible(false)
             if unlocked == false then
                 lock:SetVisible(true)
-                tip1:SetText("黑白格子……？好像可以根据见过的黑白印象来填色？")
-                tip1:SetVisible(true)
+                GameManager.ShowTip("黑白格子……？好像可以根据见过的黑白印象来填色？", 5)
             else
                 drawer:SetVisible(true)
             end

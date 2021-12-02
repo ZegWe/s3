@@ -12,7 +12,7 @@ local module = {}
 --- @param _name string
 --- @param _parent Canvas
 function module:Get(_name, _parent)
-    local scene = Scene:new(_name, Resource.Background, _parent, Vector2(5070, 900), Vector2(-1900, -115), Resource.BGM)
+    local scene = Scene:new(_name, Resource.Background, _parent, Vector2(5070, 900), Vector2(-1900, -135), Resource.BGM)
 
     scene:AddInteractive(Hanger.Get(scene))
     -- scene:AddInteractive(Loft.Get(scene))

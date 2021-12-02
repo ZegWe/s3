@@ -2,6 +2,8 @@ local App = {}
 
 local Canvas = require("Lua/module/canvas")
 local Player = require("Lua/module/player")
+local FadeInOut = require("Lua/module/fadeInOut")
+local FloatTip = require("Lua/module/floatTip")
 local GameManager = require("Lua/game")
 local scene0 = require("Lua/scenes/scene0/scene0")
 local scene1 = require("Lua/scenes/scene1/scene1")
@@ -42,9 +44,9 @@ function App:InitScene()
         "EnterBeginning",
         function()
             self:ChangeScene("s0")
-            s0:Tip("按住键盘A和D控制移动", 5)
+            GameManager.ShowTip("按住键盘A和D控制移动", 5)
             wait(5)
-            s0:Tip("鼠标左键点击发光物体与之交互", 5)
+            GameManager.ShowTip("鼠标左键点击发光物体与之交互", 5)
         end
     )
 
@@ -95,12 +97,41 @@ function App:ChangeScene(_name)
     self.currentScene = _name
 end
 
+function App:InitFadeInOut()
+    self.fadeInOut = FadeInOut:new(self.canvas)
+    GameManager.RegisterFunc(
+        "FadeIn",
+        function(_time, _callback)
+            self.fadeInOut:FadeIn(_time, _callback)
+        end
+    )
+    GameManager.RegisterFunc(
+        "FadeOut",
+        function(_time, _callback)
+            self.fadeInOut:FadeOut(_time, _callback)
+        end
+    )
+end
+
+function App:InitTip()
+    local tip = FloatTip:new("", self.canvas.obj, Vector2(0, -325))
+    tip:SetClickFunc(
+        function()
+            tip:SetVisible(false)
+        end
+    )
+    GameManager.InitTip(tip)
+end
+
 function App:Run()
     self:Init()
     self:InitScene()
     self:InitPlayer()
+    self:InitTip()
+    local start = start.Get(self.canvas)
+    self:InitFadeInOut()
     print("start!")
-    start.Get(self.canvas)
+    start:SetVisible(true)
     -- GameManager.CallFunc("End")
 end
 

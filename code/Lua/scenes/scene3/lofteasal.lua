@@ -1,9 +1,9 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local EasalImage = require("Lua/resource").Lofteasal
 local InterActive = require("Lua/module/interactive")
+local GameManager = require("Lua/game")
 
 local easal = {}
 
@@ -35,7 +35,7 @@ function easal.Get(_parent)
             _parent:RemoveInteractive(Easal)
             _parent:AddInteractive(Easal1)
             Easal:SetVisible(false)
-            _parent:Tip("你又没有天赋，成天搞这些不正经的事做什么，\n就不能听爸爸的话好好学习吗？", 5)
+            GameManager.ShowTip("你又没有天赋，成天搞这些不正经的事做什么，\n就不能听爸爸的话好好学习吗？", 5)
             animation1:Play()
         end
     )

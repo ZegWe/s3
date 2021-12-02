@@ -82,14 +82,24 @@ function Wardrobe.Get(_parent)
         function()
             print(hour, min)
             if hour == 3 and min == 15 then
-                wardrobeUI:SetVisible(false)
-                GameManager.CallFunc("EnterLoft", Vector2(-1900, -115))
-                unlocked = true
-                wardrobe:SetAnimation(nil)
-                animation:Stop()
-                wardrobe.ref = Resource.WardrobeOpen
-                wardrobe.ref_active = Resource.WardrobeOpen
-                wardrobe:UpdateTexture(Resource.WardrobeOpen)
+                GameManager.CallFunc(
+                    "FadeOut",
+                    1,
+                    function()
+                        wardrobeUI:SetVisible(false)
+                        GameManager.CallFunc("EnterLoft", Vector2(-1900, -135))
+
+                        unlocked = true
+                        wardrobe:SetAnimation(nil)
+                        animation:Stop()
+                        wardrobe.ref = Resource.WardrobeOpen
+                        wardrobe.ref_active = Resource.WardrobeOpen
+                        wardrobe:UpdateTexture(Resource.WardrobeOpen)
+                        GameManager.CallFunc("FadeIn", 1)
+                    end
+                )
+            else
+                GameManager.ShowTip("没反应，可能还不是正确的位置。", 5)
             end
         end
     )
@@ -103,14 +113,19 @@ function Wardrobe.Get(_parent)
 
     wardrobe:SetFunc(
         function()
-            if GameManager.CallFunc("GetStage") == 1 then
-                _parent:Tip("暂时无法打开", 5)
-                return
-            elseif unlocked == false then
+            if unlocked == false then
                 _parent:SetVisible(false)
                 wardrobeUI:SetVisible(true)
+                GameManager.ShowTip("……？这个把手可以旋转？", 5)
             else
-                GameManager.CallFunc("EnterLoft", Vector2(-1900, -115))
+                GameManager.CallFunc(
+                    "FadeOut",
+                    1,
+                    function()
+                        GameManager.CallFunc("EnterLoft", Vector2(-1900, -135))
+                        GameManager.CallFunc("FadeIn", 1)
+                    end
+                )
             end
         end
     )

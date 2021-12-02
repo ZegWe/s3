@@ -7,10 +7,9 @@ local Ladder = {}
 
 function Ladder.Get(_parent)
     local ladder =
-        Interactive:new("ladder", Resource.Ladder, Resource.Ladder, _parent, Vector2(210, 870), Vector2(-600, 15))
-    local dad = Interactive:new("dad", Resource.Dad, Resource.Dad, _parent, Vector2(960, 220), Vector2(-600, -370)) 
-    local animation = Animation:new(dad.obj, Resource.DadAni, 0.4)
-    dad:SetAnimation(animation)
+        Interactive:new("ladder", Resource.Ladder, Resource.Ladder, _parent, Vector2(210, 870), Vector2(-400, 15))
+    local dad = Interactive:new("dad", Resource.Dad, Resource.Dad, _parent, Vector2(960, 220), Vector2(-400, -370))
+    local animation = Animation:new(dad.obj, Resource.DadAni, 0.4, true)
     ladder:SetVisible(false)
     dad:SetVisible(false)
 
@@ -22,14 +21,22 @@ function Ladder.Get(_parent)
         end
     )
 
-    ladder:SetFunc(function()
-        _parent:Tip("这是一条无法回头的道路。", 5)
-    end)
+    ladder:SetFunc(
+        function()
+            GameManager.ShowTip("这是一条无法回头的道路。", 5)
+        end
+    )
 
-    dad:SetFunc(function()
-        _parent:Tip("是成为了《英雄》的父亲。", 5)
-    end)
-
+    local clicked = false
+    dad:SetFunc(
+        function()
+            if clicked == false then
+                clicked = true
+                animation:Play()
+            end
+            GameManager.ShowTip("是成为了《英雄》的父亲。", 5)
+        end
+    )
 
     return ladder
 end

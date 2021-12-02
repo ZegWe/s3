@@ -24,22 +24,7 @@ function Calendar.Get(_parent)
         UIObject:new("biglendar", CalendarImage.CalendarInfo, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     bigcalendar:SetVisible(false)
 
-    local tips = UIObject:new("tips", CalendarImage.Text, bigcalendar.obj, Vector2(1030, 250), Vector2(0, -325))
-    tips:SetVisible(true)
-
-    local tips1 = world:CreateObject("UiTextObject", "tips1", tips.obj)
-    tips1.Text = "这个月是谁的生日吗……？"
-    tips1.FontSize = 36
-    tips1.Color = Color(255, 255, 255)
-
     bigcalendar:SetClickFunc(
-        function()
-            bigcalendar:SetVisible(false)
-            _parent:SetVisible(true)
-        end
-    )
-
-    tips:SetClickFunc(
         function()
             bigcalendar:SetVisible(false)
             _parent:SetVisible(true)
@@ -50,6 +35,7 @@ function Calendar.Get(_parent)
         function()
             _parent:SetVisible(false)
             bigcalendar:SetVisible(true)
+            GameManager.ShowTip("这个月是谁的生日吗……？", 5)
         end
     )
     return calendar

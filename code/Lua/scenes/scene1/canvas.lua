@@ -12,7 +12,7 @@ function Canvas.Get(_parent)
     canvas:SetAnimation(animation)
     canvas:SetFunc(function()
         GameManager.GetCanvas(canvas, _parent)
-        _parent:Tip("拿到了【空画布】", 5)
+        GameManager.ShowTip("拿到了【空画布】", 5)
     end)
     return canvas
 end

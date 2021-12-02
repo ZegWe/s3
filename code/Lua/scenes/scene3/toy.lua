@@ -1,9 +1,9 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local ToyImage = require("Lua/resource").Toy
 local InterActive = require("Lua/module/interactive")
+local GameManager = require("Lua/game")
 
 local toy = {}
 
@@ -30,7 +30,7 @@ function toy.Get(_parent)
             _parent:RemoveInteractive(Toy)
             _parent:AddInteractive(Toy1)
             Toy:SetVisible(false)
-            _parent:Tip("你都这么大了还玩这种小孩子的玩具，\n应该像所有懂事的女孩一样多做做家务", 5)
+            GameManager.ShowTip("你都这么大了还玩这种小孩子的玩具，\n应该像所有懂事的女孩一样多做做家务", 5)
             Toy1:SetVisible(true)
             animation1:Play()
         end

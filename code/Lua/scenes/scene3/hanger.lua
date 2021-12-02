@@ -1,9 +1,9 @@
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
-local FloatTip = require("Lua/module/floatTip")
 local AudioPlayer = require("Lua/module/audio")
 local HangerImage = require("Lua/resource").Hanger
 local InterActive = require("Lua/module/interactive")
+local GameManager = require("Lua/game")
 
 local hanger = {}
 
@@ -35,7 +35,7 @@ function hanger.Get(_parent)
             _parent:RemoveInteractive(Hanger)
             _parent:AddInteractive(Hanger1)
             Hanger:SetVisible(false)
-            _parent:Tip("才多大就这么爱臭美？穿得再漂亮也没用，\n看看你长那样吧，再打扮也没用。", 5)
+            GameManager.ShowTip("才多大就这么爱臭美？穿得再漂亮也没用，\n看看你长那样吧，再打扮也没用。", 5)
             animation1:Play()
         end
     )

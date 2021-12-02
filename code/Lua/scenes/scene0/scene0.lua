@@ -9,7 +9,7 @@ local module = {}
 --- @param _parent Canvas
 function module:Get(_name, _parent)
     --- @type Scene
-    local scene = Scene:new(_name, Resource.Background, _parent, Vector2(6230, 900), Vector2(-2265, -115), Resource.BGM)
+    local scene = Scene:new(_name, Resource.Background, _parent, Vector2(6230, 900), Vector2(-2265, -135), Resource.BGM)
 
     scene:AddInteractive(Ticket.Get(scene))
     Dad.Get(scene)
