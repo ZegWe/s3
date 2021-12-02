@@ -38,6 +38,30 @@ Resource.Player = {
         "Local/人物/主角走路右/主角走路5",
         "Local/人物/主角走路右/主角走路6",
         "Local/人物/主角走路右/主角走路7"
+    },
+    Kid_Idle_Left = {
+        ""
+    },
+    Kid_Idle_Right = {
+        ""
+    },
+    Kid_Walk_Left = {
+        ""
+    },
+    Kid_Walk_Right = {
+        ""
+    },
+    Ghost_Idle_Left = {
+        ""
+    },
+    Ghost_Idle_Right = {
+        ""
+    },
+    Ghost_Walk_Left = {
+        ""
+    },
+    Ghost_Walk_Right = {
+        ""
     }
 }
 

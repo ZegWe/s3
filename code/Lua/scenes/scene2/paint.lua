@@ -115,6 +115,7 @@ function Paint.Get(_parent)
                                             function()
                                                 paint:SetVisible(false)
                                                 paint.bgm3:Stop()
+                                                _parent.player:ChangeModel("Ghost")
                                                 GameManager.CallFunc("End")
                                                 GameManager.CallFunc(
                                                     "FadeIn",

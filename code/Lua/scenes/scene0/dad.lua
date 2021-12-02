@@ -47,6 +47,7 @@ function Dad.Get(_parent)
                                             1,
                                             function()
                                                 start:SetVisible(false)
+                                                _parent.player:ChangeModel("Normal")
                                                 GameManager.CallFunc("EnterLivingRoom")
                                                 GameManager.CallFunc("FadeIn", 1)
                                             end

@@ -44,6 +44,7 @@ function App:InitScene()
         "EnterBeginning",
         function()
             self:ChangeScene("s0")
+            self.player:ChangeModel("Kid")
             GameManager.ShowTip("按住键盘A和D控制移动", 5)
             wait(5)
             GameManager.ShowTip("鼠标左键点击发光物体与之交互", 5)

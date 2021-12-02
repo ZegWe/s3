@@ -9,6 +9,15 @@ local playerHeight = 610
 local KeyMoveLeft = Enum.KeyCode.A
 local KeyMoveRight = Enum.KeyCode.D
 local dt = 0.2
+local PlayerState = {
+    Walk = "Walk",
+    Idle = "Idle"
+}
+local PlayerModel = {
+    Normal = "Normal",
+    Kid = "Kid",
+    Ghost = "Ghost"
+}
 
 --- @class Player:UIObject
 local Player = class("Player", UIObject)
@@ -18,12 +27,35 @@ function Player:initialize(_parent)
     UIObject.initialize(
         self,
         "Player",
-        PlayerImage.Idle_Left[1],
+        PlayerImage.Idle_Right[1],
         _parent.obj,
         Vector2(playerWidth, playerHeight),
         Vector2.Zero
     )
     self.obj.RaycastTarget = false
+    --- @type Scene
+    self.scene = nil
+    self.model = PlayerModel.Normal
+    self.animation = {}
+    self:AnimationCreate("Normal_Idle_Left", PlayerImage.Idle_Left, 0.2)
+    self:AnimationCreate("Normal_Idle_Right", PlayerImage.Idle_Right, 0.2)
+    self:AnimationCreate("Normal_Walk_Left", PlayerImage.Walk_Left, 0.1)
+    self:AnimationCreate("Normal_Walk_Right", PlayerImage.Walk_Right, 0.1)
+    self:AnimationCreate("Kid_Idle_Left", PlayerImage.Kid_Idle_Left, 0.2)
+    self:AnimationCreate("Kid_Idle_Right", PlayerImage.Kid_Idle_Right, 0.2)
+    self:AnimationCreate("Kid_Walk_Left", PlayerImage.Kid_Walk_Left, 0.1)
+    self:AnimationCreate("Kid_Walk_Right", PlayerImage.Kid_Walk_Right, 0.1)
+    self:AnimationCreate("Ghost_Idle_Left", PlayerImage.Ghost_Idle_Left, 0.2)
+    self:AnimationCreate("Ghost_Idle_Right", PlayerImage.Ghost_Idle_Right, 0.2)
+    self:AnimationCreate("Ghost_Walk_Left", PlayerImage.Ghost_Walk_Left, 0.1)
+    self:AnimationCreate("Ghost_Walk_Right", PlayerImage.Ghost_Walk_Right, 0.1)
+
+    self:InitControl()
+    self:InitItems()
+    self.camera = Camera:new(self)
+end
+
+function Player:InitItems()
     self.bucket = UIObject:new("Bucket", PlayerImage.Bucket, self.obj, Vector2(110, 90), Vector2(-130, 300))
     self.bucket:SetClickFunc(
         function()
@@ -60,16 +92,10 @@ function Player:initialize(_parent)
             end
         end
     )
-    --- @type Scene
-    self.scene = nil
-    self.animation = {}
-    self:AnimationCreate("Idle_Left", PlayerImage.Idle_Left, 0.2)
-    self:AnimationCreate("Idle_Right", PlayerImage.Idle_Right, 0.2)
-    self:AnimationCreate("Walk_Left", PlayerImage.Walk_Left, 0.1)
-    self:AnimationCreate("Walk_Right", PlayerImage.Walk_Right, 0.1)
-    self:AnimationPlay("Idle_Left")
-    self:InitControl()
-    self.camera = Camera:new(self)
+end
+
+function Player:ChangeModel(_model)
+    self.model = _model
 end
 
 --- @param _name string
@@ -84,6 +110,7 @@ local curAnimation = ""
 
 --- @param _ani string
 function Player:AnimationPlay(_ani)
+    _ani = self.model .. "_" .. _ani
     if curAnimation == _ani then
         return
     end
@@ -112,17 +139,13 @@ function Player:EnterScene(_scene)
     self.scene.bgm:Play()
     self.scene:SetVisible(true)
     self:SetVisible(true)
-    if self.faceLeft then
-        self:AnimationPlay("Idle_Left")
-    else
-        self:AnimationPlay("Idle_Right")
-    end
 end
 
 function Player:LeaveScene()
     if self.scene == nil then
         return
     end
+    self:SetVisible(false)
     self.scene:SetVisible(false)
     self.scene.bgm:Stop()
     self.scene.enterPos = self.obj.Offset
@@ -132,70 +155,57 @@ function Player:LeaveScene()
 end
 
 function Player:Move(_dt)
-    local face = ""
-    if self.faceLeft == true then
-        face = "Left"
-    else
-        face = "Right"
-    end
-    local ani = ""
-    if self.moveSpeed == 0 then
-        ani = "Idle" .. "_" .. face
-    elseif self.moveSpeed == 1 then
-        ani = "Walk" .. "_" .. face
-    else
-        ani = "Idle" .. "_" .. face
-    end
-    self:AnimationPlay(ani)
-    local speed = self.moveSpeed * 600 * _dt
-    if self.faceLeft then
-        speed = speed * -1
-    end
-    self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
     if self.scene == nil or self.scene.obj.ActiveSelf == false then
         return
     end
-    if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) < 200 then
-        self.obj.Offset = self.obj.Offset - Vector2(speed, 0)
+    local speed = self.moveSpeed * 600 * _dt
+    if self.facing == "Left" then
+        speed = speed * -1
     end
+    if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) > 200 then
+        self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
+    end
+end
+
+function Player:Update(_dt)
+    self:AnimationPlay(self.state .. "_" .. self.facing)
+    self:Move(_dt)
 end
 
 function Player:InitControl()
     print("InitControl")
     self.controlEnabled = false
-    self.faceLeft = false
+    self.facing = "Right"
     self.moveSpeed = 0
+    self.state = PlayerState.Idle_Right
     world.OnRenderStepped:Connect(
         function(_dt)
-            self:Move(_dt)
+            if self.controlEnabled == false then
+                self.state = PlayerState.Idle
+            end
+            self:Update(_dt)
         end
     )
     Input.OnKeyDown:Connect(
         function()
-            if self.controlEnabled == false then
-                self.moveSpeed = 0
-                return
-            end
             if Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStatePress then
-                self.faceLeft = true
+                self.facing = "Left"
                 self.moveSpeed = 1
+                self.state = PlayerState.Walk
             elseif Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.KeyStatePress then
-                self.faceLeft = false
+                self.facing = "Right"
                 self.moveSpeed = 1
+                self.state = PlayerState.Walk
             end
         end
     )
     Input.OnKeyUp:Connect(
         function()
             if
-                Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStateRelease and self.faceLeft == true and
-                    self.moveSpeed == 1
+                Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStateRelease and self.facing == "Left" or
+                    Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.KeyStateRelease and self.facing == "Right"
              then
-                self.moveSpeed = 0
-            elseif
-                Input.GetPressKeyData(KeyMoveRight) == Enum.KeyState.KeyStateRelease and self.faceLeft == false and
-                    self.moveSpeed == 1
-             then
+                self.state = PlayerState.Idle
                 self.moveSpeed = 0
             end
         end
