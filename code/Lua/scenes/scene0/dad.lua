@@ -11,9 +11,10 @@ function Dad.Get(_parent)
     local start = UIObject:new("start", Resource.Start, _parent.obj.Parent, Vector2(1600, 900), Vector2(0, 0))
     dad:SetVisible(true)
     fog:SetVisible(true)
-    local dis = {-1000, -200, 600, 1400}
-    local vis = {0, 0, 0, 0}
+    local dis = {-1700, -1000, -200, 600, 1400}
+    local vis = {0, 0, 0, 0, 0}
     local txt = {
+        "鼠标左键点击发光物体与之交互",
         "每一个英雄故事中，最重要的人物是谁？是英雄吗？",
         "成为英雄，就要为了自己的信念而牺牲。",
         "而父亲……是每个孩子的英雄吗？",
@@ -21,15 +22,16 @@ function Dad.Get(_parent)
     }
     local function Sync()
         if _parent.player ~= nil then
-            for i = 1, 4 do
+            for i = 1, 5 do
                 if _parent.player.obj.Offset.X > dis[i] and vis[i] == 0 then
                     vis[i] = 1
-                    GameManager.ShowTip(txt[i], 5)
+                    GameManager.ShowTip(txt[i], 3)
                 end
             end
             if dad.obj.Offset.X - _parent.player.obj.Offset.X < 0 then
                 world.OnRenderStepped:Disconnect(Sync)
-                _parent.bgm:Stop()
+                -- _parent.bgm:Stop()
+                _parent.player:EnableControl(false)
                 GameManager.CallFunc(
                     "FadeOut",
                     2,
@@ -49,6 +51,7 @@ function Dad.Get(_parent)
                                                 start:SetVisible(false)
                                                 _parent.player:ChangeModel("Normal")
                                                 GameManager.CallFunc("EnterLivingRoom")
+                                                GameManager.CallFunc("PlayerStand")
                                                 GameManager.CallFunc("FadeIn", 1)
                                             end
                                         )

@@ -67,6 +67,11 @@ function Easel.Get(_parent)
         "NextStage",
         function()
             stage = stage + 1
+            if stage == 2 then
+                canvas:UpdateTexture(Resource.Canvas1)
+            elseif stage == 3 then
+                canvas:UpdateTexture(Resource.Canvas2)
+            end
         end
     )
 
@@ -85,6 +90,7 @@ function Easel.Get(_parent)
                     _parent.bgm:Stop()
                     paint:SetVisible(true)
                     paint.bgm1:Play()
+                    GameManager.ShowTip("我想起来了……唯有将一切都画下来。", 5)
                 else
                     GameManager.ShowTip("好像还缺一些工具才能开始作画。", 5)
                 end
@@ -94,6 +100,7 @@ function Easel.Get(_parent)
                     _parent.bgm:Stop()
                     paint:SetVisible(true)
                     paint.bgm2:Play()
+                    GameManager.ShowTip("得把将刚刚想起来的一切画下来……", 5)
                 else
                     GameManager.ShowTip("画作还没有完成，我还没有想起来。", 5)
                 end
@@ -103,6 +110,7 @@ function Easel.Get(_parent)
                     _parent.bgm:Stop()
                     paint:SetVisible(true)
                     paint.bgm3:Play()
+                    GameManager.ShowTip("得把将刚刚想起来的一切画下来……", 5)
                 else
                     GameManager.ShowTip("画作还没有完成，我还没有想起来。", 5)
                 end

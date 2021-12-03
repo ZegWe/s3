@@ -45,9 +45,6 @@ function App:InitScene()
         function()
             self:ChangeScene("s0")
             self.player:ChangeModel("Kid")
-            GameManager.ShowTip("按住键盘A和D控制移动", 5)
-            wait(5)
-            GameManager.ShowTip("鼠标左键点击发光物体与之交互", 5)
         end
     )
 
@@ -129,11 +126,14 @@ function App:Run()
     self:InitScene()
     self:InitPlayer()
     self:InitTip()
-    local start = start.Get(self.canvas)
     self:InitFadeInOut()
     print("start!")
+    GameManager.CallFunc("EnterBeginning")
+    self.player.scene:SetVisible(false)
+    local start = start.Get(self.canvas, self.player.scene)
     start:SetVisible(true)
     -- GameManager.CallFunc("End")
+    -- self.player:ChangeModel("Ghost")
 end
 
 return App

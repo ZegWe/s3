@@ -26,7 +26,7 @@ function Mirror.Get(_parent)
             animation.t = MirrorImage.MirrorAni
             return
         end
-        if _parent.player.faceLeft == true then
+        if _parent.player.facing == "Left" then
             animation.t = MirrorImage.MirrorPlayerAniRight
         else
             animation.t = MirrorImage.MirrorPlayerAniLeft
@@ -37,7 +37,11 @@ function Mirror.Get(_parent)
         function()
             world.OnRenderStepped:Connect(syncMirror)
             GameManager.CheckMirror()
-            GameManager.ShowTip("这是我吗……？为什么看起来这么陌生，我是谁？", 3)
+            if GameManager.CallFunc("GetStage") == 1 then
+                GameManager.ShowTip("这是我吗……？为什么看起来这么陌生，我是谁？", 3)
+            else
+                GameManager.ShowTip("爸爸口中一无是处的人，看到这样的自己真让我觉得恶心。", 3)
+            end
             if doorRinged == false then
                 doorRing:Play()
                 doorRinged = true

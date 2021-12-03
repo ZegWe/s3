@@ -162,14 +162,32 @@ function Player:Move(_dt)
     if self.facing == "Left" then
         speed = speed * -1
     end
-    if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) > 200 then
-        self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
+    self.obj.Offset = self.obj.Offset + Vector2(speed, 0)
+    if self.scene.obj.Size.X / 2 - math.abs(self.obj.Offset.X) < 200 and (self.obj.Offset.X > 0) == (speed > 0) then
+        self.obj.Offset = self.obj.Offset - Vector2(speed, 0)
     end
 end
 
 function Player:Update(_dt)
+    if self.forceMove ~= nil then
+        if math.abs(self.obj.Offset.X - self.forceMove) >= 600 * _dt then
+            self.state = PlayerState.Walk
+            if self.obj.Offset.X > self.forceMove then
+                self.facing = "Left"
+            else
+                self.facing = "Right"
+            end
+            self.moveSpeed = 1
+        else
+            self.forceMove = nil
+        end
+    end
     self:AnimationPlay(self.state .. "_" .. self.facing)
     self:Move(_dt)
+end
+
+function Player:ForceMove(_x)
+    self.forceMove = _x
 end
 
 function Player:InitControl()
@@ -182,12 +200,16 @@ function Player:InitControl()
         function(_dt)
             if self.controlEnabled == false then
                 self.state = PlayerState.Idle
+                self.moveSpeed = 0
             end
             self:Update(_dt)
         end
     )
     Input.OnKeyDown:Connect(
         function()
+            if self.controlEnabled == false then
+                return
+            end
             if Input.GetPressKeyData(KeyMoveLeft) == Enum.KeyState.KeyStatePress then
                 self.facing = "Left"
                 self.moveSpeed = 1

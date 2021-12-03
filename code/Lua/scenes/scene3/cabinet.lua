@@ -14,14 +14,15 @@ function Cabinet.Get(_parent)
 
     GameManager.RegisterFunc(
         "cabinet",
-        function()
-            enabled = true
+        function(_ok)
+            enabled = _ok
         end
     )
 
     cabinet:SetFunc(
         function()
             if enabled then
+                enabled = false
                 GameManager.CallFunc("escape")
                 GameManager.CallFunc(
                     "FadeOut",
@@ -30,7 +31,6 @@ function Cabinet.Get(_parent)
                         GameManager.CallFunc("EnterBedRoom")
                         if not picked then
                             picked = true
-                            GameManager.PickMemory(1)
                             GameManager.ShowTip("我想起了那些事情，必须画下来才行……", 5)
                         end
                         GameManager.CallFunc("FadeIn", 1)

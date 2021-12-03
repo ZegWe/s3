@@ -1,4 +1,5 @@
 local Scene = require("Lua/module/scene")
+local UIObject = require("Lua/module/uiObject")
 local Hanger = require("Lua/scenes/scene3/hanger")
 local Loft = require("Lua/scenes/scene3/loft")
 local Lofteasal = require("Lua/scenes/scene3/lofteasal")
@@ -6,6 +7,7 @@ local Resource = require("Lua/resource").Loft
 local Toy = require("Lua/scenes/scene3/toy")
 local Dad = require("Lua/scenes/scene3/dad")
 local Cabinet = require("Lua/scenes/scene3/cabinet")
+local GameManager = require("Lua/game")
 
 local module = {}
 
@@ -20,6 +22,25 @@ function module:Get(_name, _parent)
     scene:AddInteractive(Toy.Get(scene))
     scene:AddInteractive(Dad.Get(scene))
     scene:AddInteractive(Cabinet.Get(scene))
+
+    scene.foreground =
+        UIObject:new("foreground", Resource.Foreground, scene.obj, Vector2(3610, 260), Vector2(-730, -320))
+    scene.foreground.obj.RaycastTarget = false
+    scene.foreground:SetVisible(true)
+
+    GameManager.RegisterFunc(
+        "ChangeLoft",
+        function(_stage)
+            if _stage == 2 then
+                scene:UpdateTexture(Resource.Background2)
+                scene.foreground:UpdateTexture(Resource.Foreground2)
+            elseif _stage == 3 then
+                scene:UpdateTexture(Resource.Background3)
+                scene.foreground:UpdateTexture(Resource.Foreground3)
+            end
+        end
+    )
+
     return scene
 end
 

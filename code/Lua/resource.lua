@@ -40,34 +40,74 @@ Resource.Player = {
         "Local/人物/主角走路右/主角走路7"
     },
     Kid_Idle_Left = {
-        ""
+        "Local/人物/主角小时候待机左/1",
+        "Local/人物/主角小时候待机左/2",
+        "Local/人物/主角小时候待机左/3",
+        "Local/人物/主角小时候待机左/4"
     },
     Kid_Idle_Right = {
-        ""
+        "Local/人物/主角小时候待机右/1",
+        "Local/人物/主角小时候待机右/2",
+        "Local/人物/主角小时候待机右/3",
+        "Local/人物/主角小时候待机右/4"
     },
     Kid_Walk_Left = {
-        ""
+        "Local/人物/主角小时候走路左/1",
+        "Local/人物/主角小时候走路左/2",
+        "Local/人物/主角小时候走路左/3",
+        "Local/人物/主角小时候走路左/4",
+        "Local/人物/主角小时候走路左/5",
+        "Local/人物/主角小时候走路左/6",
+        "Local/人物/主角小时候走路左/7",
+        "Local/人物/主角小时候走路左/8"
     },
     Kid_Walk_Right = {
-        ""
+        "Local/人物/主角小时候走路右/1",
+        "Local/人物/主角小时候走路右/2",
+        "Local/人物/主角小时候走路右/3",
+        "Local/人物/主角小时候走路右/4",
+        "Local/人物/主角小时候走路右/5",
+        "Local/人物/主角小时候走路右/6",
+        "Local/人物/主角小时候走路右/7",
+        "Local/人物/主角小时候走路右/8"
     },
     Ghost_Idle_Left = {
-        ""
+        "Local/人物/主角灵魂待机左/主角待机1",
+        "Local/人物/主角灵魂待机左/主角待机2",
+        "Local/人物/主角灵魂待机左/主角待机3",
+        "Local/人物/主角灵魂待机左/主角待机4"
     },
     Ghost_Idle_Right = {
-        ""
+        "Local/人物/主角灵魂待机右/主角待机1",
+        "Local/人物/主角灵魂待机右/主角待机2",
+        "Local/人物/主角灵魂待机右/主角待机3",
+        "Local/人物/主角灵魂待机右/主角待机4"
     },
     Ghost_Walk_Left = {
-        ""
+        "Local/人物/主角灵魂走路左/主角走路1",
+        "Local/人物/主角灵魂走路左/主角走路2",
+        "Local/人物/主角灵魂走路左/主角走路3",
+        "Local/人物/主角灵魂走路左/主角走路4",
+        "Local/人物/主角灵魂走路左/主角走路5",
+        "Local/人物/主角灵魂走路左/主角走路6",
+        "Local/人物/主角灵魂走路左/主角走路7"
     },
     Ghost_Walk_Right = {
-        ""
+        "Local/人物/主角灵魂走路右/主角走路1",
+        "Local/人物/主角灵魂走路右/主角走路2",
+        "Local/人物/主角灵魂走路右/主角走路3",
+        "Local/人物/主角灵魂走路右/主角走路4",
+        "Local/人物/主角灵魂走路右/主角走路5",
+        "Local/人物/主角灵魂走路右/主角走路6",
+        "Local/人物/主角灵魂走路右/主角走路7"
     }
 }
 
 Resource.Beginning = {
     Background = "Local/开场/后景",
-    BGM = "Sound/场景一bgm"
+    Foreground = "Local/开场/前景",
+    Filter = "Local/开场/渐变层",
+    BGM = "Sound/开场"
 }
 
 Resource.Scene1 = {
@@ -75,22 +115,35 @@ Resource.Scene1 = {
     All = "Local/客厅场景/整体1",
     NoBucket = "Local/客厅场景/去掉水桶",
     NoCanvas = "Local/客厅场景/去掉画板",
-    Empty = "Local/客厅场景/去掉画板和水桶"
+    Empty = "Local/客厅场景/去掉画板和水桶",
+    Player = "Local/人物/主角站起来右/主角站起来1",
+    PlayerAni = {
+        "Local/人物/主角站起来右/主角站起来1",
+        "Local/人物/主角站起来右/主角站起来2",
+        "Local/人物/主角站起来右/主角站起来3",
+        "Local/人物/主角站起来右/主角站起来4"
+    }
 }
 
 Resource.BedRoom = {
     BGM = "Sound/场景一bgm",
-    Background = "Local/卧室场景/卧室整体"
+    Background = "Local/卧室场景/卧室整体",
+    Foreground = "Local/卧室场景/卧室前景（切整体大小"
 }
 
 Resource.Loft = {
-    BGM = "Sound/场景一bgm",
+    BGM = "Sound/阁楼",
     Background = "Local/阁楼场景/阁楼底",
-    Background1 = "Local/阁楼场景/阁楼前景"
+    Foreground = "Local/阁楼场景/阁楼前景",
+    Background2 = "Local/阁楼场景/阁楼第二次进入",
+    Foreground2 = "Local/阁楼场景/阁楼前景第二次进入",
+    Background3 = "Local/阁楼场景/阁楼第三次进入",
+    Foreground3 = "Local/阁楼场景/阁楼前景第三次进入"
 }
 
 Resource.MainDoor = {
     Door = "Local/打不开的大门/大门1",
+    Back = "Local/返回",
     DoorShake = {
         "Local/打不开的大门/大门1",
         "Local/打不开的大门/大门2",
@@ -164,13 +217,14 @@ Resource.Canvas = {
 }
 
 Resource.RoomDoor = {
+    UnlockSound = "Sound/锁开了",
+    ErrorSound = "Sound/密码错误",
     ButtonPressSound = "Sound/电子锁按键音",
     Door = "Local/打开卧室门/卧室门1",
     Lock = "Local/RoomDoor/电子锁界面",
-    Text = "Local/文本框",
     ButtonConfirm = "Local/RoomDoor/确认",
     ButtonClear = "Local/RoomDoor/清空",
-    Back = "Local/RoomDoor/返回",
+    Back = "Local/返回",
     Answer = "Local/RoomDoor/密码锁小框",
     DoorOpen = {
         "Local/打开卧室门/卧室门1",
@@ -194,7 +248,7 @@ Resource.RoomDoor = {
 Resource.Photo = {
     Photo = "Local/相框/相框",
     PhotoInfo = "Local/相框/相框界面",
-    Text = "Local/文本框",
+    Back = "Local/返回",
     PhotoAni = {
         "Local/相框/相框1",
         "Local/相框/相框2",
@@ -205,7 +259,7 @@ Resource.Photo = {
 Resource.Calendar = {
     Calendar = "Local/日历/日历",
     CalendarInfo = "Local/日历/日历界面",
-    Text = "Local/文本框",
+    Back = "Local/返回",
     CalendarAni = {
         "Local/日历/日历1",
         "Local/日历/日历2",
@@ -216,7 +270,7 @@ Resource.Calendar = {
 Resource.Draw = {
     Draw = "Local/涂鸦/涂鸦4",
     DrawInfo = "Local/涂鸦/涂鸦界面",
-    Text = "Local/文本框",
+    Back = "Local/返回",
     DrawAni = {
         "Local/涂鸦/涂鸦1",
         "Local/涂鸦/涂鸦2",
@@ -239,6 +293,7 @@ Resource.RoomTable = {
     Phone = "Local/桌子/小灵通4",
     DrawPaper = "Local/桌子/小稿4",
     DrawPaperBig = "Local/桌子/小稿放大",
+    Back = "Local/返回",
     TableAni = {
         "Local/桌子/桌面1",
         "Local/桌子/桌面2",
@@ -276,12 +331,14 @@ Resource.RoomTable = {
 }
 
 Resource.Drawer = {
+    UnlockSound = "Sound/锁开了",
     ButtonPressSound = "Sound/电子锁按键音",
     ButtonConfirm = "Local/抽屉/确认",
     Bookshelf = "Local/抽屉/书柜4",
     Lock = "Local/抽屉/柜子九宫格界面",
     WhiteBlock = "Local/抽屉/九宫格白块",
     BlackBlock = "Local/抽屉/九宫格黑块",
+    Back = "Local/返回",
     BookshelfAni = {
         "Local/抽屉/书柜1",
         "Local/抽屉/书柜2",
@@ -302,7 +359,10 @@ Resource.Drawer = {
 }
 
 Resource.Wardrobe = {
+    UnlockSound = "Sound/锁开了",
+    RotateSound = "Sound/柜门指针转动",
     Wardrobe = "Local/透明",
+    Back = "Local/返回",
     WardrobeOpen = "Local/衣柜/衣柜门打开",
     WardrobeUI = "Local/衣柜/衣柜界面",
     ShortClockHand = "Local/衣柜/衣柜短针",
@@ -338,6 +398,8 @@ Resource.Easel = {
     Easel = "Local/画架/画架4",
     Bucket = "Local/水桶",
     Canvas = "Local/画布/画布",
+    Canvas1 = "Local/画布/第一幅",
+    Canvas2 = "Local/画布/第二幅",
     Pigment = "Local/颜料",
     EaselInfo = "Local/画架/画架界面",
     EaselAni = {
@@ -347,333 +409,6 @@ Resource.Easel = {
         "Local/画架/画架4",
         "Local/画架/画架4",
         "Local/画架/画架4"
-    },
-    EaselWithBucketAni = {
-        "Local/画架/画架1",
-        "Local/画架/画架2",
-        "Local/画架/画架3",
-        "Local/画架/画架4",
-        "Local/画架/画架4",
-        "Local/画架/画架4"
-    }
-}
-
-Resource.Paint = {
-    Paint = "Local/绘画界面/空画布",
-    Pallete = "Local/透明",
-    Bgm1 = "Sound/画1",
-    Bgm2 = "Sound/画2",
-    Bgm3 = "Sound/画3",
-    PaintSound = "Sound/填方块音效",
-    PalleteAni = {
-        "Local/调色盘/1",
-        "Local/调色盘/2",
-        "Local/调色盘/3",
-        "Local/调色盘/4"
-    },
-    Door = "Local/透明",
-    Paints = {
-        "Local/绘画界面/3/3",
-        "Local/绘画界面/6/第二幅画完成",
-        "Local/绘画界面/9/3"
-    },
-    Stages = {
-        {
-            Paint = "Local/绘画界面/1/0",
-            PaintAni = {
-                "Local/绘画界面/1/1",
-                "Local/绘画界面/1/2",
-                "Local/绘画界面/1/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/2/0",
-            PaintAni = {
-                "Local/绘画界面/2/1",
-                "Local/绘画界面/2/2",
-                "Local/绘画界面/2/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/3/0",
-            PaintAni = {
-                "Local/绘画界面/3/1",
-                "Local/绘画界面/3/2",
-                "Local/绘画界面/3/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/4/0",
-            PaintAni = {
-                "Local/绘画界面/4/1",
-                "Local/绘画界面/4/2",
-                "Local/绘画界面/4/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/5/0",
-            PaintAni = {
-                "Local/绘画界面/5/1",
-                "Local/绘画界面/5/2",
-                "Local/绘画界面/5/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/6/0",
-            PaintAni = {
-                "Local/绘画界面/6/1",
-                "Local/绘画界面/6/2",
-                "Local/绘画界面/6/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/7/0",
-            PaintAni = {
-                "Local/绘画界面/7/1",
-                "Local/绘画界面/7/2",
-                "Local/绘画界面/7/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/8/0",
-            PaintAni = {
-                "Local/绘画界面/8/1",
-                "Local/绘画界面/8/2",
-                "Local/绘画界面/8/3"
-            }
-        },
-        {
-            Paint = "Local/绘画界面/9/0",
-            PaintAni = {
-                "Local/绘画界面/9/1",
-                "Local/绘画界面/9/2",
-                "Local/绘画界面/9/3"
-            }
-        }
-    },
-    DoorOpenAni = {
-        "Local/绘画界面/10/1",
-        "Local/绘画界面/10/2",
-        "Local/绘画界面/10/3",
-        "Local/绘画界面/10/4"
-    },
-    DoorAni = {
-        "Local/绘画界面/11/1",
-        "Local/绘画界面/11/2",
-        "Local/绘画界面/11/3"
-    },
-    SquareAni = {
-        {
-            {
-                "Local/方块/空心/黑色/1",
-                "Local/方块/空心/黑色/2",
-                "Local/方块/空心/黑色/1",
-                "Local/方块/空心/黑色/3"
-            },
-            {
-                "Local/方块/填充/黑色/1-1",
-                "Local/方块/填充/黑色/1-2",
-                "Local/方块/填充/黑色/1-3",
-                "Local/方块/填充/黑色/1-4",
-                "Local/方块/填充/黑色/1-5",
-                "Local/方块/填充/黑色/1-6",
-                "Local/方块/填充/黑色/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/白色/1",
-                "Local/方块/空心/白色/2",
-                "Local/方块/空心/白色/1",
-                "Local/方块/空心/白色/3"
-            },
-            {
-                "Local/方块/填充/白色/1",
-                "Local/方块/填充/白色/2",
-                "Local/方块/填充/白色/3",
-                "Local/方块/填充/白色/4",
-                "Local/方块/填充/白色/5",
-                "Local/方块/填充/白色/6",
-                "Local/方块/填充/白色/7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/红色/1",
-                "Local/方块/空心/红色/2",
-                "Local/方块/空心/红色/1",
-                "Local/方块/空心/红色/3"
-            },
-            {
-                "Local/方块/填充/红色/1-1",
-                "Local/方块/填充/红色/1-2",
-                "Local/方块/填充/红色/1-3",
-                "Local/方块/填充/红色/1-4",
-                "Local/方块/填充/红色/1-5",
-                "Local/方块/填充/红色/1-6",
-                "Local/方块/填充/红色/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/蓝色/1",
-                "Local/方块/空心/蓝色/2",
-                "Local/方块/空心/蓝色/1",
-                "Local/方块/空心/蓝色/3"
-            },
-            {
-                "Local/方块/填充/蓝色/1-1",
-                "Local/方块/填充/蓝色/1-2",
-                "Local/方块/填充/蓝色/1-3",
-                "Local/方块/填充/蓝色/1-4",
-                "Local/方块/填充/蓝色/1-5",
-                "Local/方块/填充/蓝色/1-6",
-                "Local/方块/填充/蓝色/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/黄色/1",
-                "Local/方块/空心/黄色/2",
-                "Local/方块/空心/黄色/1",
-                "Local/方块/空心/黄色/3"
-            },
-            {
-                "Local/方块/填充/黄色/1-1",
-                "Local/方块/填充/黄色/1-2",
-                "Local/方块/填充/黄色/1-3",
-                "Local/方块/填充/黄色/1-4",
-                "Local/方块/填充/黄色/1-5",
-                "Local/方块/填充/黄色/1-6",
-                "Local/方块/填充/黄色/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/黑色/1",
-                "Local/方块/空心/黑色/2",
-                "Local/方块/空心/黑色/1",
-                "Local/方块/空心/黑色/3"
-            },
-            {
-                "Local/方块/填充/黑色/1-1",
-                "Local/方块/填充/黑色/1-2",
-                "Local/方块/填充/黑色/1-3",
-                "Local/方块/填充/黑色/1-4",
-                "Local/方块/填充/黑色/1-5",
-                "Local/方块/填充/黑色/1-6",
-                "Local/方块/填充/黑色/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/橙色/1",
-                "Local/方块/空心/橙色/2",
-                "Local/方块/空心/橙色/1",
-                "Local/方块/空心/橙色/3"
-            },
-            {
-                "Local/方块/填充/橙色/1-1",
-                "Local/方块/填充/橙色/1-2",
-                "Local/方块/填充/橙色/1-3",
-                "Local/方块/填充/橙色/1-4",
-                "Local/方块/填充/橙色/1-5",
-                "Local/方块/填充/橙色/1-6",
-                "Local/方块/填充/橙色/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/深红/1",
-                "Local/方块/空心/深红/2",
-                "Local/方块/空心/深红/1",
-                "Local/方块/空心/深红/3"
-            },
-            {
-                "Local/方块/填充/深红/1-1",
-                "Local/方块/填充/深红/1-2",
-                "Local/方块/填充/深红/1-3",
-                "Local/方块/填充/深红/1-4",
-                "Local/方块/填充/深红/1-5",
-                "Local/方块/填充/深红/1-6",
-                "Local/方块/填充/深红/1-7"
-            }
-        },
-        {
-            {
-                "Local/方块/空心/白色/1",
-                "Local/方块/空心/白色/2",
-                "Local/方块/空心/白色/1",
-                "Local/方块/空心/白色/3"
-            },
-            {
-                "Local/方块/填充/白色/1",
-                "Local/方块/填充/白色/2",
-                "Local/方块/填充/白色/3",
-                "Local/方块/填充/白色/4",
-                "Local/方块/填充/白色/5",
-                "Local/方块/填充/白色/6",
-                "Local/方块/填充/白色/7"
-            }
-        }
-    },
-    DrawPos = {
-        {
-            Vector2(-200, -300),
-            Vector2(300, -300),
-            Vector2(200, 200)
-        },
-        {
-            Vector2(100, 200),
-            Vector2(400, 200),
-            Vector2(0, -300)
-        },
-        {
-            Vector2(-400, 300),
-            Vector2(-400, -100),
-            Vector2(100, 100)
-        },
-        {
-            Vector2(-300, -200)
-        },
-        {
-            Vector2(-100, 300),
-            Vector2(400, 300),
-            Vector2(-200, 0)
-        },
-        {
-            Vector2(-300, 200),
-            Vector2(300, 200),
-            Vector2(300, -300)
-        },
-        {
-            Vector2(-300, 0),
-            Vector2(-300, -300)
-        },
-        {
-            Vector2(-300, 300),
-            Vector2(200, 200),
-            Vector2(300, -200)
-        },
-        {
-            Vector2(0, -350),
-            Vector2(100, 0),
-            Vector2(400, 200)
-        }
-    },
-    Tips = {
-        "我似乎从未见过我的母亲。自我有记忆以来，\n父亲高大的身影就伫立在我的面前。",
-        "别的小女孩有的玩偶、漂亮衣服，爸爸也都给我买，\n我和爸爸一起的生活很幸福。",
-        "爸爸是我的英雄。",
-        "爸爸说，不能再穿漂亮的裙子，不能再玩玩偶，\n我长大了要懂事。我要做一个懂事的女儿。",
-        "我脱下了裙子，放下了玩偶，但是我拿起画笔的时候，\n爸爸又出现了。他英雄一般的身影横亘在我和画具之间。",
-        "我和爸爸说，我把爸爸画成了英雄，爸爸会在画里一直一直保护我。\n但是爸爸还是很生气，他把画具扔掉说都是为了我好。",
-        "我的画被画展签约了，精心绘制的、我的名为《英雄》的画作。",
-        "但是当我带着画想要出门的时候，爸爸一如既往地发了怒，\n他又想把我关进阁楼去，和我破旧的玩偶、过时的裙子一起。",
-        "成为英雄，就要为了自己的信念而牺牲。我只能这样做了。",
-        "爸爸是我的英雄，他会把我保护得很好。",
-        "爸爸是我的英雄……？",
-        "这下爸爸真的是我的英雄了……"
     }
 }
 
@@ -1080,6 +815,8 @@ Resource.Cabinet = {
 }
 
 Resource.Dad = {
+    FallSound = "Sound/爸爸掉下去",
+    bgm = "Sound/追逐战",
     Dad = "Local/阁楼布的闪光/4-4",
     DadStand = "Local/人物/父亲站起来/1",
     DadRun = "Local/人物/父亲奔跑/父亲跑1",
@@ -1137,6 +874,7 @@ Resource.Ladder = {
 Resource.Ticket = {
     Ticket = "Local/门票/5",
     TicketUI = "Local/门票/门票点开页面",
+    Back = "Local/返回",
     TicketAni = {
         "Local/门票/1",
         "Local/门票/2",
@@ -1204,7 +942,8 @@ Resource.Start = {
 
 Resource.End = {
     Background = "Local/结尾",
-    BGM = "Sound/场景一bgm",
+    Filter = "Local/结局/美术馆渐变层",
+    BGM = "Sound/结尾",
     Sofa = "Local/椅子/6",
     SofaAni = {
         "Local/椅子/1",
@@ -1213,6 +952,39 @@ Resource.End = {
         "Local/椅子/4",
         "Local/椅子/5",
         "Local/椅子/6"
+    },
+    Player = "Local/人物/主角灵魂坐下右/主角坐下1",
+    PlayerAni = {
+        "Local/人物/主角灵魂坐下右/主角坐下1",
+        "Local/人物/主角灵魂坐下右/主角坐下2",
+        "Local/人物/主角灵魂坐下右/主角坐下3",
+        "Local/人物/主角灵魂坐下右/主角坐下4",
+        "Local/人物/主角灵魂消失右/主角坐下5",
+        "Local/人物/主角灵魂消失右/主角坐下6",
+        "Local/人物/主角灵魂消失右/主角坐下7",
+        "Local/人物/主角灵魂消失右/主角坐下8",
+        "Local/人物/主角灵魂消失右/主角坐下9",
+        "Local/人物/主角灵魂消失右/主角坐下10",
+        "Local/人物/主角灵魂消失右/主角坐下11",
+        "Local/人物/主角灵魂消失右/主角坐下12",
+        "Local/人物/主角灵魂消失右/主角坐下13",
+        "Local/人物/主角灵魂消失右/主角坐下14",
+        "Local/人物/主角灵魂消失右/主角坐下15",
+        "Local/人物/主角灵魂消失右/主角坐下16",
+        "Local/人物/主角灵魂消失右/主角坐下17",
+        "Local/人物/主角灵魂消失右/主角坐下18",
+        "Local/人物/主角灵魂消失右/主角坐下19"
+    },
+    EndingAni = {
+        "Local/封面/背景/1",
+        "Local/封面/背景/2",
+        "Local/封面/背景/3",
+        "Local/封面/背景/4",
+        "Local/封面/背景/5",
+        "Local/封面/背景/6",
+        "Local/封面/背景/7",
+        "Local/封面/背景/8",
+        "Local/封面/背景/9"
     }
 }
 

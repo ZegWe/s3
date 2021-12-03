@@ -9,13 +9,16 @@ local Ticket = {}
 --- @param _parent Scene
 function Ticket.Get(_parent)
     local ticket =
-        Interactive:new("ticket", Resource.Ticket, Resource.Ticket, _parent, Vector2(70, 40), Vector2(-1700, -380))
+        Interactive:new("ticket", Resource.Ticket, Resource.Ticket, _parent, Vector2(70, 40), Vector2(-1500, -380))
     local animation = Animation:new(ticket.obj, Resource.TicketAni, 0.3)
     ticket:SetAnimation(animation)
 
     local ticketUI = UIObject:new("ticketUI", Resource.TicketUI, _parent.obj.Parent, Vector2(1480, 900), Vector2(0, 0))
 
-    ticketUI:SetClickFunc(
+    local back = UIObject:new("back", Resource.Back, ticketUI.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
+    back:SetClickFunc(
         function()
             ticketUI:SetVisible(false)
             _parent:SetVisible(true)

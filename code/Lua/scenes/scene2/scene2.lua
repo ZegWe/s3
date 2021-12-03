@@ -1,4 +1,5 @@
 local Scene = require("Lua/module/scene")
+local UIObject = require("Lua/module/uiObject")
 local RoomDoor = require("Lua/scenes/scene2/roomDoor")
 local Table = require("Lua/scenes/scene2/table")
 local Easel = require("Lua/scenes/scene2/easel")
@@ -20,6 +21,10 @@ function module:Get(_name, _parent)
     scene:AddInteractive(Drawer.Get(scene))
     scene:AddInteractive(Wardrobe.Get(scene))
     scene:AddInteractive(Clock.Get(scene))
+
+    scene.foreground = UIObject:new("foreground", Resource.Foreground, scene.obj, Vector2(3290, 900), Vector2(0, 0))
+    scene.foreground:SetVisible(true)
+    scene.foreground.obj.RaycastTarget = false
     return scene
 end
 

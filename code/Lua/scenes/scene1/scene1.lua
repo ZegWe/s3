@@ -1,4 +1,6 @@
 local Scene = require("Lua/module/scene")
+local UIObject = require("Lua/module/uiObject")
+local Animation = require("Lua/module/animation")
 local Resource = require("Lua/resource").Scene1
 local MainDoor = require("Lua/scenes/scene1/mainDoor")
 local Mirror = require("Lua/scenes/scene1/mirror")
@@ -9,6 +11,7 @@ local Photo = require("Lua/scenes/scene1/photo")
 local Calendar = require("Lua/scenes/scene1/calendar")
 local Draw = require("Lua/scenes/scene1/draw")
 local Ladder = require("Lua/scenes/scene1/ladder")
+local GameManager = require("Lua/game")
 
 local module = {}
 
@@ -27,6 +30,24 @@ function module:Get(_name, _parent)
     scene:AddInteractive(Photo.Get(scene))
     scene:AddInteractive(Calendar.Get(scene))
     Ladder.Get(scene)
+    local player = UIObject:new("player", Resource.Player, scene.obj, Vector2(510, 600), Vector2(-10, -150))
+    player:SetVisible(true)
+    local animation = Animation:new(player.obj, Resource.PlayerAni, 0.5, true)
+    GameManager.RegisterFunc(
+        "PlayerStand",
+        function()
+            scene.player:SetVisible(false)
+            scene.player.facing = "Right"
+            scene.player:EnableControl(false)
+            animation:Play(
+                function()
+                    player:SetVisible(false)
+                    scene.player:SetVisible(true)
+                    scene.player:EnableControl(true)
+                end
+            )
+        end
+    )
     return scene
 end
 

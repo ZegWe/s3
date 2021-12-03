@@ -18,6 +18,16 @@ function MainDoor.Get(_parent)
     local maoyanAni = Animation:new(Maoyan.obj, DoorImage.MaoyanAni, 0.4, true)
     local aniPlayed = false
 
+    local back = UIObject:new("Back", DoorImage.Back, Maoyan.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
+    back:SetClickFunc(
+        function()
+            Maoyan:SetVisible(false)
+            _parent:SetVisible(true)
+        end
+    )
+
     local sound = AudioPlayer:new("Maoyan", DoorImage.MaoyanBGM, false)
     local count = 0
     door:SetFunc(
@@ -32,6 +42,8 @@ function MainDoor.Get(_parent)
                     GameManager.ShowTip("爸爸他甚至都记错了我的生日！他凭什么……做我的英雄！", 5)
                     maoyanAni:Play(
                         function()
+                            GameManager.ShowTip("刚刚那女人说了什么？", 5)
+                            count = 1
                             Maoyan:SetClickFunc(
                                 function()
                                     if count == 0 then
@@ -42,10 +54,6 @@ function MainDoor.Get(_parent)
                                         count = 2
                                     elseif count == 2 then
                                         GameManager.ShowTip("刚刚的人不见了……墙上好像写了什么？", 5)
-                                        count = 3
-                                    else
-                                        Maoyan:SetVisible(false)
-                                        _parent:SetVisible(true)
                                     end
                                 end
                             )

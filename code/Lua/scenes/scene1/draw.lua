@@ -16,15 +16,22 @@ function Draw.Get(_parent)
     --- @type UIObject
     local drawInfo = UIObject:new("Draw", DrawImage.DrawInfo, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
 
+    local back = UIObject:new("Back", DrawImage.Back, drawInfo.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
     draw:SetFunc(
         function()
             _parent:SetVisible(false)
             drawInfo:SetVisible(true)
-            GameManager.ShowTip("看起来已经很久了的涂鸦，这房子有些年头了……", 5)
+            if GameManager.CallFunc("GetStage") == 1 then
+                GameManager.ShowTip("看起来已经很久了的涂鸦，这房子有些年头了……", 5)
+            else
+                GameManager.ShowTip("父亲说我画得很恶心，让我擦掉，我用画布把它遮住了。\n小时候的父亲去哪里了？", 5)
+            end
         end
     )
 
-    drawInfo:SetClickFunc(
+    back:SetClickFunc(
         function()
             drawInfo:SetVisible(false)
             _parent:SetVisible(true)

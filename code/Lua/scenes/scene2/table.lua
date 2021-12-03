@@ -18,6 +18,9 @@ function Table.Get(_parent)
     local newspaperAni = Animation:new(tableInfo.obj, Resource.NewspaperAni, 0.3)
     newspaperAni:Play()
 
+    local back = UIObject:new("back", Resource.Back, tableInfo.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
     local newspaper = UIObject:new("newspaper", Resource.Newspaper, tableInfo.obj, Vector2(700, 800), Vector2(-250, 0))
     newspaper:SetVisible(true)
 
@@ -39,11 +42,19 @@ function Table.Get(_parent)
     newspaper:SetClickFunc(
         function()
             if count == 0 then
-                GameManager.ShowTip("x市英雄主题艺术画展将在明日举行，\n据悉此次画展将有一位年轻画家的作品初次参展，\n业内议论纷纷，年轻艺术家备受期待。", 5)
+                GameManager.ShowTip("x市英雄主题艺术画展在昨日成功举行，据悉此次\n画展本应有一位年轻画家初次亮相，却不知为何被\n警方通报失踪，至今下落不明。其作品究竟如何？", 5)
             elseif count == 1 then
                 GameManager.ShowTip("x市实验小学优秀作文展示《我的爸爸》\n我的爸爸是我的英雄，他总是能在我的危难时刻出现，\n保护我………", 5)
-            elseif count == 2 then
-                GameManager.ShowTip("《悬案！无人的命案，相依为命的父女一夜间双双失踪》\n当警察发现时，案发现场空无一人，\n只有血迹代表着发生的一切。", 5)
+            elseif count == 2 and GameManager.CallFunc("GetStage") == 1 then
+                GameManager.ShowTip(
+                    "《悬案！无人的命案！》当警察发现时，案发现场空无一人，\n只有血迹代表着发生的一切。当警察再次调查时发现了\n藏在阁楼里的尸体死于当日■点■■分，正是画展的开幕时间。",
+                    5
+                )
+            else
+                GameManager.ShowTip(
+                    "《悬案！无人的命案！》当警察发现时，案发现场空无一人，\n只有血迹代表着发生的一切。当警察再次调查时发现了\n藏在阁楼里的尸体死于当日3点15分，正是画展的开幕时间。",
+                    5
+                )
             end
 
             count = (count + 1) % 3
@@ -86,7 +97,7 @@ function Table.Get(_parent)
         end
     )
 
-    tableInfo:SetClickFunc(
+    back:SetClickFunc(
         function()
             tableInfo:SetVisible(false)
             _parent:SetVisible(true)

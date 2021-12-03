@@ -103,8 +103,8 @@ function Paint.Get(_parent)
                         paint:SetClickFunc(
                             function()
                                 doorOpenAni:Play()
-                                GameManager.ShowTip(Resource.Tips[12], 5)
                                 wait(1)
+                                GameManager.ShowTip(Resource.Tips[12], 5)
                                 doorAni:Play()
                                 door:SetVisible(true)
                                 door:SetClickFunc(

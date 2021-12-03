@@ -6,7 +6,7 @@ local Resource = require("Lua/resource").Start
 local Start = {}
 
 --- @param _canvas Canvas
-function Start.Get(_canvas)
+function Start.Get(_canvas, _scene)
     local start = UIObject:new("start", Resource.Start, _canvas.obj, Vector2(1600, 900), Vector2(0, 0))
     local animation = Animation:new(start.obj, Resource.StartAni, 0.25)
     local button = UIObject:new("startButton", Resource.Button, start.obj, Vector2(300, 120), Vector2(490, 10))
@@ -23,16 +23,9 @@ function Start.Get(_canvas)
             buttonAnimation:Stop()
             startAni:Play(
                 function()
-                    print("start")
-                    GameManager.CallFunc(
-                        "FadeOut",
-                        2,
-                        function()
-                            start:SetVisible(false)
-                            GameManager.CallFunc("FadeIn", 1)
-                            GameManager.CallFunc("EnterBeginning")
-                        end
-                    )
+                    start:SetVisible(false)
+                    _scene:SetVisible(true)
+                    GameManager.ShowTip("按住键盘A和D控制移动", 5)
                 end
             )
         end

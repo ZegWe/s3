@@ -28,7 +28,14 @@ function drawer.Get(_parent)
     local drawer = UIObject:new("drawer", Resource.Drawer, _parent.obj.Parent, Vector2(1600, 900), Vector2.Zero)
     local drawerAni = Animation:new(drawer.obj, Resource.DrawerAni, 0.2)
 
+    local back = UIObject:new("back", Resource.Back, lock.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
+    local back1 = UIObject:new("back1", Resource.Back, drawer.obj, Vector2(100, 100), Vector2(650, -350))
+    back1:SetVisible(true)
+
     local buttonPressSound = AudioPlayer:new("buttonPress", Resource.ButtonPressSound, false)
+    local unlockSound = AudioPlayer:new("unlock", Resource.UnlockSound, false)
 
     local blocks = {}
     blocks[1] = UIObject:new("b1", Resource.WhiteBlock, lock.obj, Vector2(270, 240), Vector2(-285, 260))
@@ -71,20 +78,29 @@ function drawer.Get(_parent)
     drawer:SetClickFunc(
         function()
             if picked == false then
+                picked = true
                 GameManager.GetPigment()
                 GameManager.ShowTip("拿到了【颜料】", 5)
                 drawerAni:Stop()
-                picked = true
+                wait(0.1)
+                drawer:UpdateTexture(Resource.EmptyDrawer)
             else
-                drawer:SetVisible(false)
-                _parent:SetVisible(true)
+                GameManager.ShowTip("抽屉已经空了", 5)
             end
         end
     )
 
-    lock:SetClickFunc(
+    back:SetClickFunc(
         function()
             lock:SetVisible(false)
+            _parent:SetVisible(true)
+        end
+    )
+
+    back1:SetClickFunc(
+        function()
+            GameManager.ShowTip("", 0)
+            drawer:SetVisible(false)
             _parent:SetVisible(true)
         end
     )
@@ -96,11 +112,8 @@ function drawer.Get(_parent)
                 unlocked = true
                 lock:SetVisible(false)
                 drawer:SetVisible(true)
-                drawerAni:Play(
-                    function()
-                        drawer:UpdateTexture(Resource.EmptyDrawer)
-                    end
-                )
+                unlockSound:Play()
+                drawerAni:Play()
             else
                 GameManager.ShowTip("好像不太对……", 5)
             end

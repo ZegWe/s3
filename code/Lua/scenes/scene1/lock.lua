@@ -22,6 +22,8 @@ function doorlock.Get(_parent)
     local numbers = {}
 
     local buttonPressSound = AudioPlayer:new("buttonPress", lockImage.ButtonPressSound, false)
+    local unlockSound = AudioPlayer:new("unlock", lockImage.UnlockSound, false)
+    local errorSound = AudioPlayer:new("error", lockImage.ErrorSound, false)
 
     numbers[1] = UIObject:new("number1", lockImage.LockNumbers[1], biglock.obj, Vector2(30, 50), Vector2(-115, 15))
     numbers[2] = UIObject:new("number2", lockImage.LockNumbers[2], biglock.obj, Vector2(30, 50), Vector2(-25, 15))
@@ -37,7 +39,7 @@ function doorlock.Get(_parent)
 
     local clear = UIObject:new("clear", lockImage.ButtonClear, biglock.obj, Vector2(190, 150), Vector2(245, -145))
 
-    local back = UIObject:new("back", lockImage.Back, biglock.obj, Vector2(390, 140), Vector2(-25, -380))
+    local back = UIObject:new("back", lockImage.Back, biglock.obj, Vector2(100, 100), Vector2(650, -350))
 
     local answer = UIObject:new("answer", lockImage.Answer, biglock.obj, Vector2(270, 80), Vector2(-25, 110))
     local answer1 = world:CreateObject("UiTextObject", "answer1", answer.obj)
@@ -88,6 +90,7 @@ function doorlock.Get(_parent)
                 biglock:SetVisible(false)
                 _parent:SetVisible(true)
                 _parent.player:EnableControl(false)
+                unlockSound:Play()
                 animating = true
                 doorOpenAni:Play(
                     function()
@@ -105,6 +108,7 @@ function doorlock.Get(_parent)
                 )
             else
                 setResult(0)
+                errorSound:Play()
                 GameManager.ShowTip("看来密码不对，再找找看吧。", 5)
             end
         end
@@ -131,6 +135,9 @@ function doorlock.Get(_parent)
                     1,
                     function()
                         GameManager.CallFunc("EnterBedRoom", Vector2(-750, -150))
+                        if GameManager.CallFunc("GetStage") ~= 1 then
+                            GameManager.ShowTip("我要带着的我的画去参加画展，得先把画画完。", 5)
+                        end
                         GameManager.CallFunc("FadeIn", 1)
                     end
                 )

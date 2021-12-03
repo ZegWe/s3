@@ -17,16 +17,22 @@ function Photo.Get(_parent)
     local animation = Animation:new(photo.obj, PhotoImage.PhotoAni, 0.2)
     photo:SetAnimation(animation)
 
+    local back = UIObject:new("back", PhotoImage.Back, bigPhoto.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
     local count = 0
     bigPhoto:SetClickFunc(
         function()
             if count == 0 then
                 GameManager.ShowTip("428。这有什么意义吗？", 5)
-                count = 1
-            else
-                bigPhoto:SetVisible(false)
-                _parent:SetVisible(true)
             end
+        end
+    )
+
+    back:SetClickFunc(
+        function()
+            bigPhoto:SetVisible(false)
+            _parent:SetVisible(true)
         end
     )
 
@@ -34,8 +40,13 @@ function Photo.Get(_parent)
         function()
             _parent:SetVisible(false)
             bigPhoto:SetVisible(true)
-            GameManager.ShowTip("这个男人总给我一种很熟悉的感觉……\n嗯？背面好像有字。", 5)
-            count = 0
+            if GameManager.CallFunc("GetStage") == 1 then
+                GameManager.ShowTip("这个男人总给我一种很熟悉的感觉……\n嗯？背面好像有字。", 5)
+                count = 0
+            else
+                GameManager.ShowTip("我们都回不去了，我的童年和英雄一样的爸爸。", 5)
+                count = 1
+            end
         end
     )
 

@@ -1,6 +1,7 @@
 local Interactive = require("Lua/module/interactive")
 local UIObject = require("Lua/module/uiObject")
 local Animation = require("Lua/module/animation")
+local AudioPlayer = require("Lua/module/audio")
 local Resource = require("Lua/resource").Dad
 local GameManager = require("Lua/game")
 
@@ -37,6 +38,9 @@ function Dad.Get(_parent)
     dad3:SetVisible(false)
     local animation3 = Animation:new(dad3.obj, Resource.DadFellAni, 0.3, true)
 
+    local fallSound = AudioPlayer:new("fallSound", Resource.FallSound, false)
+    local bgm = AudioPlayer:new("bgm", Resource.bgm, true)
+
     local tt = 0
     local times = {1, 2, 3, 4, 5, 6}
     local vis = {false, false, false, false, false, false}
@@ -70,11 +74,13 @@ function Dad.Get(_parent)
                     function()
                         GameManager.CallFunc("EnterBedRoom")
                         GameManager.ShowTip("刚刚好像做了什么噩梦……", 5)
+                        GameManager.CallFunc("cabinet", false)
                         _parent:AddInteractive(dad)
                         dad:SetActive(true)
                         dad1:SetVisible(false)
                         dad2:SetVisible(false)
                         dad2.obj.Offset = Vector2(2070, -10)
+                        bgm:Stop()
                         GameManager.CallFunc("FadeIn", 1)
                     end
                 )
@@ -92,7 +98,9 @@ function Dad.Get(_parent)
             wait(2)
             dad2:SetVisible(true)
             GameManager.ShowTip("获得了记忆碎片，快逃！", 1)
-            GameManager.CallFunc("cabinet")
+            _parent.bgm:Stop()
+            bgm:Play()
+            GameManager.CallFunc("cabinet", true)
             wait(1)
             animation2:Play()
             tt = 0
@@ -108,10 +116,17 @@ function Dad.Get(_parent)
                 world.OnRenderStepped:Disconnect(dadRun)
             end
             animation2:Stop()
-            wait(1)
-            dad2:SetVisible(false)
-            _parent:AddInteractive(dad3)
-            dad3:SetVisible(true)
+            invoke(
+                function()
+                    wait(1)
+                    dad2:SetVisible(false)
+                    _parent:AddInteractive(dad3)
+                    dad3:SetVisible(true)
+                    bgm:Stop()
+                    GameManager.PickMemory(1)
+                    GameManager.CallFunc("ChangeLoft", 2)
+                end
+            )
         end
     )
 
@@ -122,10 +137,12 @@ function Dad.Get(_parent)
                 "FadeOut",
                 1,
                 function()
-                    GameManager.CallFunc("EnterLivingRoom", Vector2(-400, -135))
+                    GameManager.CallFunc("EnterLivingRoom", Vector2(1300, -135))
                     GameManager.PickMemory(2)
                     GameManager.CallFunc("ladder")
+                    GameManager.CallFunc("cabinet", true)
                     GameManager.ShowTip("父亲，我自由了。", 5)
+                    GameManager.CallFunc("ChangeLoft", 3)
                     GameManager.CallFunc("FadeIn", 1)
                 end
             )
@@ -153,6 +170,7 @@ function Dad.Get(_parent)
                         door:SetVisible(false)
                         _parent:AddInteractive(doorOpen)
                         doorOpen:SetVisible(true)
+                        fallSound:Play()
                     end
                 )
             end

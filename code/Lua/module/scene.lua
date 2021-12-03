@@ -26,7 +26,10 @@ function Scene:initialize(_name, _ref, _parent, _size, _enterPos, _bgm)
     world.OnRenderStepped:Connect(
         function()
             for k, v in ipairs(self.interactives) do
-                if self.player ~= nil and math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= math.max(200, v.obj.Size.X / 2 + 100) then
+                if
+                    self.player ~= nil and
+                        math.abs(self.player.obj.Offset.X - v.obj.Offset.X) <= math.max(200, v.obj.Size.X / 2 + 100)
+                 then
                     v:SetActive(true)
                 else
                     v:SetActive(false)
@@ -47,6 +50,12 @@ function Scene:SetVisible(_visible)
         -- self.bgm:UnPause()
     else
         -- self.bgm:Pause()
+    end
+    if self.foreground ~= nil then
+        self.foreground.obj:ToTop()
+    end
+    if self.filter ~= nil then
+        self.filter.obj:ToTop()
     end
 end
 

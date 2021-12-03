@@ -1,6 +1,7 @@
 local UIObject = require("Lua/module/uiObject")
 local Interactive = require("Lua/module/interactive")
 local Animation = require("Lua/module/animation")
+local AudioPlayer = require("Lua/module/audio")
 local Resource = require("Lua/resource").Wardrobe
 local GameManager = require("Lua/game")
 
@@ -17,6 +18,9 @@ function Wardrobe.Get(_parent)
     local wardrobeUI =
         UIObject:new("WardrobeUI", Resource.WardrobeUI, _parent.obj.Parent, Vector2(1600, 900), Vector2(0, 0))
 
+    local unlockSound = AudioPlayer:new("UnlockSound", Resource.UnlockSound, false)
+    local rotateSound = AudioPlayer:new("RotateSound", Resource.RotateSound, false)
+
     local hour, min = 0, 0
 
     local shortHand =
@@ -30,6 +34,7 @@ function Wardrobe.Get(_parent)
 
     shortHandArrowLeft:SetClickFunc(
         function()
+            rotateSound:Play()
             shortHand.obj.Angle = shortHand.obj.Angle + 30
             hour = (hour - 1) % 12
         end
@@ -41,6 +46,7 @@ function Wardrobe.Get(_parent)
 
     shortHandArrowRight:SetClickFunc(
         function()
+            rotateSound:Play()
             shortHand.obj.Angle = shortHand.obj.Angle - 30
             hour = (hour + 1) % 12
         end
@@ -57,6 +63,7 @@ function Wardrobe.Get(_parent)
 
     longHandArrowLeft:SetClickFunc(
         function()
+            rotateSound:Play()
             longHand.obj.Angle = longHand.obj.Angle + 30
             min = (min - 5) % 60
         end
@@ -68,6 +75,7 @@ function Wardrobe.Get(_parent)
 
     longHandArrowRight:SetClickFunc(
         function()
+            rotateSound:Play()
             longHand.obj.Angle = longHand.obj.Angle - 30
             min = (min + 5) % 60
         end
@@ -78,17 +86,20 @@ function Wardrobe.Get(_parent)
     local confirm = UIObject:new("confirm", Resource.Confirm, wardrobeUI.obj, Vector2(176, 116), Vector2(0, -340))
     confirm:SetVisible(true)
 
+    local back = UIObject:new("back", Resource.Back, wardrobeUI.obj, Vector2(100, 100), Vector2(650, -350))
+    back:SetVisible(true)
+
     confirm:SetClickFunc(
         function()
             print(hour, min)
-            if hour == 3 and min == 15 then
+            if hour == 3 and min == 15 and GameManager.CallFunc("GetStage") == 2 then
+                unlockSound:Play()
                 GameManager.CallFunc(
                     "FadeOut",
                     1,
                     function()
                         wardrobeUI:SetVisible(false)
                         GameManager.CallFunc("EnterLoft", Vector2(-1900, -135))
-
                         unlocked = true
                         wardrobe:SetAnimation(nil)
                         animation:Stop()
@@ -104,7 +115,7 @@ function Wardrobe.Get(_parent)
         end
     )
 
-    wardrobeUI:SetClickFunc(
+    back:SetClickFunc(
         function()
             wardrobeUI:SetVisible(false)
             _parent:SetVisible(true)
@@ -117,6 +128,8 @@ function Wardrobe.Get(_parent)
                 _parent:SetVisible(false)
                 wardrobeUI:SetVisible(true)
                 GameManager.ShowTip("……？这个把手可以旋转？", 5)
+            elseif GameManager.CallFunc("GetStage") == 2 and GameManager.CheckMemory(1) then
+                GameManager.ShowTip("我需要先把画完成。", 5)
             else
                 GameManager.CallFunc(
                     "FadeOut",
