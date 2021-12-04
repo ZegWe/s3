@@ -137,6 +137,7 @@ end
 local mem1 = false
 local mem2 = false
 
+--- @return boolean
 function GameManager.CheckMemory(_m)
     if _m == 1 then
         return mem1

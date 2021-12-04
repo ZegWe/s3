@@ -21,8 +21,9 @@ function Cabinet.Get(_parent)
 
     cabinet:SetFunc(
         function()
-            if enabled then
-                enabled = false
+            if not enabled or (GameManager.CallFunc("GetStage") == 3 and not GameManager.CheckMemory(2)) then
+                GameManager.ShowTip("这是一条无法回头的道路。", 5)
+            else
                 GameManager.CallFunc("escape")
                 GameManager.CallFunc(
                     "FadeOut",
@@ -36,8 +37,6 @@ function Cabinet.Get(_parent)
                         GameManager.CallFunc("FadeIn", 1)
                     end
                 )
-            else
-                GameManager.ShowTip("这是一条无法回头的道路。", 5)
             end
         end
     )

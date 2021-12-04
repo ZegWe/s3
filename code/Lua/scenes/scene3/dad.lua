@@ -112,6 +112,9 @@ function Dad.Get(_parent)
     GameManager.RegisterFunc(
         "escape",
         function()
+            if GameManager.CallFunc("GetStage") == 3 then
+                return
+            end
             if world.OnRenderStepped:HasConnected(dadRun) then
                 world.OnRenderStepped:Disconnect(dadRun)
             end
@@ -140,7 +143,6 @@ function Dad.Get(_parent)
                     GameManager.CallFunc("EnterLivingRoom", Vector2(1300, -135))
                     GameManager.PickMemory(2)
                     GameManager.CallFunc("ladder")
-                    GameManager.CallFunc("cabinet", true)
                     GameManager.ShowTip("父亲，我自由了。", 5)
                     GameManager.CallFunc("ChangeLoft", 3)
                     GameManager.CallFunc("FadeIn", 1)
