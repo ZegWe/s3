@@ -41,6 +41,7 @@ function Animation:Play(_callback)
             if _callback ~= nil then
                 _callback()
             end
+            return
         end
         tt = tt + _dt
         if tt >= self.dt then
