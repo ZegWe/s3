@@ -25,7 +25,7 @@ function Wardrobe.Get(_parent)
 
     local shortHand =
         UIObject:new("shortHand", Resource.ShortClockHand, wardrobeUI.obj, Vector2(30, 70), Vector2(-445, 15))
-    shortHand.obj.Pivot = Vector2(0.5, 1 / 14)
+    shortHand.obj.Pivot = Vector2(0.5, 3 / 14)
     shortHand:SetVisible(true)
 
     local shortHandArrowLeft =
@@ -54,7 +54,7 @@ function Wardrobe.Get(_parent)
 
     local longHand =
         UIObject:new("longHand", Resource.LongClockHand, wardrobeUI.obj, Vector2(30, 130), Vector2(445, 15))
-    longHand.obj.Pivot = Vector2(0.5, 1 / 26)
+    longHand.obj.Pivot = Vector2(0.5, 5 / 26)
     longHand:SetVisible(true)
 
     local longHandArrowLeft =
@@ -107,6 +107,7 @@ function Wardrobe.Get(_parent)
                         wardrobe.ref_active = Resource.WardrobeOpen
                         wardrobe:UpdateTexture(Resource.WardrobeOpen)
                         GameManager.CallFunc("FadeIn", 1)
+                        GameManager.CallFunc("dad_interactive")
                     end
                 )
             else
@@ -137,6 +138,7 @@ function Wardrobe.Get(_parent)
                     function()
                         GameManager.CallFunc("EnterLoft", Vector2(-1900, -135))
                         GameManager.CallFunc("FadeIn", 1)
+                        GameManager.CallFunc("dad_interactive")
                     end
                 )
             end

@@ -32,6 +32,7 @@ function Dad.Get(_parent)
                 world.OnRenderStepped:Disconnect(Sync)
                 -- _parent.bgm:Stop()
                 _parent.player:EnableControl(false)
+                GameManager.ShowTip("", 0)
                 GameManager.CallFunc(
                     "FadeOut",
                     2,

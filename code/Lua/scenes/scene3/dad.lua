@@ -38,6 +38,50 @@ function Dad.Get(_parent)
     dad3:SetVisible(false)
     local animation3 = Animation:new(dad3.obj, Resource.DadFellAni, 0.3, true)
 
+    local tip = UIObject:new("tip", Resource.Tip, dad3.obj, Vector2(130, 270), Vector2(-450, 0))
+    local tipAnimation = Animation:new(tip.obj, Resource.TipAni, 0.1)
+
+    local progress = UIObject:new("progress", Resource.Progress[1], tip.obj, Vector2(160, 50), Vector2(100, 350))
+    progress:SetVisible(true)
+    local function update(_cnt)
+        progress:UpdateTexture(Resource.Progress[math.floor(_cnt / 2) + 1])
+    end
+
+    local lock = Interactive:new("lock", Resource.Lock, Resource.Lock, _parent, Vector2(170, 60), Vector2(-1975, -100))
+    local ticket =
+        Interactive:new("ticket", Resource.Ticket, Resource.Ticket, _parent, Vector2(70, 40), Vector2(-1500, -110))
+    local blood =
+        Interactive:new("blood", Resource.Blood, Resource.Blood, _parent, Vector2(120, 380), Vector2(300, -60))
+    local guizi = UIObject:new("guizi", Resource.Guizi, _parent.obj, Vector2(430, 280), Vector2(-1500, -270))
+    lock:SetVisible(false)
+    blood:SetVisible(false)
+    ticket:SetVisible(false)
+
+    local function show_interactive()
+        _parent:AddInteractive(lock)
+        _parent:AddInteractive(ticket)
+        _parent:AddInteractive(blood)
+        guizi:SetVisible(true)
+        lock:SetVisible(true)
+        blood:SetVisible(true)
+        ticket:SetVisible(true)
+    end
+    lock:SetFunc(
+        function()
+            GameManager.ShowTip("爸爸看到了我手里的门票，然后把我关在了这里。\n马上就是画展开幕的时候了……", 5)
+        end
+    )
+    blood:SetFunc(
+        function()
+            GameManager.ShowTip("在黑暗的阁楼里我只能感受到爸爸抓着我，\n有什么液体从我的头上流下来……", 5)
+        end
+    )
+    ticket:SetFunc(
+        function()
+            GameManager.ShowTip("要去画展了要去画展了——我已经\n准备好门票和画作了！", 5)
+        end
+    )
+
     local fallSound = AudioPlayer:new("fallSound", Resource.FallSound, false)
     local bgm = AudioPlayer:new("bgm", Resource.bgm, true)
 
@@ -63,7 +107,7 @@ function Dad.Get(_parent)
         end
 
         if _parent.player ~= nil then
-            dad2.obj.Offset = dad2.obj.Offset + Vector2(_dt * -500, 0)
+            dad2.obj.Offset = dad2.obj.Offset + Vector2(_dt * -550, 0)
             if dad2.obj.Offset.X - _parent.player.obj.Offset.X < 100 then
                 print("caught!")
                 animation2:Stop()
@@ -73,10 +117,10 @@ function Dad.Get(_parent)
                     1,
                     function()
                         GameManager.CallFunc("EnterBedRoom")
-                        GameManager.ShowTip("刚刚好像做了什么噩梦……", 5)
+                        GameManager.ShowTip("刚刚好像做了什么噩梦，要再回去看看吗？", 5)
                         GameManager.CallFunc("cabinet", false)
                         _parent:AddInteractive(dad)
-                        dad:SetActive(true)
+                        dad:SetVisible(true)
                         dad1:SetVisible(false)
                         dad2:SetVisible(false)
                         dad2.obj.Offset = Vector2(2070, -10)
@@ -88,8 +132,10 @@ function Dad.Get(_parent)
         end
     end
 
-    dad:SetFunc(
-        function()
+    local function sync()
+        if _parent.player.obj.Offset.X > 1500 then
+            world.OnRenderStepped:Disconnect(sync)
+            _parent.player:EnableControl(false)
             _parent:RemoveInteractive(dad)
             dad:SetVisible(false)
             dad1:SetVisible(true)
@@ -106,6 +152,67 @@ function Dad.Get(_parent)
             tt = 0
             vis = {false, false, false, false, false, false}
             world.OnRenderStepped:Connect(dadRun)
+            _parent.player:EnableControl(true)
+        end
+    end
+
+    local function click()
+        local cnt = 0
+        dad3:SetClickFunc(
+            function()
+                cnt = cnt + 1
+                update(cnt)
+            end
+        )
+        tip:SetVisible(true)
+        tipAnimation:Play()
+        while wait(0.5) do
+            if cnt > 10 then
+                break
+            end
+            cnt = math.max(0, cnt - 1)
+            update(cnt)
+        end
+        dad3:SetFunc(nil)
+        tip:SetVisible(false)
+        tipAnimation:Stop()
+    end
+
+    local function sync2()
+        if _parent.player.obj.Offset.X > 1300 then
+            world.OnRenderStepped:Disconnect(sync2)
+            _parent.player:EnableControl(false)
+            GameManager.ShowTip("他看起来像一尊雕塑……为什么不动了？", 5)
+            wait(2)
+            GameManager.ShowTip("我要……摆脱这一切。", 5)
+            wait(2)
+            GameManager.ShowTip("父亲你不能再阻止我了", 5)
+            click()
+            animation3:Play(
+                function()
+                    _parent:RemoveInteractive(dad3)
+                    dad3:SetVisible(false)
+                    door:SetVisible(false)
+                    _parent:AddInteractive(doorOpen)
+                    doorOpen:SetVisible(true)
+                    fallSound:Play()
+                    GameManager.ShowTip("……他掉下去了，爸爸……", 5)
+                    _parent.player:EnableControl(true)
+                end
+            )
+        end
+    end
+
+    GameManager.RegisterFunc(
+        "dad_interactive",
+        function()
+            print("dad_interactive", GameManager.CallFunc("GetStage"))
+            if GameManager.CallFunc("GetStage") == 2 then
+                world.OnRenderStepped:Connect(sync)
+            elseif GameManager.CallFunc("GetStage") == 3 and GameManager.CheckMemory(2) == false then
+                show_interactive()
+                world.OnRenderStepped:Connect(sync2)
+            end
         end
     )
 
@@ -148,34 +255,6 @@ function Dad.Get(_parent)
                     GameManager.CallFunc("FadeIn", 1)
                 end
             )
-        end
-    )
-
-    local cnt = 0
-    dad3:SetFunc(
-        function()
-            if cnt == 0 then
-                GameManager.ShowTip("他看起来像一尊雕塑……为什么不动了？", 5)
-                cnt = cnt + 1
-            elseif cnt == 1 then
-                GameManager.ShowTip("只要把他推下去……这一切就可以结束了。", 5)
-                cnt = cnt + 1
-            elseif cnt == 2 then
-                GameManager.ShowTip("成为英雄，就要为了自己的信念而牺牲。", 5)
-                cnt = cnt + 1
-                _parent.player:EnableControl(false)
-                animation3:Play(
-                    function()
-                        _parent.player:EnableControl(true)
-                        _parent:RemoveInteractive(dad3)
-                        dad3:SetVisible(false)
-                        door:SetVisible(false)
-                        _parent:AddInteractive(doorOpen)
-                        doorOpen:SetVisible(true)
-                        fallSound:Play()
-                    end
-                )
-            end
         end
     )
 

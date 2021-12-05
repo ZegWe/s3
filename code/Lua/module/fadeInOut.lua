@@ -20,12 +20,10 @@ function FadeInOut:FadeOut(_time, _callback)
     if _time == nil then
         _time = 1
     end
-    print(0)
     local function func(_dt)
         if self.obj.Alpha >= 1 then
             world.OnRenderStepped:Disconnect(func)
             self:SetVisible(false)
-            print("FadeInOut:FadeOut")
             if _callback ~= nil then
                 _callback()
             end
@@ -44,12 +42,10 @@ function FadeInOut:FadeIn(_time, _callback)
     if _time == nil then
         _time = 1
     end
-    print(1)
     local function func(_dt)
         if self.obj.Alpha <= 0 then
             world.OnRenderStepped:Disconnect(func)
             self:SetVisible(false)
-            print("FadeInOut:FadeIn")
             if _callback ~= nil then
                 _callback()
             end

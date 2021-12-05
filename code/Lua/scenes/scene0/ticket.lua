@@ -22,9 +22,10 @@ function Ticket.Get(_parent)
         function()
             ticketUI:SetVisible(false)
             _parent:SetVisible(true)
-            GameManager.ShowTip("继续往前走", 5)
+            -- GameManager.ShowTip("继续往前走", 5)
             _parent:RemoveInteractive(ticket)
             ticket:SetVisible(false)
+            GameManager.ShowTip("", 0)
         end
     )
 
@@ -32,6 +33,7 @@ function Ticket.Get(_parent)
         function()
             _parent:SetVisible(false)
             ticketUI:SetVisible(true)
+            GameManager.ShowTip("捡到一张门票", 5)
         end
     )
 

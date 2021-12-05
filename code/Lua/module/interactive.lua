@@ -23,12 +23,16 @@ function Interactive:initialize(_name, _ref, _ref_active, _parent, _size, _offse
 end
 
 function Interactive:SetFunc(_func)
+    if _func == nil then
+        _func = function()
+        end
+    end
     local func = function()
         if self.interactive == true then
             _func()
         end
     end
-    UIObject.SetClickFunc(self, func)
+    self:SetClickFunc(func)
 end
 
 --- @param _active boolean

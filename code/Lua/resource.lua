@@ -815,6 +815,40 @@ Resource.Cabinet = {
 }
 
 Resource.Dad = {
+    Tip = "Local/按键1",
+    TipAni = {
+        "Local/按键1",
+        "Local/按键2"
+    },
+    Progress = {
+        "Local/格子/格子框",
+        "Local/格子/格子框1",
+        "Local/格子/格子框2",
+        "Local/格子/格子框3",
+        "Local/格子/格子框4",
+        "Local/格子/格子框5"
+    },
+    Ticket = "Local/门票/5",
+    TicketAni = {
+        "Local/门票/1",
+        "Local/门票/2",
+        "Local/门票/3",
+        "Local/门票/4",
+        "Local/门票/5"
+    },
+    Lock = "Local/锁/锁子",
+    LockAni = {
+        "Local/锁/1",
+        "Local/锁/2",
+        "Local/锁/3"
+    },
+    Blood = "Local/血迹/血",
+    BloodAni = {
+        "Local/血迹/血1",
+        "Local/血迹/血2",
+        "Local/血迹/血3"
+    },
+    Guizi = "Local/小柜子",
     FallSound = "Sound/爸爸掉下去",
     bgm = "Sound/追逐战",
     Dad = "Local/阁楼布的闪光/4-4",
