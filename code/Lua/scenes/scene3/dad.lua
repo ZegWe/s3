@@ -57,6 +57,13 @@ function Dad.Get(_parent)
     blood:SetVisible(false)
     ticket:SetVisible(false)
 
+    local lockAni = Animation:new(lock.obj, Resource.LockAni, 0.3)
+    local bloodAni = Animation:new(blood.obj, Resource.BloodAni, 0.3)
+    local ticketAni = Animation:new(ticket.obj, Resource.TicketAni, 0.3)
+    lock:SetAnimation(lockAni)
+    blood:SetAnimation(bloodAni)
+    ticket:SetAnimation(ticketAni)
+
     local function show_interactive()
         _parent:AddInteractive(lock)
         _parent:AddInteractive(ticket)
